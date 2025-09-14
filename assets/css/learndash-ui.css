@@ -1,0 +1,378 @@
+/* LearnDash UI Espectacular: Diseño Sensacional y Moderno */
+
+/* =================== 
+   CONTENEDORES PRINCIPALES LEARNDASH
+   =================== */
+.learndash-active .ld-content-wrap,
+.learndash-active .ld-course-status,
+.learndash-active .ld-item-list {
+  background: var(--gradient-surface) !important;
+  border: 1px solid var(--color-border-primary) !important;
+  border-radius: var(--radius-2xl) !important;
+  box-shadow: var(--shadow-lg) !important;
+  backdrop-filter: blur(10px) !important;
+  transition: all var(--transition-duration-base) var(--transition-timing-function) !important;
+  position: relative !important;
+}
+
+.learndash-active .ld-content-wrap:hover,
+.learndash-active .ld-course-status:hover,
+.learndash-active .ld-item-list:hover {
+  transform: translateY(-2px) !important;
+  box-shadow: var(--shadow-xl) !important;
+  border-color: var(--color-border-focus) !important;
+}
+
+.learndash-active .ld-content-wrap::before,
+.learndash-active .ld-course-status::before,
+.learndash-active .ld-item-list::before {
+  content: "" !important;
+  position: absolute !important;
+  top: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+  bottom: 0 !important;
+  background: linear-gradient(135deg, rgba(255,255,255,0.1), transparent) !important;
+  opacity: 0 !important;
+  transition: opacity var(--transition-duration-base) var(--transition-timing-function) !important;
+  pointer-events: none !important;
+  border-radius: var(--radius-2xl) !important;
+}
+
+.learndash-active .ld-content-wrap:hover::before,
+.learndash-active .ld-course-status:hover::before,
+.learndash-active .ld-item-list:hover::before {
+  opacity: 1 !important;
+}
+
+/* =================== 
+   BARRAS DE PROGRESO ESPECTACULARES
+   =================== */
+.learndash-active .ld-progress .ld-progress-bar { 
+  background: var(--color-surface-tertiary) !important;
+  border-radius: var(--radius-full) !important;
+  height: 16px !important;
+  box-shadow: inset 0 2px 4px rgba(0,0,0,0.1) !important;
+  overflow: hidden !important;
+  position: relative !important;
+}
+
+.learndash-active .ld-progress .ld-progress-bar .ld-progress-bar-percentage { 
+  background: var(--gradient-brand) !important;
+  border-radius: var(--radius-full) !important;
+  transition: width 0.8s cubic-bezier(0.4, 0, 0.2, 1) ease !important;
+  position: relative !important;
+  overflow: hidden !important;
+}
+
+.learndash-active .ld-progress .ld-progress-bar .ld-progress-bar-percentage::after {
+  content: "" !important;
+  position: absolute !important;
+  top: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+  bottom: 0 !important;
+  background: linear-gradient(90deg, rgba(255,255,255,0.4), transparent 60%) !important;
+  animation: shimmer 2s infinite !important;
+}
+
+.learndash-active .ld-progress .ld-progress-bar .ld-progress-bar-percentage::before {
+  content: "" !important;
+  position: absolute !important;
+  top: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+  bottom: 0 !important;
+  background: linear-gradient(90deg, rgba(255,255,255,0.2), transparent) !important;
+  opacity: 0.6 !important;
+}
+
+/* =================== 
+   LISTAS DE LECCIONES MODERNAS
+   =================== */
+.learndash-active .ld-table-list .ld-table-list-items,
+.learndash-active .ld-item-list .ld-item-list-items { 
+  border-top: 2px solid var(--color-border-primary) !important;
+  border-radius: var(--radius-xl) !important;
+  overflow: hidden !important;
+}
+
+.learndash-active .ld-item-list-item { 
+  border-bottom: 1px solid var(--color-border-primary) !important;
+  padding: clamp(1rem, 2vw, 1.25rem) clamp(1rem, 2vw, 1.5rem) !important;
+  transition: all var(--transition-duration-base) var(--transition-timing-function) !important;
+  position: relative !important;
+  overflow: hidden !important;
+}
+
+.learndash-active .ld-item-list-item::before {
+  content: "" !important;
+  position: absolute !important;
+  left: 0 !important;
+  top: 0 !important;
+  bottom: 0 !important;
+  width: 4px !important;
+  background: var(--gradient-brand) !important;
+  transform: scaleY(0) !important;
+  transition: transform var(--transition-duration-base) var(--transition-timing-function) !important;
+}
+
+.learndash-active .ld-item-list-item:hover { 
+  background: var(--gradient-surface) !important;
+  transform: translateX(8px) !important;
+  box-shadow: var(--shadow-md) !important;
+}
+
+.learndash-active .ld-item-list-item:hover::before {
+  transform: scaleY(1) !important;
+}
+
+.learndash-active .ld-item-list-item .ld-item-title {
+  font: 700 clamp(.95rem, 1.8vw, 1.1rem)/1.3 var(--font-family-sans) !important;
+  color: var(--color-text-primary) !important;
+  transition: color var(--transition-duration-base) var(--transition-timing-function) !important;
+  margin-bottom: 0.25rem !important;
+}
+
+.learndash-active .ld-item-list-item:hover .ld-item-title {
+  color: var(--color-brand-primary) !important;
+}
+
+/* =================== 
+   NAVEGACIÓN Y TABS ESPECTACULARES
+   =================== */
+.learndash-active .ld-tabs-navigation { 
+  background: var(--glass-background) !important;
+  border: 1px solid var(--glass-border) !important;
+  border-radius: var(--radius-2xl) !important;
+  padding: var(--space-3, 12px) !important;
+  backdrop-filter: blur(12px) !important;
+  box-shadow: var(--shadow-lg) !important;
+}
+
+.learndash-active .ld-tabs-navigation .ld-tab { 
+  margin: 0 !important;
+}
+
+.learndash-active .ld-tabs-navigation .ld-tab a { 
+  display: block !important;
+  padding: var(--space-3, 12px) var(--space-5, 20px) !important;
+  border-radius: var(--radius-lg) !important;
+  color: var(--color-text-secondary) !important;
+  font: 600 .9rem/1.2 var(--font-family-sans) !important;
+  text-decoration: none !important;
+  transition: all var(--transition-duration-base) var(--transition-timing-function) !important;
+  position: relative !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.02em !important;
+}
+
+.learndash-active .ld-tabs-navigation .ld-tab a:hover { 
+  background: var(--color-surface-secondary) !important;
+  color: var(--color-brand-primary) !important;
+  transform: translateY(-1px) !important;
+  box-shadow: var(--shadow-sm) !important;
+}
+
+.learndash-active .ld-tabs-navigation .ld-tab.ld-active a { 
+  background: var(--gradient-surface) !important;
+  color: var(--color-text-primary) !important;
+  box-shadow: var(--shadow-md) !important;
+  transform: translateY(-2px) !important;
+}
+
+.learndash-active .ld-tabs-navigation .ld-tab.ld-active a::after {
+  content: "" !important;
+  position: absolute !important;
+  left: .75rem !important;
+  right: .75rem !important;
+  bottom: .3rem !important;
+  height: 3px !important;
+  background: var(--gradient-brand) !important;
+  border-radius: var(--radius-full) !important;
+}
+
+/* =================== 
+   BOTONES ESPECTACULARES
+   =================== */
+.learndash-active .ld-button, 
+.learndash-active .ld-primary-color { 
+  background: var(--gradient-brand) !important;
+  color: white !important;
+  border-radius: var(--radius-lg) !important;
+  border: none !important;
+  box-shadow: var(--shadow-md) !important;
+  padding: .8rem 1.2rem !important;
+  font: 700 .9rem/1.2 var(--font-family-sans) !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.02em !important;
+  transition: all var(--transition-duration-base) var(--transition-timing-function) !important;
+  position: relative !important;
+  overflow: hidden !important;
+}
+
+.learndash-active .ld-button::before,
+.learndash-active .ld-primary-color::before {
+  content: "" !important;
+  position: absolute !important;
+  top: 0 !important;
+  left: -100% !important;
+  width: 100% !important;
+  height: 100% !important;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent) !important;
+  transition: left var(--transition-duration-base) var(--transition-timing-function) !important;
+}
+
+.learndash-active .ld-button:hover, 
+.learndash-active .ld-primary-color:hover { 
+  transform: translateY(-2px) scale(1.02) !important;
+  box-shadow: var(--shadow-xl) !important;
+}
+
+.learndash-active .ld-button:hover::before,
+.learndash-active .ld-primary-color:hover::before {
+  left: 100% !important;
+}
+
+/* =================== 
+   TABLAS ELEGANTES
+   =================== */
+.learndash-active table { 
+  width: 100% !important;
+  border-collapse: collapse !important;
+  background: var(--gradient-surface) !important;
+  border: 1px solid var(--color-border-primary) !important;
+  border-radius: var(--radius-xl) !important;
+  overflow: hidden !important;
+  box-shadow: var(--shadow-lg) !important;
+  font: 400 .9rem/1.4 var(--font-family-sans) !important;
+}
+
+.learndash-active table th, 
+.learndash-active table td { 
+  padding: 1rem 1.25rem !important;
+  border-bottom: 1px solid var(--color-border-primary) !important;
+}
+
+.learndash-active table thead th { 
+  background: var(--gradient-surface) !important;
+  font: 800 .85rem/1.2 var(--font-family-sans) !important;
+  color: var(--color-text-primary) !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.02em !important;
+}
+
+.learndash-active table tbody tr { 
+  transition: all var(--transition-duration-base) var(--transition-timing-function) !important;
+}
+
+.learndash-active table tbody tr:hover { 
+  background: var(--color-surface-secondary) !important;
+  transform: scale(1.001) !important;
+}
+
+/* =================== 
+   ELEMENTOS AUXILIARES
+   =================== */
+.learndash-active .ld-status,
+.learndash-active .ld-badge {
+  display: inline-block !important;
+  padding: .4rem .8rem !important;
+  border-radius: var(--radius-full) !important;
+  font: 700 .75rem/1.2 var(--font-family-sans) !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.02em !important;
+  background: var(--gradient-surface) !important;
+  border: 1px solid var(--color-border-primary) !important;
+  box-shadow: var(--shadow-sm) !important;
+}
+
+.learndash-active .ld-status.ld-status-complete {
+  background: linear-gradient(135deg, #10b981, #059669) !important;
+  color: white !important;
+  border-color: #10b981 !important;
+}
+
+.learndash-active .ld-status.ld-status-incomplete {
+  background: linear-gradient(135deg, #f59e0b, #d97706) !important;
+  color: white !important;
+  border-color: #f59e0b !important;
+}
+
+/* =================== 
+   QUIZ Y EVALUACIONES
+   =================== */
+.learndash-active .ld-quiz,
+.learndash-active .wpProQuiz_content {
+  background: var(--gradient-surface) !important;
+  border: 1px solid var(--color-border-primary) !important;
+  border-radius: var(--radius-2xl) !important;
+  padding: clamp(2rem, 4vw, 3rem) !important;
+  box-shadow: var(--shadow-xl) !important;
+  backdrop-filter: blur(10px) !important;
+}
+
+.learndash-active .wpProQuiz_question {
+  background: var(--gradient-surface) !important;
+  border: 1px solid var(--color-border-primary) !important;
+  border-radius: var(--radius-xl) !important;
+  padding: clamp(1.5rem, 3vw, 2rem) !important;
+  margin-bottom: 1.5rem !important;
+  box-shadow: var(--shadow-lg) !important;
+  transition: all var(--transition-duration-base) var(--transition-timing-function) !important;
+}
+
+.learndash-active .wpProQuiz_question:hover {
+  transform: translateY(-2px) !important;
+  box-shadow: var(--shadow-xl) !important;
+}
+
+/* =================== 
+   ANIMACIONES
+   =================== */
+@keyframes shimmer {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(200%); }
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.8; }
+}
+
+@keyframes slideInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.learndash-active .ld-item-list-item {
+  animation: slideInUp 0.4s ease-out !important;
+}
+
+/* =================== 
+   RESPONSIVE AVANZADO
+   =================== */
+@media (max-width: 768px) {
+  .learndash-active .ld-tabs-navigation {
+    padding: var(--space-2, 8px) !important;
+  }
+  
+  .learndash-active .ld-tabs-navigation .ld-tab a {
+    padding: var(--space-2, 8px) var(--space-3, 12px) !important;
+    font-size: .85rem !important;
+  }
+  
+  .learndash-active .ld-item-list-item {
+    padding: .85rem 1rem !important;
+  }
+  
+  .learndash-active .ld-item-list-item:hover {
+    transform: translateX(4px) !important;
+  }
+}

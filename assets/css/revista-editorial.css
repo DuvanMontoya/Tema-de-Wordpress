@@ -1,0 +1,496 @@
+/* =====================================
+   REVISTA EDITORIAL ESPECTACULAR
+   Diseño de revista académica premium, elegante y moderno
+   ===================================== */
+
+/* Variables específicas para revista */
+:root {
+  --revista-primary: var(--color-primary);
+  --revista-accent: #c9a96e;
+  --revista-gold: #f4e4bc;
+  --revista-dark: #1a1a1a;
+  --revista-light: #fafafa;
+  --revista-serif: var(--font-family-serif);
+  --revista-sans: var(--font-family-sans);
+  
+  /* Gradientes elegantes */
+  --revista-gradient-hero: linear-gradient(135deg, var(--revista-primary) 0%, var(--color-primary-700) 100%);
+  --revista-gradient-card: linear-gradient(145deg, rgba(255,255,255,0.9) 0%, rgba(248,250,252,0.95) 100%);
+  --revista-gradient-accent: linear-gradient(90deg, var(--revista-accent) 0%, var(--revista-gold) 100%);
+}
+
+/* =====================================
+   HERO EDITORIAL ELEGANTE
+   ===================================== */
+
+.revista-principal {
+  min-height: 100vh;
+  background: var(--color-surface);
+}
+
+.revista-hero {
+  background: var(--revista-gradient-hero);
+  color: white;
+  padding: var(--space-20) 0 var(--space-16);
+  position: relative;
+  overflow: hidden;
+}
+
+.revista-hero::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+  opacity: 0.7;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.revista-titulo {
+  font-family: var(--revista-serif);
+  font-size: clamp(3rem, 6vw, 4.5rem);
+  font-weight: var(--font-weight-bold);
+  margin: 0 0 var(--space-4) 0;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.revista-subtitulo {
+  font-family: var(--revista-sans);
+  font-size: clamp(1.1rem, 2.5vw, 1.5rem);
+  font-weight: var(--font-weight-normal);
+  margin: 0 0 var(--space-8) 0;
+  opacity: 0.95;
+  line-height: var(--line-height-relaxed);
+}
+
+.hero-meta {
+  display: flex;
+  justify-content: center;
+  gap: var(--space-6);
+  flex-wrap: wrap;
+}
+
+.revista-volumen,
+.revista-numero {
+  background: rgba(255,255,255,0.2);
+  backdrop-filter: blur(10px);
+  padding: var(--space-2) var(--space-4);
+  border-radius: var(--radius-full);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-medium);
+  border: 1px solid rgba(255,255,255,0.3);
+}
+
+/* =====================================
+   GRID EDITORIAL PREMIUM
+   ===================================== */
+
+.revista-contenido {
+  padding: var(--space-20) 0;
+  background: var(--color-surface);
+}
+
+.articulos-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-12);
+  margin-bottom: var(--space-20);
+}
+
+/* =====================================
+   ARTÍCULO DESTACADO ESPECTACULAR
+   ===================================== */
+
+.articulo-destacado {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-10);
+  background: var(--revista-gradient-card);
+  border-radius: var(--radius-3xl);
+  overflow: hidden;
+  box-shadow: 
+    0 4px 6px -1px rgba(0,0,0,0.1),
+    0 10px 15px -3px rgba(0,0,0,0.1),
+    0 20px 25px -5px rgba(0,0,0,0.1);
+  border: 1px solid var(--color-border);
+  transition: all var(--transition-normal);
+  position: relative;
+  margin-bottom: var(--space-16);
+}
+
+.articulo-destacado:hover {
+  transform: translateY(-4px);
+  box-shadow: 
+    0 10px 15px -3px rgba(0,0,0,0.1),
+    0 20px 25px -5px rgba(0,0,0,0.1),
+    0 25px 50px -12px rgba(0,0,0,0.25);
+}
+
+.articulo-destacado .articulo-imagen {
+  position: relative;
+  overflow: hidden;
+  min-height: 400px;
+}
+
+.articulo-destacado .articulo-imagen img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform var(--transition-normal);
+}
+
+.articulo-destacado:hover .articulo-imagen img {
+  transform: scale(1.05);
+}
+
+.articulo-etiqueta {
+  position: absolute;
+  top: var(--space-6);
+  left: var(--space-6);
+  background: var(--revista-gradient-accent);
+  color: var(--revista-dark);
+  padding: var(--space-2) var(--space-4);
+  border-radius: var(--radius-full);
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-bold);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  box-shadow: var(--shadow-md);
+}
+
+.articulo-destacado .articulo-contenido {
+  padding: var(--space-10);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.articulo-destacado .articulo-titulo {
+  font-family: var(--revista-serif);
+  font-size: clamp(1.75rem, 3vw, 2.25rem);
+  font-weight: var(--font-weight-bold);
+  line-height: 1.2;
+  margin: var(--space-6) 0 var(--space-4) 0;
+}
+
+.articulo-destacado .articulo-titulo a {
+  color: var(--color-text-primary);
+  text-decoration: none;
+  transition: color var(--transition-fast);
+}
+
+.articulo-destacado .articulo-titulo a:hover {
+  color: var(--revista-primary);
+}
+
+.articulo-destacado .articulo-extracto {
+  font-size: var(--font-size-lg);
+  line-height: var(--line-height-relaxed);
+  color: var(--color-text-secondary);
+  margin-bottom: var(--space-8);
+}
+
+/* =====================================
+   ARTÍCULOS REGULARES ELEGANTES
+   ===================================== */
+
+.articulos-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-12);
+}
+
+@media (min-width: 768px) {
+  .articulos-grid {
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    gap: var(--space-8);
+  }
+}
+
+.articulo-regular {
+  background: var(--color-surface-elevated);
+  border-radius: var(--radius-2xl);
+  overflow: hidden;
+  box-shadow: var(--shadow-md);
+  border: 1px solid var(--color-border);
+  transition: all var(--transition-normal);
+  height: fit-content;
+}
+
+.articulo-regular:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-xl);
+}
+
+.articulo-regular .articulo-imagen {
+  position: relative;
+  overflow: hidden;
+  aspect-ratio: 16/9;
+}
+
+.articulo-regular .articulo-imagen img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform var(--transition-normal);
+}
+
+.articulo-regular:hover .articulo-imagen img {
+  transform: scale(1.02);
+}
+
+.articulo-regular .articulo-contenido {
+  padding: var(--space-8);
+}
+
+.articulo-regular .articulo-titulo {
+  font-family: var(--revista-serif);
+  font-size: clamp(1.25rem, 2vw, 1.5rem);
+  font-weight: var(--font-weight-bold);
+  line-height: 1.3;
+  margin: var(--space-4) 0 var(--space-3) 0;
+}
+
+.articulo-regular .articulo-titulo a {
+  color: var(--color-text-primary);
+  text-decoration: none;
+  transition: color var(--transition-fast);
+}
+
+.articulo-regular .articulo-titulo a:hover {
+  color: var(--revista-primary);
+}
+
+.articulo-regular .articulo-extracto {
+  font-size: var(--font-size-base);
+  line-height: var(--line-height-relaxed);
+  color: var(--color-text-secondary);
+  margin-bottom: var(--space-6);
+}
+
+/* =====================================
+   META Y ELEMENTOS COMUNES
+   ===================================== */
+
+.articulo-meta {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+  margin-bottom: var(--space-4);
+  flex-wrap: wrap;
+}
+
+.articulo-meta > * {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-size: var(--font-size-sm);
+  color: var(--color-text-muted);
+  font-weight: var(--font-weight-medium);
+}
+
+.fecha {
+  color: var(--revista-primary);
+  font-weight: var(--font-weight-semibold);
+}
+
+.categoria {
+  background: var(--color-primary-50);
+  color: var(--revista-primary);
+  padding: var(--space-1) var(--space-3);
+  border-radius: var(--radius-full);
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-bold);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.articulo-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: auto;
+  padding-top: var(--space-6);
+  border-top: 1px solid var(--color-border);
+}
+
+.leer-mas {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  color: var(--revista-primary);
+  text-decoration: none;
+  font-weight: var(--font-weight-semibold);
+  font-size: var(--font-size-sm);
+  transition: all var(--transition-fast);
+}
+
+.leer-mas:hover {
+  color: var(--color-primary-hover);
+  transform: translateX(2px);
+}
+
+.leer-mas svg {
+  transition: transform var(--transition-fast);
+}
+
+.leer-mas:hover svg {
+  transform: translateX(4px);
+}
+
+.tiempo-lectura {
+  font-size: var(--font-size-xs);
+  color: var(--color-text-muted);
+  font-weight: var(--font-weight-medium);
+}
+
+/* =====================================
+   NAVEGACIÓN EDITORIAL ELEGANTE
+   ===================================== */
+
+.revista-navegacion {
+  padding: var(--space-12) 0;
+  border-top: 1px solid var(--color-border);
+}
+
+.pagination-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: var(--space-2);
+  flex-wrap: wrap;
+}
+
+.pagination-item {
+  display: flex;
+}
+
+.pagination-item a,
+.pagination-item span {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-3) var(--space-4);
+  border-radius: var(--radius-lg);
+  font-weight: var(--font-weight-medium);
+  text-decoration: none;
+  transition: all var(--transition-fast);
+  min-width: 44px;
+  justify-content: center;
+}
+
+.pagination-item a {
+  background: var(--color-surface-elevated);
+  color: var(--color-text-primary);
+  border: 1px solid var(--color-border);
+}
+
+.pagination-item a:hover {
+  background: var(--revista-primary);
+  color: white;
+  border-color: var(--revista-primary);
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-md);
+}
+
+.pagination-item .current {
+  background: var(--revista-primary);
+  color: white;
+  border: 1px solid var(--revista-primary);
+}
+
+.pagination-item .dots {
+  background: none;
+  border: none;
+  color: var(--color-text-muted);
+}
+
+/* =====================================
+   ESTADO VACÍO ELEGANTE
+   ===================================== */
+
+.no-articulos {
+  text-align: center;
+  padding: var(--space-20) var(--space-8);
+  background: var(--color-surface-elevated);
+  border-radius: var(--radius-2xl);
+  border: 1px solid var(--color-border);
+}
+
+.no-articulos h2 {
+  font-family: var(--revista-serif);
+  font-size: clamp(1.5rem, 3vw, 2rem);
+  color: var(--color-text-primary);
+  margin-bottom: var(--space-4);
+}
+
+.no-articulos p {
+  color: var(--color-text-secondary);
+  font-size: var(--font-size-lg);
+  line-height: var(--line-height-relaxed);
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+/* =====================================
+   RESPONSIVE DESIGN
+   ===================================== */
+
+@media (max-width: 768px) {
+  .articulo-destacado {
+    grid-template-columns: 1fr;
+    margin-bottom: var(--space-12);
+  }
+  
+  .articulo-destacado .articulo-imagen {
+    min-height: 250px;
+  }
+  
+  .articulo-destacado .articulo-contenido {
+    padding: var(--space-6);
+  }
+  
+  .articulo-meta {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--space-2);
+  }
+  
+  .articulo-footer {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--space-4);
+  }
+  
+  .revista-hero {
+    padding: var(--space-16) 0 var(--space-12);
+  }
+}
+
+@media (max-width: 640px) {
+  .hero-meta {
+    flex-direction: column;
+    gap: var(--space-3);
+  }
+  
+  .pagination-wrapper {
+    gap: var(--space-1);
+  }
+  
+  .pagination-item a,
+  .pagination-item span {
+    padding: var(--space-2) var(--space-3);
+    font-size: var(--font-size-sm);
+  }
+}

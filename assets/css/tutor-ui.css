@@ -1,0 +1,577 @@
+/* =====================================
+   TUTOR UI - VERSIÓN OPTIMIZADA Y LIMPIA
+   Sin !important excesivos y con variables corregidas
+   ===================================== */
+
+/* =====================================
+   LAYOUT PRINCIPAL
+   ===================================== */
+
+.single-courses .tutor-wrap,
+.single-courses .tutor-container {
+  max-width: var(--width-full);
+  padding-inline: var(--space-6);
+  margin: 0 auto;
+}
+
+.single-courses .tutor-single-course-wrap .tutor-row,
+.single-courses .tutor-course-details-page .tutor-row {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 360px;
+  gap: var(--space-8);
+  align-items: start;
+}
+
+@media (max-width: 1080px) {
+  .single-courses .tutor-single-course-wrap .tutor-row,
+  .single-courses .tutor-course-details-page .tutor-row {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* =====================================
+   ELEMENTOS DE INTERFAZ
+   ===================================== */
+
+.tutor-course-rating-stars,
+.tutor-course-topic-title,
+.tutor-course-lesson-title {
+  background: transparent;
+  border: none;
+  box-shadow: none;
+  padding: 0;
+}
+
+.tutor-course-rating-stars .tutor-star-rating-group {
+  font-size: 0.95rem;
+  filter: none;
+  text-shadow: none;
+}
+
+/* =====================================
+   TARJETAS Y CONTENEDORES
+   ===================================== */
+
+.tutor-course-sidebar,
+.tutor-course-details-tab,
+.tutor-course-content {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-md);
+  backdrop-filter: none;
+}
+
+/* =====================================
+   BOTONES PRINCIPALES
+   ===================================== */
+
+.tutor-btn,
+.tutor-course-enroll-btn,
+.tutor-course-purchase-btn {
+  background: var(--color-primary);
+  color: white;
+  border: 1px solid var(--color-primary);
+  border-radius: var(--radius-lg);
+  padding: 0.85rem 1.2rem;
+  font: 600 1rem/1.2 var(--font-family-sans);
+  text-transform: none;
+  letter-spacing: 0.01em;
+  box-shadow: none;
+  transition: var(--transition-fast);
+}
+
+.tutor-btn:hover,
+.tutor-course-enroll-btn:hover,
+.tutor-course-purchase-btn:hover {
+  background: var(--color-primary-hover);
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-primary);
+}
+
+/* =====================================
+   BOTONES SECUNDARIOS
+   ===================================== */
+
+.tutor-btn-outline,
+.tutor-btn-secondary {
+  background: var(--color-surface);
+  color: var(--color-text-primary);
+  border: 1px solid var(--color-border-hover);
+}
+
+.tutor-btn-outline:hover,
+.tutor-btn-secondary:hover {
+  border-color: var(--color-primary);
+  color: var(--color-primary);
+}
+
+/* =====================================
+   ÁREA DE CONTENIDO
+   ===================================== */
+
+.tutor-course-content-wrap,
+.tutor-course-details-tab-content {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-md);
+}
+
+.tutor-course-content-wrap .tutor-tab,
+.tutor-course-details-tab-content .tutor-tab {
+  padding: var(--space-3);
+}
+
+.tutor-course-content-wrap .tutor-tab-item,
+.tutor-course-details-tab-content .tutor-tab-item {
+  padding: 0.7rem 1rem;
+  border-radius: var(--radius-lg);
+  color: var(--color-text-secondary);
+}
+
+.tutor-course-content-wrap .tutor-tab-item:hover,
+.tutor-course-details-tab-content .tutor-tab-item:hover {
+  background: var(--color-gray-50);
+  color: var(--color-text-primary);
+  box-shadow: none;
+}
+
+/* =====================================
+   CONTENIDO DE CURSOS
+   ===================================== */
+
+.tutor-course-content {
+  max-width: min(140ch, 95vw);
+  margin-inline: auto;
+  padding: var(--space-8);
+}
+
+.tutor-course-content .tutor-course-topic {
+  max-width: min(120ch, 95vw);
+  margin-inline: auto;
+}
+
+.tutor-course-content .tutor-course-topic-title {
+  margin-bottom: 0.75rem;
+}
+
+.tutor-course-content .tutor-course-lessons {
+  gap: 0.4rem;
+}
+
+/* =====================================
+   TIPOGRAFÍA
+   ===================================== */
+
+.tutor-course-content h1,
+.tutor-course-content h2,
+.tutor-course-content h3 {
+  font-size: 1.0625rem;
+  line-height: 1.7;
+}
+
+.tutor-course-content ol,
+.tutor-course-content ul {
+  padding-inline-start: 1.25rem;
+}
+
+/* =====================================
+   FORMULARIOS
+   ===================================== */
+
+.tutor-course-enrollment-form,
+.tutor-course-purchase-form {
+  background: transparent;
+  border: 1px solid var(--color-border);
+  color: var(--color-text-secondary);
+  box-shadow: none;
+}
+
+/* =====================================
+   SIDEBAR
+   ===================================== */
+
+.tutor-course-sidebar {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-2xl);
+  box-shadow: var(--shadow-md);
+  padding: var(--space-8);
+  backdrop-filter: blur(8px);
+  position: sticky;
+  top: calc(var(--header-height) + 1rem);
+}
+
+.tutor-course-sidebar .tutor-sidebar-title {
+  margin-bottom: var(--space-6);
+}
+
+.tutor-course-sidebar .tutor-sidebar-title h3 {
+  font: 800 clamp(0.85rem, 1.5vw, 0.95rem)/1.25 var(--font-family-sans);
+  color: var(--color-text-primary);
+  margin-bottom: 0.5rem;
+  display: block;
+  letter-spacing: 0.015em;
+  text-transform: uppercase;
+}
+
+/* =====================================
+   CAMPOS DE ENTRADA
+   ===================================== */
+
+.tutor-form-group input,
+.tutor-form-group textarea,
+.tutor-form-group select {
+  width: 100%;
+  border: 2px solid var(--color-border-hover);
+  border-radius: var(--radius-lg);
+  padding: 0.75rem 1rem;
+  background: var(--color-surface);
+  font: 400 0.9rem/1.4 var(--font-family-sans);
+  transition: var(--transition-fast);
+}
+
+.tutor-form-group input:focus,
+.tutor-form-group textarea:focus,
+.tutor-form-group select:focus {
+  outline: none;
+  border-color: var(--color-border-focus);
+  box-shadow: var(--shadow-focus);
+  transform: translateY(-1px);
+}
+
+.tutor-form-group input[type="checkbox"],
+.tutor-form-group input[type="radio"] {
+  accent-color: var(--color-primary);
+  transform: scale(1.1);
+}
+
+/* =====================================
+   ENLACES Y NAVEGACIÓN
+   ===================================== */
+
+.tutor-course-nav a,
+.tutor-course-topic-link,
+.tutor-course-lesson-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  border: 2px solid var(--color-border-hover);
+  border-radius: var(--radius-lg);
+  padding: 0.6rem 0.9rem;
+  color: var(--color-text-secondary);
+  background: var(--color-surface);
+  text-decoration: none;
+  font: 600 0.85rem/1.2 var(--font-family-sans);
+  transition: var(--transition-fast);
+}
+
+.tutor-course-nav a:hover,
+.tutor-course-topic-link:hover,
+.tutor-course-lesson-link:hover {
+  background: var(--color-gray-50);
+  color: var(--color-text-primary);
+}
+
+/* =====================================
+   TÍTULOS Y ENCABEZADOS
+   ===================================== */
+
+.tutor-course-title,
+.tutor-course-topic-title,
+.tutor-lesson-title {
+  font: 900 clamp(0.9rem, 1.8vw, 1rem)/1.2 var(--font-family-sans);
+  color: var(--color-text-primary);
+}
+
+.tutor-course-content h1,
+.tutor-course-content h2,
+.tutor-course-content h3 {
+  border-bottom: 2px solid var(--color-border);
+}
+
+/* =====================================
+   SEPARADORES
+   ===================================== */
+
+.tutor-course-separator,
+.tutor-course-divider,
+.tutor-hr {
+  margin-bottom: var(--space-8);
+}
+
+.tutor-course-separator input,
+.tutor-course-divider input {
+  border: 2px solid var(--color-border-hover);
+  border-radius: var(--radius-lg);
+  padding: 0.75rem;
+  background: var(--color-surface);
+  font: 600 0.85rem/1.2 var(--font-family-sans);
+  box-shadow: var(--shadow-sm);
+}
+
+/* =====================================
+   CONTENEDOR DE CURSOS
+   ===================================== */
+
+.tutor-courses-container {
+  max-width: var(--width-full);
+  margin: 0 auto;
+  padding-inline: var(--space-6);
+}
+
+/* =====================================
+   ELEMENTOS INTERACTIVOS
+   ===================================== */
+
+.tutor-pagination a,
+.tutor-pagination span {
+  color: var(--color-text-muted);
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-full);
+  transition: var(--transition-fast);
+}
+
+.tutor-pagination a:hover,
+.tutor-pagination span:hover {
+  color: var(--color-primary);
+  border-color: var(--color-primary);
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-sm);
+}
+
+@media (max-width: 768px) {
+  .tutor-courses-container {
+    margin-bottom: var(--space-8);
+  }
+}
+
+/* =====================================
+   COMPONENTES COMPLEJOS
+   ===================================== */
+
+.tutor-quiz-container,
+.tutor-lesson-container,
+.tutor-assignment-container {
+  background: rgba(255, 255, 255, 0.8);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: var(--radius-2xl);
+  padding: var(--space-3);
+  margin-bottom: var(--space-6);
+  box-shadow: var(--shadow-md);
+}
+
+.tutor-quiz-question,
+.tutor-lesson-content,
+.tutor-assignment-content {
+  border-radius: var(--radius-lg);
+  padding: var(--space-3) var(--space-5);
+  color: var(--color-text-secondary);
+  font: 600 0.9rem/1.2 var(--font-family-sans);
+  transition: var(--transition-fast);
+  margin-bottom: var(--space-4);
+}
+
+.tutor-quiz-question:hover,
+.tutor-lesson-content:hover,
+.tutor-assignment-content:hover {
+  background: var(--color-gray-50);
+  color: var(--color-primary);
+}
+
+.tutor-quiz-answer,
+.tutor-lesson-video,
+.tutor-assignment-file {
+  background: var(--color-surface);
+  color: var(--color-text-primary);
+  box-shadow: var(--shadow-sm);
+}
+
+/* =====================================
+   COMPONENTES DE PROGRESO
+   ===================================== */
+
+.tutor-progress-bar,
+.tutor-course-progress {
+  background: linear-gradient(90deg, var(--color-primary), var(--color-primary-600));
+  border-radius: var(--radius-full);
+}
+
+.tutor-progress-container {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-2xl);
+  padding: var(--space-6);
+  box-shadow: var(--shadow-md);
+  animation: slideInUp var(--transition-normal);
+}
+
+/* =====================================
+   LISTA DE TEMAS Y LECCIONES
+   ===================================== */
+
+.tutor-course-topic-list,
+.tutor-course-lesson-list {
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-xl);
+  overflow: hidden;
+  background: var(--color-surface);
+  box-shadow: var(--shadow-md);
+  font: 400 0.9rem/1.4 var(--font-family-sans);
+}
+
+.tutor-course-topic-item,
+.tutor-course-lesson-item {
+  border-bottom: 1px solid var(--color-border);
+}
+
+.tutor-course-topic-header,
+.tutor-course-lesson-header {
+  background: var(--color-gray-50);
+}
+
+/* =====================================
+   ELEMENTOS DE LISTA
+   ===================================== */
+
+.tutor-course-curriculum ul,
+.tutor-course-requirements ul,
+.tutor-course-audience ul {
+  border: 1px solid var(--color-border);
+}
+
+.tutor-course-curriculum li,
+.tutor-course-requirements li,
+.tutor-course-audience li {
+  border-bottom: 1px solid var(--color-border);
+}
+
+.tutor-course-curriculum li:last-child,
+.tutor-course-requirements li:last-child,
+.tutor-course-audience li:last-child {
+  background: var(--color-gray-50);
+}
+
+/* =====================================
+   INSTRUCTOR Y PERFIL
+   ===================================== */
+
+.tutor-instructor-profile,
+.tutor-instructor-card {
+  border: 1px solid var(--color-border);
+}
+
+.tutor-instructor-bio,
+.tutor-instructor-details {
+  border-bottom: 1px solid var(--color-border);
+}
+
+.tutor-instructor-stats,
+.tutor-instructor-courses {
+  background: var(--color-gray-50);
+}
+
+/* =====================================
+   ELEMENTOS DE EVALUACIÓN
+   ===================================== */
+
+.tutor-rating-stars,
+.tutor-review-stars {
+  border: 3px solid var(--color-surface);
+}
+
+.tutor-rating-form,
+.tutor-review-form {
+  background: var(--color-surface);
+  border: 2px solid var(--color-border-hover);
+  padding: var(--space-6);
+  font: 600 0.85rem/1.2 var(--font-family-sans);
+  box-shadow: var(--shadow-sm);
+}
+
+/* =====================================
+   MODAL Y OVERLAY
+   ===================================== */
+
+.tutor-modal,
+.tutor-overlay {
+  border: 1px solid var(--color-border);
+}
+
+.tutor-modal-header,
+.tutor-overlay-header {
+  border-bottom: 1px solid var(--color-border);
+}
+
+.tutor-modal-content,
+.tutor-overlay-content {
+  background: var(--color-gray-50);
+}
+
+/* =====================================
+   CONTENIDO CONDICIONAL
+   ===================================== */
+
+.tutor-course-enrolled .tutor-course-content,
+.tutor-course-completed .tutor-course-content {
+  background: var(--color-surface);
+  border: 2px solid var(--color-border-hover);
+}
+
+.tutor-course-locked .tutor-course-content,
+.tutor-course-pending .tutor-course-content {
+  background: var(--color-surface);
+}
+
+/* =====================================
+   ELEMENTOS DE CARGA
+   ===================================== */
+
+.tutor-loading,
+.tutor-spinner {
+  border: 2px dashed var(--color-border-hover);
+}
+
+/* =====================================
+   RESPONSIVE DESIGN
+   ===================================== */
+
+@media (max-width: 1024px) {
+  .tutor-course-sidebar {
+    position: static;
+    margin-top: var(--space-8);
+  }
+}
+
+@media (max-width: 768px) {
+  .single-courses .tutor-wrap,
+  .single-courses .tutor-container {
+    padding-inline: var(--space-4);
+  }
+  
+  .tutor-course-sidebar,
+  .tutor-course-content {
+    padding: var(--space-6);
+    border-radius: var(--radius-xl);
+  }
+}
+
+@media (max-width: 640px) {
+  .tutor-btn,
+  .tutor-course-enroll-btn,
+  .tutor-course-purchase-btn {
+    width: 100%;
+    text-align: center;
+  }
+  
+  .tutor-course-nav {
+    flex-direction: column;
+  }
+  
+  .tutor-course-nav a {
+    width: 100%;
+    justify-content: center;
+  }
+}

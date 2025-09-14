@@ -1,0 +1,543 @@
+/* Estilos editoriales SENSACIONALES para matemáticas de nivel profesional */
+
+/* ============================================
+   CONTENEDORES AMPLIOS Y RESPIRABLES
+   ============================================ */
+
+.article-container, .contenedor-leccion {
+  max-width: 95ch; /* MÁXIMO AMPLIO - era 85ch */
+  margin: 0 auto;
+  padding: 0 clamp(var(--space-6), 5vw, var(--space-12));
+}
+
+.leccion-contenido {
+  max-width: 90ch; /* MÁXIMO AMPLIO - era 80ch */
+  margin: 0 auto;
+  background: var(--color-surface-elevated);
+  border-radius: var(--radius-2xl);
+  padding: var(--space-12) var(--space-10);
+  box-shadow: 
+    0 1px 2px rgba(0,0,0,0.05),
+    0 8px 32px rgba(0,0,0,0.08),
+    0 24px 64px rgba(0,0,0,0.12);
+  border: 1px solid var(--color-border-light);
+  position: relative;
+  overflow: hidden;
+}
+
+.leccion-contenido::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, 
+    var(--color-primary-600), 
+    var(--color-primary-400), 
+    var(--color-accent));
+}
+
+.article-header {
+  background: linear-gradient(135deg, var(--color-surface) 0%, var(--color-gray-50) 100%);
+  border-bottom: 1px solid var(--color-border);
+  padding: var(--space-10) 0 var(--space-8);
+  position: relative;
+}
+
+.article-title {
+  font-family: var(--font-family-serif);
+  font-weight: var(--font-weight-black);
+  letter-spacing: -0.025em;
+  line-height: 1.15;
+  font-size: clamp(2.5rem, 5.5vw, 3.5rem);
+  margin: 0 0 var(--space-4) 0;
+  background: var(--gradient-text);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.article-meta { 
+  color: var(--color-text-muted); 
+  display: flex; 
+  gap: var(--space-4); 
+  align-items: baseline;
+  font-family: var(--font-family-sans);
+  font-size: var(--font-size-sm);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  font-weight: var(--font-weight-medium);
+}
+
+.article-abstract { 
+  margin-top: var(--space-8); 
+  padding: var(--space-6) var(--space-8);
+  background: var(--color-primary-50);
+  border-left: 4px solid var(--color-primary-400);
+  border-radius: 0 var(--radius-xl) var(--radius-xl) 0;
+  position: relative;
+}
+
+.article-abstract::before {
+  content: 'Abstract';
+  position: absolute;
+  top: -12px;
+  left: var(--space-6);
+  background: var(--color-primary-600);
+  color: white;
+  padding: var(--space-1) var(--space-3);
+  border-radius: var(--radius-md);
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-bold);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+.article-abstract p { 
+  font-style: italic; 
+  color: var(--color-text-primary); 
+  font-size: var(--font-size-lg);
+  line-height: var(--line-height-relaxed);
+  margin: 0;
+}
+
+.article-body { padding: var(--space-12) 0; }
+.article-content { color: var(--color-text-primary); }
+
+/* ============================================
+   TIPOGRAFÍA EDITORIAL EXQUISITA
+   ============================================ */
+
+.typeset, .leccion-contenido {
+  font-family: var(--font-family-serif);
+  font-size: var(--font-size-lg);
+  line-height: var(--line-height-relaxed);
+  color: var(--color-text-primary);
+}
+
+.typeset h1, .leccion-contenido h1 {
+  font-family: var(--font-family-serif);
+  font-size: clamp(2.25rem, 4vw, 2.75rem);
+  font-weight: var(--font-weight-black);
+  line-height: 1.2;
+  margin: var(--space-16) 0 var(--space-8) 0;
+  letter-spacing: -0.025em;
+  position: relative;
+  padding-bottom: var(--space-4);
+}
+
+.typeset h1::after, .leccion-contenido h1::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 60px;
+  height: 3px;
+  background: var(--gradient-primary);
+  border-radius: var(--radius-full);
+}
+
+.typeset h2, .leccion-contenido h2 {
+  font-family: var(--font-family-serif);
+  font-size: clamp(1.75rem, 3vw, 2.25rem);
+  font-weight: var(--font-weight-bold);
+  line-height: 1.25;
+  margin: var(--space-14) 0 var(--space-6) 0;
+  color: var(--color-text-primary);
+  position: relative;
+  padding-left: var(--space-6);
+}
+
+.typeset h2::before, .leccion-contenido h2::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 4px;
+  background: var(--gradient-primary);
+  border-radius: var(--radius-full);
+}
+
+.typeset h3, .leccion-contenido h3 {
+  font-family: var(--font-family-serif);
+  font-size: clamp(1.5rem, 2.5vw, 1.875rem);
+  font-weight: var(--font-weight-bold);
+  line-height: 1.3;
+  margin: var(--space-12) 0 var(--space-5) 0;
+  color: var(--color-text-primary);
+}
+
+.typeset h4, .leccion-contenido h4 {
+  font-family: var(--font-family-serif);
+  font-size: var(--font-size-xl);
+  font-weight: var(--font-weight-semibold);
+  line-height: 1.35;
+  margin: var(--space-10) 0 var(--space-4) 0;
+  color: var(--color-primary-700);
+  font-style: italic;
+}
+
+.typeset p, .leccion-contenido p {
+  margin-bottom: var(--space-6);
+  text-align: justify;
+  hyphens: auto;
+  hanging-punctuation: first last;
+}
+
+.typeset p:first-of-type, .leccion-contenido p:first-of-type {
+  font-size: var(--font-size-xl);
+  font-weight: var(--font-weight-medium);
+  line-height: var(--line-height-snug);
+  margin-bottom: var(--space-8);
+}
+
+.typeset strong, .leccion-contenido strong {
+  font-weight: var(--font-weight-bold);
+  color: var(--color-text-primary);
+}
+
+.typeset em, .leccion-contenido em {
+  font-style: italic;
+  color: var(--color-primary-700);
+}
+
+.typeset hr, .leccion-contenido hr {
+  margin: var(--space-16) 0;
+  border: none;
+  height: 1px;
+  background: linear-gradient(90deg, 
+    transparent, 
+    var(--color-border-strong), 
+    var(--color-primary-300), 
+    var(--color-border-strong), 
+    transparent);
+  position: relative;
+}
+
+.typeset hr::after, .leccion-contenido hr::after {
+  content: '§';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: var(--color-surface-elevated);
+  color: var(--color-primary-600);
+  padding: 0 var(--space-4);
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-bold);
+}
+
+/* ============================================
+   ELEMENTOS EDITORIALES ESPECTACULARES
+   ============================================ */
+
+/* Blockquotes épicos */
+.typeset blockquote, .leccion-contenido blockquote {
+  margin: var(--space-12) 0;
+  padding: var(--space-8) var(--space-10);
+  background: linear-gradient(135deg, var(--color-gray-50), var(--color-primary-50));
+  border: none;
+  border-radius: var(--radius-2xl);
+  position: relative;
+  font-style: italic;
+  font-size: var(--font-size-xl);
+  line-height: var(--line-height-relaxed);
+  color: var(--color-text-secondary);
+  box-shadow: 
+    0 4px 16px rgba(0,0,0,0.08),
+    inset 0 1px 0 rgba(255,255,255,0.7);
+}
+
+.typeset blockquote::before, .leccion-contenido blockquote::before {
+  content: '"';
+  position: absolute;
+  top: -15px;
+  left: var(--space-8);
+  font-size: 4rem;
+  font-family: var(--font-family-serif);
+  color: var(--color-primary-400);
+  line-height: 1;
+  font-weight: var(--font-weight-black);
+}
+
+.typeset blockquote p, .leccion-contenido blockquote p {
+  margin: 0;
+  text-align: left;
+}
+
+/* Listas elegantes */
+.typeset ul, .typeset ol, .leccion-contenido ul, .leccion-contenido ol {
+  margin: var(--space-8) 0;
+  padding-left: var(--space-8);
+}
+
+.typeset li, .leccion-contenido li {
+  margin: var(--space-4) 0;
+  padding-left: var(--space-3);
+  position: relative;
+}
+
+.typeset ul li::marker, .leccion-contenido ul li::marker {
+  content: '▪';
+  color: var(--color-primary-600);
+  font-size: 1.2em;
+}
+
+.typeset ol li::marker, .leccion-contenido ol li::marker {
+  color: var(--color-primary-600);
+  font-weight: var(--font-weight-bold);
+  font-feature-settings: 'tnum';
+}
+
+/* Figuras y captions */
+.typeset figure, .leccion-contenido figure {
+  margin: var(--space-12) 0;
+  text-align: center;
+  background: var(--color-surface-elevated);
+  padding: var(--space-6);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-lg);
+  border: 1px solid var(--color-border-light);
+}
+
+.typeset figcaption, .leccion-contenido figcaption {
+  margin-top: var(--space-4);
+  font-size: var(--font-size-sm);
+  color: var(--color-text-muted);
+  font-style: italic;
+  text-align: center;
+  font-family: var(--font-family-sans);
+}
+
+.typeset figcaption::before, .leccion-contenido figcaption::before {
+  content: 'Figura: ';
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-primary-600);
+  font-style: normal;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  font-size: var(--font-size-xs);
+}
+
+/* ============================================
+   BLOQUES MATEMÁTICOS ESPECTACULARES
+   ============================================ */
+
+/* Teoremas y proposiciones - Estilo editorial magistral */
+.theorem, .lemma, .proposition, .corollary {
+  margin: var(--space-12) 0;
+  background: linear-gradient(135deg, 
+    rgba(99, 102, 241, 0.04), 
+    rgba(99, 102, 241, 0.08));
+  border: 1px solid var(--color-primary-200);
+  border-left: 6px solid var(--color-primary-500);
+  border-radius: var(--radius-xl);
+  padding: var(--space-8) var(--space-10);
+  position: relative;
+  box-shadow: 
+    0 2px 8px rgba(99, 102, 241, 0.1),
+    0 8px 32px rgba(99, 102, 241, 0.05);
+  backdrop-filter: blur(1px);
+}
+
+.theorem::before {
+  content: 'Teorema';
+  position: absolute;
+  top: -12px;
+  left: var(--space-8);
+  background: var(--color-primary-600);
+  color: white;
+  padding: var(--space-2) var(--space-4);
+  border-radius: var(--radius-lg);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-bold);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-family: var(--font-family-sans);
+}
+
+.lemma::before {
+  content: 'Lema';
+  position: absolute;
+  top: -12px;
+  left: var(--space-8);
+  background: var(--color-primary-500);
+  color: white;
+  padding: var(--space-2) var(--space-4);
+  border-radius: var(--radius-lg);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-bold);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-family: var(--font-family-sans);
+}
+
+.proposition::before {
+  content: 'Proposición';
+  position: absolute;
+  top: -12px;
+  left: var(--space-8);
+  background: var(--color-primary-700);
+  color: white;
+  padding: var(--space-2) var(--space-4);
+  border-radius: var(--radius-lg);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-bold);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-family: var(--font-family-sans);
+}
+
+.corollary::before {
+  content: 'Corolario';
+  position: absolute;
+  top: -12px;
+  left: var(--space-8);
+  background: var(--color-accent);
+  color: white;
+  padding: var(--space-2) var(--space-4);
+  border-radius: var(--radius-lg);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-bold);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-family: var(--font-family-sans);
+}
+
+.theorem .title, .lemma .title, .proposition .title, .corollary .title {
+  font-weight: var(--font-weight-bold);
+  color: var(--color-primary-800);
+  font-size: var(--font-size-lg);
+  margin-bottom: var(--space-4);
+  font-family: var(--font-family-serif);
+}
+
+/* Definiciones - Estilo académico refinado */
+.definition {
+  margin: var(--space-12) 0;
+  background: linear-gradient(135deg, 
+    rgba(71, 85, 105, 0.04), 
+    rgba(71, 85, 105, 0.08));
+  border: 1px solid var(--color-gray-300);
+  border-left: 6px solid var(--color-gray-600);
+  border-radius: var(--radius-xl);
+  padding: var(--space-8) var(--space-10);
+  position: relative;
+  box-shadow: 
+    0 2px 8px rgba(71, 85, 105, 0.1),
+    0 8px 32px rgba(71, 85, 105, 0.05);
+}
+
+.definition::before {
+  content: 'Definición';
+  position: absolute;
+  top: -12px;
+  left: var(--space-8);
+  background: var(--color-gray-700);
+  color: white;
+  padding: var(--space-2) var(--space-4);
+  border-radius: var(--radius-lg);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-bold);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-family: var(--font-family-sans);
+}
+
+/* Ejemplos - Estilo distintivo */
+.example {
+  margin: var(--space-12) 0;
+  background: linear-gradient(135deg, 
+    rgba(245, 158, 11, 0.04), 
+    rgba(245, 158, 11, 0.08));
+  border: 1px solid var(--color-accent-light);
+  border-left: 6px solid var(--color-accent);
+  border-radius: var(--radius-xl);
+  padding: var(--space-8) var(--space-10);
+  position: relative;
+  box-shadow: 
+    0 2px 8px rgba(245, 158, 11, 0.1),
+    0 8px 32px rgba(245, 158, 11, 0.05);
+}
+
+.example::before {
+  content: 'Ejemplo';
+  position: absolute;
+  top: -12px;
+  left: var(--space-8);
+  background: var(--color-accent);
+  color: white;
+  padding: var(--space-2) var(--space-4);
+  border-radius: var(--radius-lg);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-bold);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-family: var(--font-family-sans);
+}
+
+/* Demostraciones - Elegante y distinguido */
+.proof {
+  margin: var(--space-10) 0;
+  padding: var(--space-8) var(--space-10);
+  background: rgba(255, 255, 255, 0.6);
+  border: 1px dashed var(--color-border-strong);
+  border-radius: var(--radius-xl);
+  position: relative;
+  backdrop-filter: blur(2px);
+}
+
+.proof::before {
+  content: 'Demostración';
+  display: block;
+  font-family: var(--font-family-serif);
+  font-style: italic;
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-text-secondary);
+  margin-bottom: var(--space-4);
+  font-size: var(--font-size-lg);
+}
+
+.proof::after {
+  content: '∎';
+  position: absolute;
+  bottom: var(--space-6);
+  right: var(--space-8);
+  font-weight: bold;
+  font-size: var(--font-size-xl);
+  color: var(--color-primary-600);
+}
+
+/* Fórmulas MathJax (mejor espaciado y contraste) */
+.mathjax-block, .mjx-chtml.MathJax_CHTML_Display { margin: 1.25em 0 1.25em; }
+.mjx-chtml { color: var(--color-text-primary); }
+.mjx-container[jax="CHTML"] { line-height: 1.22; }
+/* Numeración AMS a la derecha con separación adecuada */
+.MJXc-display, .MathJax_Display, .mjx-chtml.MathJax_CHTML_Display { text-align: center; }
+.mjx-mtd[tabindex="0"] { outline: none; }
+.mjx-tag { color: var(--color-text-muted); padding-left: .75rem; }
+
+/* Ecuaciones numeradas al estilo académico (si se usan counters custom) */
+.eq { display: flex; align-items: center; justify-content: space-between; gap: 1rem; margin: 1em 0; }
+.eq .eq-label { color: var(--color-text-muted); margin-left: 1rem; }
+
+/* Referencias y notas al pie */
+.references { margin-top: 3rem; border-top: 1px solid var(--color-border); padding-top: 1.5rem; }
+.references h2 { font-size: 1.25rem; }
+.footnotes { margin-top: 2rem; border-top: 1px dashed var(--color-border); padding-top: 1rem; font-size: .95rem; color: var(--color-text-secondary); }
+
+/* Dark mode tuning */
+:root[data-theme="dark"] .typeset code,
+html.dark-mode .typeset code,
+body.dark-mode .typeset code { background: #0b1220; color: #e5e7eb; }
+:root[data-theme="dark"] .typeset pre,
+html.dark-mode .typeset pre,
+body.dark-mode .typeset pre { background: #0f172a; color: #e5e7eb; }
+
+/* Responsive académico */
+@media (max-width: 768px){
+  .article-container { padding: 0 var(--space-4); }
+  .article-title { font-size: clamp(2rem, 6vw, 2.5rem); }
+}

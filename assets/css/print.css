@@ -1,0 +1,47 @@
+/* Print stylesheet: salida académica limpia y profesional */
+
+@media print {
+  /* Tipografía y colores neutros para papel */
+  :root { --print-serif: Georgia, "Times New Roman", Times, serif; }
+  body { font-family: var(--print-serif); color: #111; background: #fff !important; }
+
+  /* Ocultar elementos de navegación/interactive */
+  header, footer, nav, .site-header, .site-footer, .menu-principal, .site-nav, .tutor-dashboard-header { display: none !important; }
+
+  /* Contenido principal a ancho óptimo */
+  .article-container, .page-container, .entry-content, .typeset { max-width: 80ch !important; margin: 0 auto !important; }
+
+  /* Alinear títulos y meta */
+  .article-header { border: none; padding: 0 0 1rem 0; }
+  .article-title { font-size: 24pt; line-height: 1.15; margin: 0 0 .5rem 0; }
+  .article-meta { font-size: 10pt; color: #333; }
+
+  /* Texto principal */
+  p { font-size: 11pt; line-height: 1.35; widows: 2; orphans: 2; }
+  h2 { font-size: 16pt; margin: 1.2rem 0 .6rem; }
+  h3 { font-size: 13pt; margin: 1rem 0 .5rem; }
+
+  /* Figuras y tablas */
+  figure { page-break-inside: avoid; }
+  img, svg { max-width: 100% !important; }
+  figcaption { font-size: 10pt; color: #444; text-align: center; }
+  table { width: 100%; border-collapse: collapse; }
+  th, td { border: 1px solid #aaa; padding: 4pt 6pt; }
+
+  /* MathJax: forzar contraste y evitar cortes extraños */
+  .mjx-chtml, .MathJax { color: #000 !important; }
+  .MathJax_Display { page-break-inside: avoid; }
+
+  /* Teoremas/definiciones */
+  .theorem, .lemma, .proposition, .corollary, .definition { background: none; border-left: 3pt solid #000; }
+
+  /* Enlaces como texto plano con URL opcional */
+  a { color: inherit; text-decoration: none; }
+  a[href^="http"]::after { content: " (" attr(href) ")"; font-size: 9pt; }
+
+  /* Ocultar UI redundante */
+  .comments-area, .share-buttons, .site-sidebar, .breadcrumb, .tutor-breadcrumb { display: none !important; }
+
+  /* Control de saltos de página */
+  .page-break { page-break-before: always; }
+}

@@ -1,0 +1,58 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/theme.json",
+  "version": 3,
+  "settings": {
+    "custom": {
+      "academiaPro": {
+        "descripcion": "Configuración global del tema Academia Pro"
+      }
+    },
+    "color": {
+      "palette": [
+        { "slug": "primario", "name": "Primario", "color": "#1b4b91" },
+        { "slug": "primario-alt", "name": "Primario Alt", "color": "#163b72" },
+        { "slug": "acento", "name": "Acento", "color": "#ffb300" },
+        { "slug": "texto", "name": "Texto", "color": "#1d2330" },
+        { "slug": "suave", "name": "Suave", "color": "#5a6478" },
+        { "slug": "fondo", "name": "Fondo", "color": "#ffffff" },
+        { "slug": "superficie", "name": "Superficie", "color": "#f7f9fc" }
+      ],
+      "duotone": [],
+      "gradients": [
+        { "slug": "primario-acento", "name": "Primario → Acento", "gradient": "linear-gradient(135deg,#1b4b91 0%,#ffb300 100%)" }
+      ],
+      "defaultPalette": true
+    },
+    "typography": {
+      "fontFamilies": [
+        { "fontFamily": "Inter, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif", "slug": "inter", "name": "Inter" },
+        { "fontFamily": "JetBrains Mono, 'Fira Code', 'Source Code Pro', monospace", "slug": "mono", "name": "Mono" }
+      ],
+      "lineHeight": true,
+      "dropCap": false
+    },
+    "spacing": {
+      "units": ["px","rem","vh","vw"],
+      "spacingScale": {
+        "operator": "*",
+  "steps": 1,
+        "increment": 1
+      }
+    },
+    "layout": {
+      "contentSize": "760px",
+      "wideSize": "1160px"
+    }
+  },
+  "styles": {
+    "typography": { "fontFamily": "var(--wp--preset--font-family--inter)", "fontSize": "16px", "lineHeight": "1.55" },
+    "color": { "background": "#ffffff", "text": "#1d2330" },
+    "elements": {
+      "link": { "color": { "text": "#1b4b91" }, "typography": { "textDecoration": "none" } }
+    }
+  },
+  "templateParts": [
+    { "name": "cabecera", "title": "Cabecera", "area": "header" },
+    { "name": "pie", "title": "Pie", "area": "footer" }
+  ]
+}

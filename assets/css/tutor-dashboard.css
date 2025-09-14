@@ -1,0 +1,662 @@
+/**
+ * TutorLMS Dashboard - Diseño Moderno y Profesional
+ * 
+ * Inspirado en BuddyBoss con estilo propio elegante y limpio.
+ * Layout responsivo con grid, cards modernas, navegación intuitiva.
+ * 
+ * @version 2.0.0
+ * @author Robert Duan Montoya Cardona
+ */
+
+/* ==========================================================================
+   VARIABLES ESPECÍFICAS DEL DASHBOARD
+   ========================================================================== */
+
+:root {
+  /* Colores específicos del dashboard */
+  --dashboard-bg: #f8fafc;
+  --dashboard-card-bg: #ffffff;
+  --dashboard-border: #e2e8f0;
+  --dashboard-text: #1e293b;
+  --dashboard-text-muted: #64748b;
+  --dashboard-primary: #1e293b;
+  --dashboard-primary-hover: #0f172a;
+  --dashboard-success: #059669;
+  --dashboard-warning: #d97706;
+  --dashboard-error: #dc2626;
+
+  /* Espaciado del dashboard */
+  --dashboard-spacing-xs: 0.5rem;
+  --dashboard-spacing-sm: 1rem;
+  --dashboard-spacing-md: 1.5rem;
+  --dashboard-spacing-lg: 2rem;
+  --dashboard-spacing-xl: 3rem;
+
+  /* Bordes y sombras */
+  --dashboard-radius: 12px;
+  --dashboard-radius-sm: 8px;
+  --dashboard-shadow:
+    0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+  --dashboard-shadow-lg:
+    0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+}
+
+/* ==========================================================================
+   LAYOUT PRINCIPAL DEL DASHBOARD
+   ========================================================================== */
+
+/* Contenedor principal del dashboard */
+.tutor-dashboard,
+.tutor-dashboard-wrapper,
+.tutor-dashboard-content-wrap {
+  background: var(--dashboard-bg) !important;
+  min-height: 100vh;
+  font-family:
+    "Inter",
+    system-ui,
+    -apple-system,
+    sans-serif !important;
+}
+
+/* Wrapper principal */
+.tutor-dashboard .tutor-container,
+.tutor-dashboard-wrapper .tutor-container {
+  max-width: 1400px !important;
+  margin: 0 auto !important;
+  padding: var(--dashboard-spacing-lg) var(--dashboard-spacing-md) !important;
+}
+
+/* Grid principal del dashboard */
+.tutor-dashboard-content-wrap {
+  display: grid !important;
+  grid-template-columns: 280px 1fr !important;
+  gap: var(--dashboard-spacing-xl) !important;
+  align-items: start !important;
+}
+
+/* ==========================================================================
+   NAVEGACIÓN LATERAL (SIDEBAR)
+   ========================================================================== */
+
+.tutor-dashboard-sidebar,
+.tutor-dashboard-nav,
+.tutor-dashboard-left-menu {
+  background: var(--dashboard-card-bg) !important;
+  border-radius: var(--dashboard-radius) !important;
+  box-shadow: var(--dashboard-shadow) !important;
+  border: 1px solid var(--dashboard-border) !important;
+  padding: var(--dashboard-spacing-lg) !important;
+  position: sticky !important;
+  top: var(--dashboard-spacing-lg) !important;
+  height: fit-content !important;
+}
+
+/* Elementos del menú lateral */
+.tutor-dashboard-nav ul,
+.tutor-dashboard-left-menu ul {
+  list-style: none !important;
+  padding: 0 !important;
+  margin: 0 !important;
+}
+
+.tutor-dashboard-nav li,
+.tutor-dashboard-left-menu li {
+  margin-bottom: var(--dashboard-spacing-xs) !important;
+}
+
+.tutor-dashboard-nav a,
+.tutor-dashboard-left-menu a {
+  display: flex !important;
+  align-items: center !important;
+  padding: var(--dashboard-spacing-sm) var(--dashboard-spacing-md) !important;
+  color: var(--dashboard-text-muted) !important;
+  text-decoration: none !important;
+  border-radius: var(--dashboard-radius-sm) !important;
+  font-weight: 500 !important;
+  transition: all 0.2s ease !important;
+  gap: var(--dashboard-spacing-sm) !important;
+}
+
+.tutor-dashboard-nav a:hover,
+.tutor-dashboard-left-menu a:hover,
+.tutor-dashboard-nav a.active,
+.tutor-dashboard-left-menu a.active {
+  background: var(--dashboard-primary) !important;
+  color: white !important;
+  transform: translateY(-1px) !important;
+  box-shadow: var(--dashboard-shadow) !important;
+}
+
+/* Iconos en el menú */
+.tutor-dashboard-nav a i,
+.tutor-dashboard-left-menu a i,
+.tutor-dashboard-nav a [class*="tutor-icon"],
+.tutor-dashboard-left-menu a [class*="tutor-icon"] {
+  font-size: 1.125rem !important;
+  width: 1.5rem !important;
+  text-align: center !important;
+}
+
+/* ==========================================================================
+   ÁREA DE CONTENIDO PRINCIPAL
+   ========================================================================== */
+
+.tutor-dashboard-content,
+.tutor-dashboard-right-content {
+  background: transparent !important;
+  padding: 0 !important;
+}
+
+/* Header de la página actual */
+.tutor-dashboard-content-inner h1,
+.tutor-dashboard-content-inner .tutor-fs-4,
+.tutor-dashboard-header h1 {
+  font-size: 2.25rem !important;
+  font-weight: 700 !important;
+  color: var(--dashboard-text) !important;
+  margin-bottom: var(--dashboard-spacing-lg) !important;
+  line-height: 1.2 !important;
+}
+
+/* ==========================================================================
+   CARDS Y WIDGETS DEL DASHBOARD
+   ========================================================================== */
+
+/* Cards generales */
+.tutor-dashboard-item,
+.tutor-card,
+.tutor-dashboard-widget,
+.tutor-dashboard-content .tutor-card {
+  background: var(--dashboard-card-bg) !important;
+  border: 1px solid var(--dashboard-border) !important;
+  border-radius: var(--dashboard-radius) !important;
+  box-shadow: var(--dashboard-shadow) !important;
+  padding: var(--dashboard-spacing-lg) !important;
+  margin-bottom: var(--dashboard-spacing-lg) !important;
+  transition: all 0.3s ease !important;
+}
+
+.tutor-dashboard-item:hover,
+.tutor-card:hover,
+.tutor-dashboard-widget:hover {
+  box-shadow: var(--dashboard-shadow-lg) !important;
+  transform: translateY(-2px) !important;
+}
+
+/* Headers de cards */
+.tutor-card-header {
+  border-bottom: 1px solid var(--dashboard-border) !important;
+  padding-bottom: var(--dashboard-spacing-md) !important;
+  margin-bottom: var(--dashboard-spacing-lg) !important;
+}
+
+.tutor-card-header h2,
+.tutor-card-header h3,
+.tutor-card-header .tutor-fs-5 {
+  font-size: 1.5rem !important;
+  font-weight: 600 !important;
+  color: var(--dashboard-text) !important;
+  margin: 0 !important;
+}
+
+/* ==========================================================================
+   ESTADÍSTICAS Y MÉTRICAS
+   ========================================================================== */
+
+/* Grid de estadísticas */
+.tutor-dashboard-stats,
+.tutor-dashboard-overview {
+  display: grid !important;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)) !important;
+  gap: var(--dashboard-spacing-lg) !important;
+  margin-bottom: var(--dashboard-spacing-xl) !important;
+}
+
+/* Card de estadística individual */
+.tutor-dashboard-stat-card {
+  background: var(--dashboard-card-bg) !important;
+  border: 1px solid var(--dashboard-border) !important;
+  border-radius: var(--dashboard-radius) !important;
+  padding: var(--dashboard-spacing-lg) !important;
+  text-align: center !important;
+  transition: all 0.3s ease !important;
+}
+
+.tutor-dashboard-stat-card:hover {
+  transform: translateY(-4px) !important;
+  box-shadow: var(--dashboard-shadow-lg) !important;
+}
+
+.tutor-dashboard-stat-number {
+  font-size: 2.5rem !important;
+  font-weight: 700 !important;
+  color: var(--dashboard-primary) !important;
+  line-height: 1 !important;
+  margin-bottom: var(--dashboard-spacing-sm) !important;
+}
+
+.tutor-dashboard-stat-label {
+  color: var(--dashboard-text-muted) !important;
+  font-weight: 500 !important;
+  text-transform: uppercase !important;
+  font-size: 0.875rem !important;
+  letter-spacing: 0.05em !important;
+}
+
+/* ==========================================================================
+   CURSOS Y LECCIONES
+   ========================================================================== */
+
+/* Lista de cursos */
+.tutor-dashboard-courses,
+.tutor-course-list {
+  display: grid !important;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)) !important;
+  gap: var(--dashboard-spacing-lg) !important;
+}
+
+/* Card de curso individual */
+.tutor-course-card {
+  background: var(--dashboard-card-bg) !important;
+  border: 1px solid var(--dashboard-border) !important;
+  border-radius: var(--dashboard-radius) !important;
+  overflow: hidden !important;
+  transition: all 0.3s ease !important;
+  box-shadow: var(--dashboard-shadow) !important;
+}
+
+.tutor-course-card:hover {
+  transform: translateY(-4px) !important;
+  box-shadow: var(--dashboard-shadow-lg) !important;
+}
+
+.tutor-course-thumbnail {
+  position: relative !important;
+  overflow: hidden !important;
+  border-radius: var(--dashboard-radius) var(--dashboard-radius) 0 0 !important;
+}
+
+.tutor-course-thumbnail img {
+  width: 100% !important;
+  height: 200px !important;
+  object-fit: cover !important;
+  transition: transform 0.3s ease !important;
+}
+
+.tutor-course-card:hover .tutor-course-thumbnail img {
+  transform: scale(1.05) !important;
+}
+
+.tutor-course-info {
+  padding: var(--dashboard-spacing-lg) !important;
+}
+
+.tutor-course-title {
+  font-size: 1.25rem !important;
+  font-weight: 600 !important;
+  color: var(--dashboard-text) !important;
+  margin-bottom: var(--dashboard-spacing-sm) !important;
+  line-height: 1.3 !important;
+}
+
+.tutor-course-meta {
+  color: var(--dashboard-text-muted) !important;
+  font-size: 0.875rem !important;
+  margin-bottom: var(--dashboard-spacing-md) !important;
+}
+
+/* ==========================================================================
+   PROGRESO Y BARRAS
+   ========================================================================== */
+
+.tutor-progress-bar {
+  background: var(--dashboard-border) !important;
+  border-radius: 50px !important;
+  height: 8px !important;
+  overflow: hidden !important;
+  margin: var(--dashboard-spacing-sm) 0 !important;
+}
+
+.tutor-progress-bar-fill {
+  background: linear-gradient(
+    90deg,
+    var(--dashboard-success),
+    #10b981
+  ) !important;
+  height: 100% !important;
+  border-radius: 50px !important;
+  transition: width 0.5s ease !important;
+}
+
+.tutor-progress-text {
+  font-size: 0.875rem !important;
+  font-weight: 500 !important;
+  color: var(--dashboard-text-muted) !important;
+  text-align: right !important;
+  margin-top: var(--dashboard-spacing-xs) !important;
+}
+
+/* ==========================================================================
+   BOTONES Y ACCIONES
+   ========================================================================== */
+
+.tutor-btn,
+button[class*="tutor-btn"] {
+  padding: var(--dashboard-spacing-sm) var(--dashboard-spacing-lg) !important;
+  border-radius: var(--dashboard-radius-sm) !important;
+  font-weight: 500 !important;
+  text-decoration: none !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: var(--dashboard-spacing-xs) !important;
+  transition: all 0.2s ease !important;
+  border: none !important;
+  cursor: pointer !important;
+}
+
+.tutor-btn-primary {
+  background: var(--dashboard-primary) !important;
+  color: white !important;
+}
+
+.tutor-btn-primary:hover {
+  background: var(--dashboard-primary-hover) !important;
+  transform: translateY(-1px) !important;
+  box-shadow: var(--dashboard-shadow) !important;
+}
+
+.tutor-btn-outline {
+  background: transparent !important;
+  color: var(--dashboard-primary) !important;
+  border: 1px solid var(--dashboard-border) !important;
+}
+
+.tutor-btn-outline:hover {
+  background: var(--dashboard-primary) !important;
+  color: white !important;
+  border-color: var(--dashboard-primary) !important;
+}
+
+/* ==========================================================================
+   FORMULARIOS Y INPUTS
+   ========================================================================== */
+
+.tutor-form-group {
+  margin-bottom: var(--dashboard-spacing-lg) !important;
+}
+
+.tutor-form-label {
+  display: block !important;
+  font-weight: 500 !important;
+  color: var(--dashboard-text) !important;
+  margin-bottom: var(--dashboard-spacing-xs) !important;
+}
+
+.tutor-form-control,
+input[class*="tutor-form"],
+textarea[class*="tutor-form"],
+select[class*="tutor-form"] {
+  width: 100% !important;
+  padding: var(--dashboard-spacing-sm) var(--dashboard-spacing-md) !important;
+  border: 1px solid var(--dashboard-border) !important;
+  border-radius: var(--dashboard-radius-sm) !important;
+  background: white !important;
+  color: var(--dashboard-text) !important;
+  font-size: 1rem !important;
+  transition: all 0.2s ease !important;
+}
+
+.tutor-form-control:focus,
+input[class*="tutor-form"]:focus,
+textarea[class*="tutor-form"]:focus,
+select[class*="tutor-form"]:focus {
+  outline: none !important;
+  border-color: var(--dashboard-primary) !important;
+  box-shadow: 0 0 0 3px rgba(30, 41, 59, 0.1) !important;
+}
+
+/* ==========================================================================
+   TABLAS Y LISTAS
+   ========================================================================== */
+
+.tutor-table {
+  width: 100% !important;
+  background: var(--dashboard-card-bg) !important;
+  border-radius: var(--dashboard-radius) !important;
+  overflow: hidden !important;
+  box-shadow: var(--dashboard-shadow) !important;
+}
+
+.tutor-table th {
+  background: var(--dashboard-bg) !important;
+  color: var(--dashboard-text) !important;
+  font-weight: 600 !important;
+  padding: var(--dashboard-spacing-md) var(--dashboard-spacing-lg) !important;
+  text-align: left !important;
+  border-bottom: 1px solid var(--dashboard-border) !important;
+}
+
+.tutor-table td {
+  padding: var(--dashboard-spacing-md) var(--dashboard-spacing-lg) !important;
+  border-bottom: 1px solid var(--dashboard-border) !important;
+  color: var(--dashboard-text) !important;
+}
+
+.tutor-table tbody tr:hover {
+  background: var(--dashboard-bg) !important;
+}
+
+/* ==========================================================================
+   ALERTS Y NOTIFICACIONES
+   ========================================================================== */
+
+.tutor-alert {
+  padding: var(--dashboard-spacing-md) var(--dashboard-spacing-lg) !important;
+  border-radius: var(--dashboard-radius-sm) !important;
+  margin-bottom: var(--dashboard-spacing-lg) !important;
+  border-left: 4px solid !important;
+}
+
+.tutor-alert-success {
+  background: rgba(5, 150, 105, 0.1) !important;
+  border-left-color: var(--dashboard-success) !important;
+  color: var(--dashboard-success) !important;
+}
+
+.tutor-alert-warning {
+  background: rgba(217, 119, 6, 0.1) !important;
+  border-left-color: var(--dashboard-warning) !important;
+  color: var(--dashboard-warning) !important;
+}
+
+.tutor-alert-error {
+  background: rgba(220, 38, 38, 0.1) !important;
+  border-left-color: var(--dashboard-error) !important;
+  color: var(--dashboard-error) !important;
+}
+
+/* ==========================================================================
+   RESPONSIVE DESIGN
+   ========================================================================== */
+
+@media (max-width: 1024px) {
+  .tutor-dashboard-content-wrap {
+    grid-template-columns: 1fr !important;
+    gap: var(--dashboard-spacing-lg) !important;
+  }
+
+  .tutor-dashboard-sidebar,
+  .tutor-dashboard-nav,
+  .tutor-dashboard-left-menu {
+    position: static !important;
+    margin-bottom: var(--dashboard-spacing-lg) !important;
+  }
+}
+
+@media (max-width: 768px) {
+  .tutor-dashboard .tutor-container,
+  .tutor-dashboard-wrapper .tutor-container {
+    padding: var(--dashboard-spacing-md) var(--dashboard-spacing-sm) !important;
+  }
+
+  .tutor-dashboard-content-inner h1,
+  .tutor-dashboard-content-inner .tutor-fs-4,
+  .tutor-dashboard-header h1 {
+    font-size: 1.875rem !important;
+  }
+
+  .tutor-dashboard-stats,
+  .tutor-dashboard-overview {
+    grid-template-columns: 1fr !important;
+  }
+
+  .tutor-dashboard-courses,
+  .tutor-course-list {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .tutor-dashboard-content-inner h1,
+  .tutor-dashboard-content-inner .tutor-fs-4,
+  .tutor-dashboard-header h1 {
+    font-size: 1.5rem !important;
+  }
+
+  .tutor-dashboard-stat-number {
+    font-size: 2rem !important;
+  }
+}
+
+/* ==========================================================================
+   ANIMACIONES Y MICROINTERACCIONES
+   ========================================================================== */
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.tutor-dashboard-item,
+.tutor-card,
+.tutor-course-card {
+  animation: fadeInUp 0.3s ease forwards !important;
+}
+
+/* Stagger animation para múltiples elementos */
+.tutor-dashboard-item:nth-child(1) {
+  animation-delay: 0.1s !important;
+}
+.tutor-dashboard-item:nth-child(2) {
+  animation-delay: 0.2s !important;
+}
+.tutor-dashboard-item:nth-child(3) {
+  animation-delay: 0.3s !important;
+}
+.tutor-dashboard-item:nth-child(4) {
+  animation-delay: 0.4s !important;
+}
+
+/* Efectos de loading */
+.tutor-loading {
+  position: relative !important;
+  overflow: hidden !important;
+}
+
+.tutor-loading::before {
+  content: "" !important;
+  position: absolute !important;
+  top: 0 !important;
+  left: -100% !important;
+  width: 100% !important;
+  height: 100% !important;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.4),
+    transparent
+  ) !important;
+  animation: loading 1.5s infinite !important;
+}
+
+@keyframes loading {
+  0% {
+    left: -100%;
+  }
+  100% {
+    left: 100%;
+  }
+}
+
+/* ==========================================================================
+   MEJORAS ESPECÍFICAS DE TUTOR
+   ========================================================================== */
+
+/* Dashboard overview mejorado */
+.tutor-dashboard-overview-wrapper {
+  background: var(--dashboard-card-bg) !important;
+  border-radius: var(--dashboard-radius) !important;
+  box-shadow: var(--dashboard-shadow) !important;
+  padding: var(--dashboard-spacing-xl) !important;
+  margin-bottom: var(--dashboard-spacing-xl) !important;
+}
+
+/* Menú de pestañas */
+.tutor-nav-tabs {
+  border-bottom: 1px solid var(--dashboard-border) !important;
+  margin-bottom: var(--dashboard-spacing-lg) !important;
+}
+
+.tutor-nav-tabs .tutor-nav-item {
+  margin-bottom: -1px !important;
+}
+
+.tutor-nav-tabs .tutor-nav-link {
+  border: 1px solid transparent !important;
+  border-radius: var(--dashboard-radius-sm) var(--dashboard-radius-sm) 0 0 !important;
+  padding: var(--dashboard-spacing-sm) var(--dashboard-spacing-lg) !important;
+  color: var(--dashboard-text-muted) !important;
+  text-decoration: none !important;
+  transition: all 0.2s ease !important;
+}
+
+.tutor-nav-tabs .tutor-nav-link:hover,
+.tutor-nav-tabs .tutor-nav-link.active {
+  border-color: var(--dashboard-border) var(--dashboard-border)
+    var(--dashboard-card-bg) !important;
+  background: var(--dashboard-card-bg) !important;
+  color: var(--dashboard-text) !important;
+}
+
+/* Modal mejorado */
+.tutor-modal {
+  background: rgba(0, 0, 0, 0.5) !important;
+  backdrop-filter: blur(4px) !important;
+}
+
+.tutor-modal-content {
+  background: var(--dashboard-card-bg) !important;
+  border-radius: var(--dashboard-radius) !important;
+  box-shadow: var(--dashboard-shadow-lg) !important;
+  border: none !important;
+}
+
+.tutor-modal-header {
+  border-bottom: 1px solid var(--dashboard-border) !important;
+  padding: var(--dashboard-spacing-lg) !important;
+}
+
+.tutor-modal-body {
+  padding: var(--dashboard-spacing-lg) !important;
+}
+
+.tutor-modal-footer {
+  border-top: 1px solid var(--dashboard-border) !important;
+  padding: var(--dashboard-spacing-lg) !important;
+}

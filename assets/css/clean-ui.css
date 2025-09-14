@@ -1,0 +1,419 @@
+/*
+  Academia Pro – Clean UI Override System
+  Propósito: Asegurar que nuestros estilos espectaculares se apliquen correctamente
+  Resuelve conflictos con style.css y garantiza especificidad
+*/
+
+/* =================== 
+   SISTEMA DE RESET Y OVERRIDE CRÍTICO
+   =================== */
+
+/* Force-override para elementos que style.css puede estar bloqueando */
+.tutor-lms-active * {
+  box-sizing: border-box !important;
+}
+
+/* Garantizar que las variables CSS se apliquen globalmente */
+:root {
+  /* Overrides críticos que pueden estar siendo sobrescritos */
+  --transition-duration-base: 0.3s;
+  --transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  --shadow-xs: 0 1px 2px rgba(0, 0, 0, 0.05);
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.1), 0 1px 2px rgba(0, 0, 0, 0.06);
+  --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.07), 0 2px 4px rgba(0, 0, 0, 0.06);
+  --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.1), 0 4px 6px rgba(0, 0, 0, 0.05);
+  --shadow-xl: 0 20px 25px rgba(0, 0, 0, 0.1), 0 10px 10px rgba(0, 0, 0, 0.04);
+  --shadow-2xl: 0 25px 50px rgba(0, 0, 0, 0.15);
+  --shadow-focus: 0 0 0 3px rgba(71, 85, 105, 0.1);
+  
+  /* Gradientes críticos */
+  --gradient-brand: linear-gradient(135deg, #1e293b 0%, #475569 100%);
+  --gradient-surface: linear-gradient(145deg, #ffffff 0%, #f8fafc 100%);
+  --gradient-text: linear-gradient(135deg, #1e293b 0%, #475569 100%);
+  
+  /* Layout crítico */
+  --layout-width-wide: 1400px;
+  --layout-content-padding: clamp(1rem, 3vw, 2rem);
+  --header-height: 80px;
+}
+
+/* =================== 
+   FORCE OVERRIDE PARA COMPONENTES CRÍTICOS
+   =================== */
+
+/* SINGLE COURSE PAGE - ARREGLOS INMEDIATOS */
+.single-courses .tutor-course-header {
+  background: transparent !important;
+  padding: 0 !important;
+  margin-bottom: 1rem !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+
+.single-courses .tutor-course-header .tutor-course-title {
+  font-size: clamp(1.75rem, 3.5vw, 2.25rem) !important;
+  font-weight: 700 !important;
+  margin-bottom: 0.5rem !important;
+  text-align: left !important;
+  color: var(--color-text-primary) !important;
+  background: none !important;
+  -webkit-text-fill-color: initial !important;
+}
+
+/* ESTRELLAS COMPACTAS Y LIMPIAS */
+.single-courses .tutor-course-header .tutor-ratings,
+.single-courses .tutor-course-header .tutor-course-rating,
+.single-courses .tutor-ratings,
+.single-courses .tutor-course-rating {
+  background: transparent !important;
+  padding: 0.5rem 0 !important;
+  border: none !important;
+  box-shadow: none !important;
+  margin: 0.25rem 0 !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 0.5rem !important;
+}
+
+.single-courses .tutor-star-rating {
+  display: inline-flex !important;
+  gap: 2px !important;
+}
+
+.single-courses .tutor-star-rating i {
+  font-size: 14px !important;
+  color: #fbbf24 !important;
+  filter: none !important;
+  text-shadow: none !important;
+  margin: 0 !important;
+}
+
+/* CONTENIDO MÁS ANCHO */
+.single-courses .tutor-tab-item,
+.single-courses .tutor-course-details-content,
+.single-courses .tutor-course-content {
+  max-width: 1200px !important;
+  width: 100% !important;
+  margin: 0 auto !important;
+  padding: 1.5rem !important;
+}
+
+/* TABS LIMPIOS */
+.single-courses .tutor-tabs {
+  background: white !important;
+  border: 1px solid #e2e8f0 !important;
+  border-radius: 12px !important;
+  padding: 8px !important;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1) !important;
+  backdrop-filter: none !important;
+}
+
+.single-courses .tutor-tabs .tutor-nav-item {
+  padding: 0.75rem 1rem !important;
+  border-radius: 8px !important;
+  font-size: 14px !important;
+  font-weight: 500 !important;
+  color: #64748b !important;
+  background: transparent !important;
+  border: none !important;
+  text-transform: none !important;
+}
+
+.single-courses .tutor-tabs .tutor-nav-item.is-active {
+  background: #f8fafc !important;
+  color: #1e293b !important;
+  font-weight: 600 !important;
+  box-shadow: none !important;
+  transform: none !important;
+}
+
+/* TutorLMS Cards - Force Override */
+.tutor-course-card {
+  background: var(--gradient-surface) !important;
+  border: 1px solid var(--color-border-primary) !important;
+  border-radius: var(--radius-2xl, 16px) !important;
+  box-shadow: var(--shadow-lg) !important;
+  transition: all var(--transition-duration-base) var(--transition-timing-function) !important;
+  backdrop-filter: blur(8px) !important;
+  overflow: hidden !important;
+}
+
+.tutor-course-card:hover {
+  transform: translateY(-6px) scale(1.02) !important;
+  box-shadow: var(--shadow-2xl) !important;
+  border-color: var(--color-border-focus) !important;
+}
+
+/* BOTONES LIMPIOS Y PROFESIONALES */
+.single-courses .tutor-btn,
+.single-courses .tutor-course-sidebar .tutor-btn,
+.single-courses .tutor-course-status .tutor-btn,
+.tutor-btn {
+  background: #1e293b !important;
+  color: white !important;
+  border: 1px solid #1e293b !important;
+  border-radius: 8px !important;
+  padding: 0.75rem 1.25rem !important;
+  font-size: 14px !important;
+  font-weight: 600 !important;
+  text-transform: none !important;
+  letter-spacing: normal !important;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1) !important;
+  transition: all 0.2s ease !important;
+  transform: none !important;
+  position: relative !important;
+  overflow: visible !important;
+}
+
+.single-courses .tutor-btn:hover,
+.single-courses .tutor-course-sidebar .tutor-btn:hover,
+.single-courses .tutor-course-status .tutor-btn:hover,
+.tutor-btn:hover {
+  background: #0f172a !important;
+  transform: translateY(-1px) !important;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.15) !important;
+}
+
+.single-courses .tutor-btn::before,
+.single-courses .tutor-btn::after {
+  display: none !important;
+}
+
+/* SIDEBAR LIMPIO */
+.single-courses .tutor-course-sidebar,
+.single-courses .tutor-sidebar {
+  background: white !important;
+  border: 1px solid #e2e8f0 !important;
+  border-radius: 12px !important;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1) !important;
+  backdrop-filter: none !important;
+  padding: 1.5rem !important;
+}
+
+.single-courses .tutor-sidebar-card {
+  background: transparent !important;
+  border: none !important;
+  padding: 0 !important;
+  margin-bottom: 1rem !important;
+  box-shadow: none !important;
+}
+
+/* Navegación y Tabs - Force Override */
+.tutor-lms-active .tutor-nav,
+.tutor-lms-active .tutor-tabs {
+  background: rgba(255, 255, 255, 0.25) !important;
+  border: 1px solid rgba(255, 255, 255, 0.18) !important;
+  border-radius: var(--radius-2xl, 16px) !important;
+  backdrop-filter: blur(12px) !important;
+  box-shadow: var(--shadow-lg) !important;
+}
+
+.tutor-lms-active .tutor-nav .tutor-nav-item,
+.tutor-lms-active .tutor-tabs .tutor-nav-item {
+  border-radius: var(--radius-lg, 12px) !important;
+  padding: var(--space-3, 12px) var(--space-5, 20px) !important;
+  font-weight: 600 !important;
+  transition: all var(--transition-duration-base) var(--transition-timing-function) !important;
+}
+
+.tutor-lms-active .tutor-nav .tutor-nav-item:hover,
+.tutor-lms-active .tutor-tabs .tutor-nav-item:hover {
+  transform: translateY(-1px) !important;
+  background: var(--color-surface-secondary) !important;
+}
+
+/* =================== 
+   FORMULARIOS ESPECTACULARES - FORCE OVERRIDE
+   =================== */
+.tutor-lms-active input[type="text"],
+.tutor-lms-active input[type="email"],
+.tutor-lms-active input[type="password"],
+.tutor-lms-active input[type="search"],
+.tutor-lms-active select,
+.tutor-lms-active textarea {
+  border: 2px solid var(--color-border-secondary) !important;
+  border-radius: var(--radius-lg, 12px) !important;
+  padding: 0.75rem 1rem !important;
+  background: var(--color-surface-primary) !important;
+  transition: all var(--transition-duration-base) var(--transition-timing-function) !important;
+  font-family: var(--font-family-sans) !important;
+}
+
+.tutor-lms-active input[type="text"]:focus,
+.tutor-lms-active input[type="email"]:focus,
+.tutor-lms-active input[type="password"]:focus,
+.tutor-lms-active input[type="search"]:focus,
+.tutor-lms-active select:focus,
+.tutor-lms-active textarea:focus {
+  outline: none !important;
+  border-color: var(--color-border-focus) !important;
+  box-shadow: var(--shadow-focus) !important;
+  transform: translateY(-1px) !important;
+}
+
+/* =================== 
+   BOTONES ESPECTACULARES - FORCE OVERRIDE
+   =================== */
+.tutor-lms-active .tutor-btn {
+  background: var(--gradient-brand) !important;
+  color: white !important;
+  border: none !important;
+  border-radius: var(--radius-lg, 12px) !important;
+  padding: 0.7rem 1.1rem !important;
+  font-weight: 700 !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.02em !important;
+  box-shadow: var(--shadow-md) !important;
+  transition: all var(--transition-duration-base) var(--transition-timing-function) !important;
+  position: relative !important;
+  overflow: hidden !important;
+}
+
+.tutor-lms-active .tutor-btn:hover {
+  transform: translateY(-2px) scale(1.05) !important;
+  box-shadow: var(--shadow-xl) !important;
+}
+
+/* =================== 
+   LAYOUT SYSTEM OVERRIDE
+   =================== */
+
+/* Contenedor principal LMS - SISTEMA DESHABILITADO */
+.lms-leccion-layout-wrapper {
+  width: 100%;
+  max-width: var(--layout-width-wide);
+  margin: 0 auto;
+  padding: 0 var(--layout-content-padding);
+}
+
+.lms-leccion-layout {
+  /* Grid deshabilitado para evitar conflicto con curso-main */
+  margin-top: clamp(1.5rem, 3vw, 2.5rem);
+}
+
+.lms-leccion-layout__principal {
+  /* Layout manejado por curso-main en course-single.css */
+  display: block;
+}
+
+.lms-leccion-layout__sidebar {
+  /* Sidebar manejado por curso-main grid */
+  display: block;
+}
+
+/* =================== 
+   RESPONSIVE OVERRIDE
+   =================== */
+@media (max-width: 1080px) {
+  .lms-leccion-layout {
+    grid-template-columns: 1fr !important;
+  }
+  
+  .lms-leccion-layout__sidebar {
+    position: static !important;
+    order: -1 !important;
+  }
+}
+
+/* =================== 
+   SISTEMA DESHABILITADO - NO MODIFICAR TUTOR LMS
+   =================== */
+
+/* Todos los overrides de TutorLMS están deshabilitados para preservar funcionalidad original */
+
+/* Critical z-index management */
+.tutor-lms-active .tutor-nav,
+.tutor-lms-active .tutor-tabs {
+  z-index: 10 !important;
+}
+
+.tutor-lms-active .tutor-course-card {
+  z-index: 1 !important;
+}
+
+.tutor-lms-active .tutor-course-card:hover {
+  z-index: 2 !important;
+}
+
+/* =================== 
+   FINAL CLEANUP
+   =================== */
+
+/* Remove any conflicting animations */
+.tutor-lms-active * {
+  -webkit-animation: none !important;
+  -moz-animation: none !important;
+  -o-animation: none !important;
+  animation: none !important;
+}
+
+/* Re-enable our animations */
+.tutor-course-card {
+  animation: fadeInUp 0.6s ease-out !important;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Shimmer animation for progress bars */
+@keyframes shimmer {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(200%); }
+}
+
+/* Force our shimmer effect */
+.tutor-progress-filled::after {
+  content: "" !important;
+  position: absolute !important;
+  top: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+  bottom: 0 !important;
+  background: linear-gradient(90deg, rgba(255,255,255,0.3), transparent) !important;
+  animation: shimmer 2s infinite !important;
+}
+
+/* =================== 
+   TYPOGRAPHY OVERRIDE
+   =================== */
+.tutor-lms-active h1,
+.tutor-lms-active h2,
+.tutor-lms-active h3,
+.tutor-lms-active h4,
+.tutor-lms-active h5,
+.tutor-lms-active h6 {
+  font-family: var(--font-family-sans) !important;
+  line-height: 1.2 !important;
+  letter-spacing: -0.01em !important;
+}
+
+.tutor-lms-active p {
+  font-family: var(--font-family-serif) !important;
+  line-height: 1.6 !important;
+}
+
+/* Debug mode (opcional): activo solo si el body tiene .debug-ui */
+body.debug-ui .tutor-lms-active .tutor-course-card {
+  border: 2px solid red !important;
+  position: relative !important;
+}
+
+body.debug-ui .tutor-lms-active .tutor-course-card::before {
+  content: "OVERRIDE ACTIVE" !important;
+  position: absolute !important;
+  top: 5px !important;
+  left: 5px !important;
+  background: red !important;
+  color: white !important;
+  padding: 2px 5px !important;
+  font-size: 10px !important;
+  z-index: 999 !important;
+}

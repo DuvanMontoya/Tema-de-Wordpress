@@ -1,0 +1,427 @@
+/* Bloques Gutenberg Espectaculares: Diseño Sensacional y Moderno */
+
+/* =================== 
+   IMÁGENES Y FIGURAS ELEGANTES
+   =================== */
+.wp-block-image {
+  position: relative;
+  overflow: hidden;
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-lg);
+  transition: all var(--transition-duration-base) var(--transition-timing-function);
+}
+
+.wp-block-image:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-2xl);
+}
+
+.wp-block-image img {
+  transition: all var(--transition-duration-base) var(--transition-timing-function);
+  filter: brightness(1) contrast(1.02) saturate(1.1);
+}
+
+.wp-block-image:hover img {
+  transform: scale(1.02);
+  filter: brightness(1.05) contrast(1.05) saturate(1.2);
+}
+
+.wp-block-image figcaption { 
+  font: 500 clamp(.8rem, 1.6vw, .9rem)/1.4 var(--font-family-sans);
+  color: var(--color-text-secondary);
+  text-align: center;
+  padding: clamp(.75rem, 1.5vw, 1rem);
+  background: var(--gradient-surface);
+  margin: 0;
+  border-radius: 0 0 var(--radius-xl) var(--radius-xl);
+  position: relative;
+}
+
+.wp-block-image figcaption::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60px;
+  height: 3px;
+  background: var(--gradient-brand);
+  border-radius: var(--radius-full);
+}
+
+/* =================== 
+   QUOTES ESPECTACULARES
+   =================== */
+.wp-block-quote { 
+  border-inline-start: 6px solid transparent;
+  border-image: var(--gradient-brand) 1;
+  padding: clamp(1rem, 2vw, 1.5rem) clamp(1.25rem, 2.5vw, 2rem);
+  font: italic 500 clamp(1.1rem, 2.2vw, 1.25rem)/1.5 var(--font-family-serif);
+  background: var(--gradient-surface);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-lg);
+  position: relative;
+  backdrop-filter: blur(8px);
+  margin: clamp(2rem, 4vw, 3rem) 0;
+}
+
+.wp-block-quote::before {
+  content: '"';
+  font: 900 clamp(3rem, 6vw, 4rem)/1 var(--font-family-serif);
+  color: var(--color-brand-primary);
+  opacity: 0.3;
+  position: absolute;
+  top: -10px;
+  left: clamp(1rem, 2vw, 1.5rem);
+  z-index: 0;
+}
+
+.wp-block-quote p {
+  position: relative;
+  z-index: 1;
+  margin: 0;
+}
+
+.wp-block-quote cite {
+  display: block;
+  font: 600 clamp(.9rem, 1.8vw, 1rem)/1.2 var(--font-family-sans);
+  color: var(--color-text-secondary);
+  margin-top: 1rem;
+  text-align: right;
+  position: relative;
+  z-index: 1;
+}
+
+.wp-block-quote cite::before {
+  content: "— ";
+  color: var(--color-brand-primary);
+}
+
+/* =================== 
+   CÓDIGO ESPECTACULAR
+   =================== */
+.wp-block-code {
+  background: var(--gradient-surface);
+  border: 1px solid var(--color-border-primary);
+  border-radius: var(--radius-xl);
+  padding: clamp(1rem, 2vw, 1.5rem);
+  box-shadow: var(--shadow-lg);
+  position: relative;
+  overflow: hidden;
+}
+
+.wp-block-code::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 40px;
+  background: linear-gradient(135deg, var(--color-brand-primary), var(--color-brand-secondary));
+  opacity: 0.1;
+}
+
+.wp-block-code code { 
+  font: 500 clamp(.85rem, 1.7vw, .95rem)/1.5 var(--font-family-mono);
+  color: var(--color-text-primary);
+  display: block;
+  position: relative;
+  z-index: 1;
+  background: none;
+  padding: 0;
+}
+
+/* Código inline */
+code {
+  background: var(--gradient-surface);
+  color: var(--color-brand-primary);
+  padding: .2em .4em;
+  border-radius: var(--radius-sm);
+  font: 600 .9em/1.2 var(--font-family-mono);
+  border: 1px solid var(--color-border-primary);
+}
+
+/* =================== 
+   TABLAS ELEGANTES
+   =================== */
+.wp-block-table {
+  overflow: hidden;
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-lg);
+  background: var(--gradient-surface);
+  border: 1px solid var(--color-border-primary);
+  margin: clamp(2rem, 4vw, 3rem) 0;
+}
+
+.wp-block-table table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 0;
+  background: transparent;
+}
+
+.wp-block-table th {
+  background: var(--gradient-surface);
+  font: 800 clamp(.85rem, 1.7vw, .95rem)/1.2 var(--font-family-sans);
+  color: var(--color-text-primary);
+  padding: clamp(.75rem, 1.5vw, 1rem) clamp(1rem, 2vw, 1.25rem);
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+  border-bottom: 2px solid var(--color-border-primary);
+}
+
+.wp-block-table td {
+  padding: clamp(.75rem, 1.5vw, 1rem) clamp(1rem, 2vw, 1.25rem);
+  border-bottom: 1px solid var(--color-border-primary);
+  font: 400 clamp(.9rem, 1.8vw, 1rem)/1.4 var(--font-family-sans);
+  transition: background var(--transition-duration-base) var(--transition-timing-function);
+}
+
+.wp-block-table.is-style-stripes tbody tr:nth-child(odd) { 
+  background: var(--color-surface-secondary);
+}
+
+.wp-block-table tbody tr:hover {
+  background: var(--color-surface-secondary);
+  transform: scale(1.001);
+}
+
+/* =================== 
+   BOTONES ESPECTACULARES
+   =================== */
+.wp-block-button {
+  margin: clamp(1.5rem, 3vw, 2rem) 0;
+}
+
+.wp-block-button .wp-block-button__link { 
+  background: var(--gradient-brand) !important;
+  color: white !important;
+  border-radius: var(--radius-lg) !important;
+  border: none !important;
+  padding: clamp(.8rem, 1.6vw, 1rem) clamp(1.5rem, 3vw, 2rem) !important;
+  font: 700 clamp(.9rem, 1.8vw, 1rem)/1.2 var(--font-family-sans) !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.02em !important;
+  text-decoration: none !important;
+  display: inline-block !important;
+  box-shadow: var(--shadow-lg) !important;
+  transition: all var(--transition-duration-base) var(--transition-timing-function) !important;
+  position: relative !important;
+  overflow: hidden !important;
+}
+
+.wp-block-button .wp-block-button__link::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+  transition: left var(--transition-duration-base) var(--transition-timing-function);
+}
+
+.wp-block-button .wp-block-button__link:hover { 
+  transform: translateY(-3px) scale(1.02) !important;
+  box-shadow: var(--shadow-2xl) !important;
+}
+
+.wp-block-button .wp-block-button__link:hover::before {
+  left: 100%;
+}
+
+.wp-block-button .wp-block-button__link:focus-visible { 
+  outline: none !important;
+  box-shadow: var(--shadow-2xl), 0 0 0 3px var(--color-border-focus) !important;
+  outline-offset: 2px !important;
+}
+
+/* =================== 
+   LAYOUT ESPECTACULAR
+   =================== */
+.alignwide { 
+  max-width: min(var(--layout-width-wide), 100% - 4rem);
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.alignfull { 
+  width: 100vw;
+  margin-left: calc(50% - 50vw);
+  margin-right: calc(50% - 50vw);
+  position: relative;
+}
+
+.alignfull::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: var(--gradient-surface);
+  opacity: 0.05;
+  pointer-events: none;
+}
+
+/* =================== 
+   LISTAS ELEGANTES
+   =================== */
+ul, ol { 
+  padding-inline-start: clamp(1.25rem, 2.5vw, 1.75rem);
+}
+
+ul li, ol li {
+  margin-bottom: .5rem;
+  position: relative;
+}
+
+ul li::marker {
+  color: var(--color-brand-primary);
+  font-weight: 700;
+}
+
+ol li::marker {
+  color: var(--color-brand-primary);
+  font-weight: 700;
+}
+
+/* Lista custom con iconos espectaculares */
+ul.custom-list {
+  list-style: none;
+  padding-left: 0;
+}
+
+ul.custom-list li {
+  position: relative;
+  padding-left: 2rem;
+  margin-bottom: .75rem;
+}
+
+ul.custom-list li::before {
+  content: "✓";
+  position: absolute;
+  left: 0;
+  top: 0;
+  color: var(--color-brand-primary);
+  font-weight: 800;
+  font-size: 1.1em;
+}
+
+/* =================== 
+   NAVEGACIÓN ESPECTACULAR
+   =================== */
+.wp-block-navigation {
+  background: var(--glass-background);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-2xl);
+  padding: var(--space-3);
+  backdrop-filter: blur(12px);
+  box-shadow: var(--shadow-lg);
+}
+
+.wp-block-navigation a { 
+  font: 600 clamp(.9rem, 1.8vw, 1rem)/1.2 var(--font-family-sans);
+  color: var(--color-text-secondary);
+  padding: var(--space-2) var(--space-4);
+  border-radius: var(--radius-lg);
+  transition: all var(--transition-duration-base) var(--transition-timing-function);
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+}
+
+.wp-block-navigation a:hover {
+  background: var(--color-surface-secondary);
+  color: var(--color-brand-primary);
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-sm);
+}
+
+/* =================== 
+   SEPARADORES ELEGANTES
+   =================== */
+.wp-block-separator {
+  border: none;
+  height: 4px;
+  background: var(--gradient-brand);
+  border-radius: var(--radius-full);
+  margin: clamp(3rem, 6vw, 5rem) auto;
+  max-width: 120px;
+  opacity: 0.7;
+}
+
+hr {
+  border: none;
+  height: 2px;
+  background: var(--gradient-brand);
+  border-radius: var(--radius-full);
+  margin: clamp(2rem, 4vw, 3rem) 0;
+  opacity: 0.5;
+}
+
+/* =================== 
+   TABLAS MATEMÁTICAS ESPECIALES
+   =================== */
+.mjx-container table { 
+  margin: auto;
+  background: var(--gradient-surface);
+  border-radius: var(--radius-lg);
+  padding: 1rem;
+  box-shadow: var(--shadow-md);
+}
+
+.wp-block-table.math-table {
+  background: var(--gradient-surface);
+  border: 2px solid var(--color-border-primary);
+}
+
+.wp-block-table.math-table th {
+  background: var(--gradient-brand);
+  color: white;
+}
+
+/* =================== 
+   EFECTOS Y ANIMACIONES
+   =================== */
+@keyframes slideInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.wp-block-quote,
+.wp-block-image,
+.wp-block-button,
+.wp-block-table {
+  animation: slideInUp 0.6s ease-out;
+}
+
+/* =================== 
+   RESPONSIVE AVANZADO
+   =================== */
+@media (max-width: 768px) {
+  .wp-block-table {
+    font-size: .85rem;
+  }
+  
+  .wp-block-quote {
+    padding: 1rem;
+  }
+  
+  .wp-block-quote::before {
+    font-size: 2.5rem;
+    top: -5px;
+  }
+  
+  .alignwide,
+  .alignfull {
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 100%;
+  }
+}

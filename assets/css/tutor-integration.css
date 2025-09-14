@@ -1,0 +1,30 @@
+/* Integración básica de TutorLMS - SIN overrides agresivos */
+
+/* Solo ajustes de integración visual básicos */
+.single-courses .tutor-wrap {
+  max-width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+/* Asegurar que el contenido de TutorLMS se vea bien dentro del layout del tema */
+.lms-leccion-layout__principal .tutor-wrap {
+  background: transparent;
+  border: none;
+  box-shadow: none;
+  padding: 0;
+}
+
+/* Ajuste mínimo para tabs si es necesario */
+.lms-leccion-layout__principal .tutor-tabs {
+  margin-top: 2rem;
+}
+
+/* Sidebar coherente con el diseño */
+.curso-sidebar .tutor-wrap {
+  background: var(--gradient-surface);
+  border: 1px solid var(--color-border-primary);
+  border-radius: var(--radius-xl);
+  padding: 1.5rem;
+  box-shadow: var(--shadow-md);
+}

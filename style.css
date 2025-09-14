@@ -1,0 +1,756 @@
+/**
+ * Theme Name: Academia Pro
+ * Version: 2.0.0
+ * Description: Tema LMS moderno y profesional para TutorLMS con arquitectura CSS modular
+ * Author: Robert Duan M. Cardona
+ * License: GPL-2.0-or-later
+ * Text Domain: academia-pro
+ *
+ * ARQUITECTURA MODULAR:
+ * - style.css: Solo variables CSS y estilos base/reset
+ * - header-footer.css: Estilos del header y footer del sitio
+ * - tutor-dashboard.css: Dashboard de TutorLMS
+ * - pages.css: Sistema de anchos profesionales para páginas
+ * - blog.css: Diseño de blog y archivo de posts
+ * - lms.css: Lecciones, cursos y contenido LMS
+ */
+
+/* ==========================================================================
+   SISTEMA DE DESIGN TOKENS BUDDYBOSS STYLE - NIVEL PREMIUM
+   ========================================================================== */
+
+:root {
+  /* PALETA DE COLORES BUDDYBOSS MODERNA */
+  --color-primary: #6366f1;           /* Indigo vibrante */
+  --color-primary-50: #eef2ff;
+  --color-primary-100: #e0e7ff;
+  --color-primary-200: #c7d2fe;
+  --color-primary-300: #a5b4fc;
+  --color-primary-400: #818cf8;
+  --color-primary-500: #6366f1;       /* Primary */
+  --color-primary-600: #4f46e5;
+  --color-primary-700: #4338ca;
+  --color-primary-800: #3730a3;
+  --color-primary-900: #312e81;
+  --color-primary-hover: var(--color-primary-600);
+  
+  /* Colores secundarios premium */
+  --color-secondary: #0f172a;         /* Slate dark premium */
+  --color-secondary-light: #1e293b;
+  --color-accent: #f59e0b;            /* Amber para acentos */
+  --color-accent-light: #fbbf24;
+  
+  /* Grises profesionales BuddyBoss */
+  --color-gray-50: #f8fafc;
+  --color-gray-100: #f1f5f9;
+  --color-gray-200: #e2e8f0;
+  --color-gray-300: #cbd5e1;
+  --color-gray-400: #94a3b8;
+  --color-gray-500: #64748b;
+  --color-gray-600: #475569;
+  --color-gray-700: #334155;
+  --color-gray-800: #1e293b;
+  --color-gray-900: #0f172a;
+  
+  /* Superficie y fondos premium */
+  --color-background: #fafbfc;        /* Fondo sutilmente off-white */
+  --color-background-alt: #f5f7fb;    /* Fondo alterno suave */
+  --color-surface: #ffffff;           /* Blanco puro para cards */
+  --color-surface-secondary: var(--color-gray-50);
+  --color-surface-tertiary: var(--color-gray-100);
+  --color-surface-elevated: #ffffff;  /* Cards elevadas */
+  --color-surface-overlay: rgba(255, 255, 255, 0.95);
+  
+  /* Bordes elegantes */
+  --color-border: var(--color-gray-200);
+  --color-border-light: var(--color-gray-100);
+  --color-border-strong: var(--color-gray-300);
+  --color-border-hover: var(--color-gray-300);
+  --color-border-focus: var(--color-primary-400);
+  
+  /* Textos con jerarquía visual */
+  --color-text-primary: var(--color-gray-900);
+  --color-text-secondary: var(--color-gray-700);
+  --color-text-muted: var(--color-gray-500);
+  --color-text-placeholder: var(--color-gray-400);
+  --color-text-inverse: #ffffff;
+  --color-text-link: var(--color-primary);
+  
+  /* Estados semánticos */
+  --color-success: #10b981;           /* Emerald */
+  --color-success-bg: #d1fae5;
+  --color-success-border: #a7f3d0;
+  --color-success-hover: #059669;
+  --color-warning: #f59e0b;           /* Amber */
+  --color-warning-bg: #fef3c7;
+  --color-warning-border: #fde68a;
+  --color-error: #ef4444;             /* Red */
+  --color-error-bg: #fee2e2;
+  --color-error-border: #fecaca;
+  --color-info: var(--color-primary);
+  --color-info-bg: var(--color-primary-50);
+  --color-info-border: var(--color-primary-200);
+
+  /* TIPOGRAFÍA PREMIUM BUDDYBOSS */
+  --font-family-sans: 'Inter', 'SF Pro Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-family-display: 'Inter', var(--font-family-sans);
+  --font-family-serif: 'Merriweather', Georgia, serif;
+  --font-family-mono: 'SF Mono', 'Monaco', 'Cascadia Code', 'Roboto Mono', monospace;
+  
+  /* Escala tipográfica perfecta */
+  --font-size-xs: 0.75rem;    /* 12px */
+  --font-size-sm: 0.875rem;   /* 14px */
+  --font-size-base: 1rem;     /* 16px */
+  --font-size-lg: 1.125rem;   /* 18px */
+  --font-size-xl: 1.25rem;    /* 20px */
+  --font-size-2xl: 1.5rem;    /* 24px */
+  --font-size-3xl: 1.875rem;  /* 30px */
+  --font-size-4xl: 2.25rem;   /* 36px */
+  --font-size-5xl: 3rem;      /* 48px */
+  --font-size-6xl: 3.75rem;   /* 60px */
+  
+  /* Pesos tipográficos */
+  --font-weight-light: 300;
+  --font-weight-normal: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+  --font-weight-extrabold: 800;
+  --font-weight-black: 900;
+  
+  /* Alturas de línea optimizadas */
+  --line-height-none: 1;
+  --line-height-tight: 1.25;
+  --line-height-snug: 1.375;
+  --line-height-normal: 1.5;
+  --line-height-relaxed: 1.625;
+  --line-height-loose: 2;
+
+  /* ESPACIADO PERFECTO BUDDYBOSS */
+  --space-px: 1px;
+  --space-0: 0;
+  --space-0_5: 0.125rem;   /* 2px */
+  --space-1: 0.25rem;      /* 4px */
+  --space-1_5: 0.375rem;   /* 6px */
+  --space-2: 0.5rem;       /* 8px */
+  --space-2_5: 0.625rem;   /* 10px */
+  --space-3: 0.75rem;      /* 12px */
+  --space-3_5: 0.875rem;   /* 14px */
+  --space-4: 1rem;         /* 16px */
+  --space-5: 1.25rem;      /* 20px */
+  --space-6: 1.5rem;       /* 24px */
+  --space-7: 1.75rem;      /* 28px */
+  --space-8: 2rem;         /* 32px */
+  --space-9: 2.25rem;      /* 36px */
+  --space-10: 2.5rem;      /* 40px */
+  --space-11: 2.75rem;     /* 44px */
+  --space-12: 3rem;        /* 48px */
+  --space-14: 3.5rem;      /* 56px */
+  --space-16: 4rem;        /* 64px */
+  --space-20: 5rem;        /* 80px */
+  --space-24: 6rem;        /* 96px */
+  --space-28: 7rem;        /* 112px */
+  --space-32: 8rem;        /* 128px */
+  
+  /* ANCHOS Y LAYOUTS PROFESIONALES */
+  --width-xs: 320px;
+  --width-sm: 384px;
+  --width-md: 448px;
+  --width-lg: 512px;
+  --width-xl: 576px;
+  --width-2xl: 672px;
+  --width-3xl: 768px;
+  --width-4xl: 896px;
+  --width-5xl: 1024px;
+  --width-6xl: 1152px;
+  --width-7xl: 1280px;
+  --width-full: 1440px;
+  
+  /* Anchos específicos por contenido AMPLIADOS AL MÁXIMO */
+  --width-blog: 1100px;             /* Era 800px - ahora mucho más amplio */
+  --width-page: 1600px;             /* Era 1200px - MÁXIMO AMPLIO */
+  --width-lesson-text: 1200px;      /* Era 900px - más respiración */
+  --width-lesson-video: 1400px;     /* Era 1200px - más espacio */
+  --width-dashboard: 1600px;        /* Era 1400px - máxima amplitud */
+  --width-archive: 1700px;          /* Era 1440px - ultra amplio */
+  
+  /* HEADER HEIGHT GLOBAL */
+  --header-height: 80px;
+
+  /* BORDES Y RADIOS MODERNOS */
+  --radius-none: 0;
+  --radius-sm: 0.25rem;     /* 4px */
+  --radius-md: 0.375rem;    /* 6px */
+  --radius-lg: 0.5rem;      /* 8px */
+  --radius-xl: 0.75rem;     /* 12px */
+  --radius-2xl: 1rem;       /* 16px */
+  --radius-3xl: 1.5rem;     /* 24px */
+  --radius-full: 9999px;
+
+  /* SOMBRAS PREMIUM BUDDYBOSS */
+  --shadow-xs: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+  --shadow-sm: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
+  --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+  --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+  --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+  --shadow-2xl: 0 25px 50px -12px rgb(0 0 0 / 0.25);
+  --shadow-inner: inset 0 2px 4px 0 rgb(0 0 0 / 0.05);
+  --shadow-none: 0 0 #0000;
+  
+  /* Sombras de colores */
+  --shadow-primary: 0 10px 15px -3px rgb(99 102 241 / 0.1), 0 4px 6px -4px rgb(99 102 241 / 0.1);
+  --shadow-focus: 0 0 0 3px rgba(99, 102, 241, 0.15);
+  --shadow-success: 0 10px 15px -3px rgb(16 185 129 / 0.1), 0 4px 6px -4px rgb(16 185 129 / 0.1);
+  --shadow-warning: 0 10px 15px -3px rgb(245 158 11 / 0.1), 0 4px 6px -4px rgb(245 158 11 / 0.1);
+  --shadow-error: 0 10px 15px -3px rgb(239 68 68 / 0.1), 0 4px 6px -4px rgb(239 68 68 / 0.1);
+
+  /* TRANSICIONES Y ANIMACIONES FLUIDAS */
+  --transition-none: none;
+  --transition-all: all 150ms cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-fast: 150ms cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-normal: 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-slow: 350ms cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-slower: 500ms cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-timing: cubic-bezier(0.4, 0, 0.2, 1);
+  
+  /* Variables de transición legacy para compatibilidad */
+  --transition-duration-base: 250ms;
+  --transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  
+  /* Variables de color legacy para compatibilidad */
+  --color-brand-primary: var(--color-primary);
+  --color-brand-secondary: var(--color-primary-600);
+  --color-brand-primary-hover: var(--color-primary-hover);
+  --gradient-surface: var(--color-surface);
+  
+  /* Variables de borde legacy */
+  --color-border-primary: var(--color-border);
+  --color-border-secondary: var(--color-border-hover);
+  
+  /* Variables de superficie legacy */
+  --color-surface-primary: var(--color-surface);
+  --color-surface-secondary: var(--color-gray-50);
+  
+  /* Variables de layout legacy */
+  --layout-width-wide: var(--width-full);
+  --layout-content-padding: var(--space-6);
+  --space-lg: var(--space-8);
+  
+  /* Variables de cristal (glass) */
+  --glass-background: rgba(255, 255, 255, 0.8);
+  --glass-border: rgba(255, 255, 255, 0.2);
+  
+  /* Curvas de easing premium */
+  --ease-linear: cubic-bezier(0, 0, 1, 1);
+  --ease-in: cubic-bezier(0.4, 0, 1, 1);
+  --ease-out: cubic-bezier(0, 0, 0.2, 1);
+  --ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
+  --ease-back: cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  --ease-elastic: cubic-bezier(0.68, -0.6, 0.32, 1.6);
+
+  /* Z-INDEX ORGANIZADO */
+  --z-hide: -1;
+  --z-auto: auto;
+  --z-base: 0;
+  --z-docked: 10;
+  --z-dropdown: 1000;
+  --z-sticky: 1020;
+  --z-banner: 1030;
+  --z-overlay: 1040;
+  --z-modal: 1050;
+  --z-popover: 1060;
+  --z-skiplink: 1070;
+  --z-toast: 1080;
+  --z-tooltip: 1090;
+
+  /* GRADIENTES ELEGANTES */
+  --gradient-primary: linear-gradient(135deg, var(--color-primary-400), var(--color-primary-600));
+  --gradient-secondary: linear-gradient(135deg, var(--color-gray-100), var(--color-gray-200));
+  --gradient-accent: linear-gradient(135deg, var(--color-accent), var(--color-accent-light));
+  --gradient-glass: linear-gradient(135deg, rgba(255, 255, 255, 0.25), rgba(255, 255, 255, 0.1));
+  --gradient-surface: linear-gradient(135deg, var(--color-surface), var(--color-gray-50));
+  --gradient-brand: linear-gradient(135deg, var(--color-primary-500), var(--color-primary-700));
+  --gradient-text: linear-gradient(135deg, var(--color-primary-700), var(--color-primary-500));
+  
+  /* FILTROS Y EFECTOS */
+  --blur-none: blur(0);
+  --blur-sm: blur(4px);
+  --blur-md: blur(8px);
+  --blur-lg: blur(16px);
+  --blur-xl: blur(24px);
+  --blur-2xl: blur(40px);
+  --blur-3xl: blur(64px);
+  
+  /* BACKDROP EFFECTS */
+  --backdrop-blur: blur(8px) saturate(180%);
+  --backdrop-blur-sm: blur(4px) saturate(150%);
+  --backdrop-blur-lg: blur(16px) saturate(200%);
+}
+
+/* ==========================================================================
+   RESET Y ESTILOS BASE PREMIUM BUDDYBOSS
+   ========================================================================== */
+
+/* Reset moderno y completo */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* Modo oscuro unificado por tokens */
+:root[data-theme="dark"],
+html.dark-mode,
+body.dark-mode {
+  --color-background: #0b1220;
+  --color-background-alt: #0f172a;
+  --color-surface: #111827;
+  --color-surface-secondary: #0f172a;
+  --color-surface-tertiary: #0b1220;
+  --color-surface-elevated: #0f172a;
+  --color-surface-overlay: rgba(15, 23, 42, 0.9);
+
+  --color-text-primary: #e5e7eb;
+  --color-text-secondary: #cbd5e1;
+  --color-text-muted: #94a3b8;
+  --color-text-inverse: #0b1220;
+  --color-text-link: #a5b4fc;
+
+  --color-border: #334155;
+  --color-border-light: #1f2937;
+  --color-border-strong: #475569;
+  --color-border-hover: #475569;
+  --color-border-focus: #818cf8;
+
+  --color-success-bg: #064e3b;
+  --color-warning-bg: #78350f;
+  --color-error-bg: #7f1d1d;
+  --color-info-bg: #1e1b4b;
+  --color-info-border: #4f46e5;
+
+  --gradient-surface: linear-gradient(135deg, #0f172a, #111827);
+  --gradient-text: linear-gradient(135deg, #ffffff, #c7d2fe);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme]):not(.dark-mode) {
+    --color-background: #0b1220;
+    --color-background-alt: #0f172a;
+    --color-surface: #111827;
+    --color-surface-secondary: #0f172a;
+    --color-surface-tertiary: #0b1220;
+    --color-surface-elevated: #0f172a;
+    --color-surface-overlay: rgba(15, 23, 42, 0.9);
+    --color-text-primary: #e5e7eb;
+    --color-text-secondary: #cbd5e1;
+    --color-text-muted: #94a3b8;
+    --color-text-link: #a5b4fc;
+    --color-border: #334155;
+    --color-border-light: #1f2937;
+    --color-border-strong: #475569;
+    --color-border-hover: #475569;
+    --color-border-focus: #818cf8;
+    --gradient-surface: linear-gradient(135deg, #0f172a, #111827);
+    --gradient-text: linear-gradient(135deg, #ffffff, #c7d2fe);
+  }
+}
+
+/* ==========================================================================
+   RESET CSS MODERNO Y LIMPIO
+   ========================================================================== */
+
+/* Reset básico pero respetando accesibilidad */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* Remover estilos por defecto de elementos de lista */
+ul[role='list'], ol[role='list'] {
+  list-style: none;
+}
+
+/* Evitar que texto e imágenes se salgan del contenedor */
+html, body {
+  overflow-x: hidden;
+}
+
+/* Reset de navegadores para formularios */
+button, input, optgroup, select, textarea {
+  font-family: inherit;
+  font-size: 100%;
+  line-height: 1.15;
+  margin: 0;
+}
+
+/* Eliminar estilos por defecto de botones */
+button, [type="button"], [type="reset"], [type="submit"] {
+  -webkit-appearance: button;
+  appearance: button;
+  background-color: transparent;
+  background-image: none;
+}
+
+/* Corregir la incapacidad de diseñar elementos de formulario en iOS y Safari */
+button, [type="button"], [type="reset"], [type="submit"] {
+  -webkit-appearance: button;
+  appearance: button;
+}
+
+/* Remover el borde interior y el padding en Firefox */
+::-moz-focus-inner {
+  border-style: none;
+  padding: 0;
+}
+
+/* Restaurar los estilos de enfoque desarmados por la regla anterior */
+:-moz-focusring {
+  outline: 1px dotted ButtonText;
+}
+
+/* Configurar la altura de línea por defecto para mejorar la legibilidad */
+html {
+  line-height: 1.5;
+}
+
+/* Mejorar la tipografía global */
+h1, h2, h3, h4, h5, h6 {
+  line-height: var(--line-height-tight);
+  margin-bottom: 0.5em;
+}
+
+p, li {
+  line-height: var(--line-height-relaxed);
+}
+
+/* Body optimizado - SIMPLE Y LIMPIO */
+body {
+  font-family: var(--font-family-sans);
+  font-size: var(--font-size-base);
+  line-height: var(--line-height-normal);
+  color: var(--color-text-primary);
+  background-color: var(--color-background);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  font-feature-settings: 'kern' 1;
+  scroll-behavior: smooth;
+  overflow-x: hidden;
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+}
+
+/* Scrollbar personalizada moderna */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-gray-100);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-gray-300);
+  border-radius: var(--radius-full);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-gray-400);
+}
+
+/* Selection moderna */
+::selection {
+  background: var(--color-primary-200);
+  color: var(--color-primary-800);
+}
+
+::-moz-selection {
+  background: var(--color-primary-200);
+  color: var(--color-primary-800);
+}
+
+/* Enlaces premium */
+a {
+  color: var(--color-text-link);
+  text-decoration: none;
+  transition: var(--transition-fast);
+  cursor: pointer;
+}
+
+a:hover {
+  color: var(--color-primary-hover);
+  text-decoration: underline;
+  text-decoration-thickness: 2px;
+  text-underline-offset: 4px;
+}
+
+a:focus-visible {
+  outline: 2px solid var(--color-border-focus);
+  outline-offset: 2px;
+  border-radius: var(--radius-sm);
+}
+
+/* Tipografía jerárquica premium */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-family-display);
+  font-weight: var(--font-weight-bold);
+  line-height: var(--line-height-tight);
+  color: var(--color-text-primary);
+  margin-bottom: var(--space-4);
+  letter-spacing: -0.025em;
+  word-wrap: break-word;
+  hyphens: auto;
+}
+
+h1 {
+  font-size: var(--font-size-5xl);
+  font-weight: var(--font-weight-extrabold);
+  margin-bottom: var(--space-6);
+  line-height: var(--line-height-none);
+}
+
+h2 {
+  font-size: var(--font-size-4xl);
+  font-weight: var(--font-weight-bold);
+  margin-bottom: var(--space-5);
+}
+
+h3 {
+  font-size: var(--font-size-3xl);
+  font-weight: var(--font-weight-bold);
+  margin-bottom: var(--space-4);
+}
+
+h4 {
+  font-size: var(--font-size-2xl);
+  font-weight: var(--font-weight-semibold);
+  margin-bottom: var(--space-4);
+}
+
+h5 {
+  font-size: var(--font-size-xl);
+  font-weight: var(--font-weight-semibold);
+  margin-bottom: var(--space-3);
+}
+
+h6 {
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-medium);
+  margin-bottom: var(--space-3);
+  color: var(--color-text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+/* Párrafos elegantes */
+p {
+  margin-bottom: var(--space-4);
+  line-height: var(--line-height-relaxed);
+  color: var(--color-text-secondary);
+  word-wrap: break-word;
+  hyphens: auto;
+}
+
+p:last-child {
+  margin-bottom: 0;
+}
+
+/* Párrafo lead */
+.lead {
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-medium);
+  color: var(--color-text-primary);
+  line-height: var(--line-height-relaxed);
+}
+
+/* Listas modernas */
+ul, ol {
+  margin-bottom: var(--space-4);
+  padding-left: var(--space-6);
+}
+
+li {
+  margin-bottom: var(--space-2);
+  line-height: var(--line-height-relaxed);
+  color: var(--color-text-secondary);
+}
+
+li:last-child {
+  margin-bottom: 0;
+}
+
+/* Lista sin estilos */
+.list-none {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+/* Imágenes responsive */
+img, picture, video, canvas, svg {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+img {
+  border-style: none;
+  border-radius: var(--radius-md);
+}
+
+/* Elementos de formulario modernos */
+input, button, textarea, select {
+  font: inherit;
+  color: inherit;
+}
+
+input, textarea, select {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: var(--space-3) var(--space-4);
+  transition: var(--transition-fast);
+  width: 100%;
+}
+
+input:focus, textarea:focus, select:focus {
+  outline: none;
+  border-color: var(--color-border-focus);
+  box-shadow: 0 0 0 3px var(--color-primary-100);
+}
+
+input::placeholder, textarea::placeholder {
+  color: var(--color-text-placeholder);
+}
+
+/* Botones base */
+button {
+  cursor: pointer;
+  border: none;
+  background: none;
+  padding: 0;
+  font-family: inherit;
+  transition: var(--transition-fast);
+}
+
+button:disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+/* Tablas elegantes */
+table {
+  border-collapse: collapse;
+  width: 100%;
+  background: var(--color-surface);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+}
+
+th, td {
+  text-align: left;
+  padding: var(--space-4);
+  border-bottom: 1px solid var(--color-border);
+}
+
+th {
+  background: var(--color-gray-50);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-text-primary);
+  font-size: var(--font-size-sm);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+tr:last-child td {
+  border-bottom: none;
+}
+
+tr:hover {
+  background: var(--color-gray-50);
+}
+
+/* Elementos semánticos */
+mark {
+  background: var(--color-warning-bg);
+  color: var(--color-warning);
+  padding: var(--space-1) var(--space-2);
+  border-radius: var(--radius-sm);
+}
+
+code {
+  font-family: var(--font-family-mono);
+  font-size: 0.875em;
+  background: var(--color-gray-100);
+  color: var(--color-gray-800);
+  padding: var(--space-1) var(--space-2);
+  border-radius: var(--radius-sm);
+}
+
+pre {
+  font-family: var(--font-family-mono);
+  background: var(--color-gray-900);
+  color: var(--color-gray-100);
+  padding: var(--space-6);
+  border-radius: var(--radius-lg);
+  overflow-x: auto;
+  margin-bottom: var(--space-4);
+}
+
+pre code {
+  background: none;
+  color: inherit;
+  padding: 0;
+}
+
+blockquote {
+  margin: var(--space-6) 0;
+  padding: var(--space-6);
+  background: var(--color-gray-50);
+  border-left: 4px solid var(--color-primary);
+  border-radius: var(--radius-lg);
+  font-style: italic;
+  font-size: var(--font-size-lg);
+  color: var(--color-text-secondary);
+}
+
+hr {
+  margin: var(--space-8) 0;
+  border: none;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--color-border), transparent);
+}
+
+/* Utilidades de accesibilidad */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.not-sr-only {
+  position: static;
+  width: auto;
+  height: auto;
+  padding: 0;
+  margin: 0;
+  overflow: visible;
+  clip: auto;
+  white-space: normal;
+}
+
+/* (utilidades movidas a assets/css/utilities.css) */
+
+/* (style.css reducido a tokens + resets/base; ver modules en assets/css/) */
