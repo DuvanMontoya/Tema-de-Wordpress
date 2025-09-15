@@ -28,7 +28,6 @@ if ( ! defined('ABSPATH') ) { exit; }
 <body <?php body_class(); ?>>
 <?php wp_body_open(); ?>
 
-<a class="skip-link" href="#contenido"><?php esc_html_e('Saltar al contenido','academia-pro'); ?></a>
 
 <?php if ( function_exists('academia_pro_is_tutor_dashboard') && academia_pro_is_tutor_dashboard() ) : ?>
   <!-- Dashboard TutorLMS: sin header del tema -->
