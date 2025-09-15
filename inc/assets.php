@@ -123,9 +123,9 @@ function academia_pro_enqueue_public(): void {
     $IS_TUTOR_DASHBOARD = function_exists('academia_pro_is_tutor_dashboard') && academia_pro_is_tutor_dashboard();
 
     if ( $IS_TUTOR_DASHBOARD ) {
-        // Dashboard TUTORLMS: Cargar CSS básico que incluye clases esenciales
-        
-        // Fuentes (para que el header/footer y textos usen la misma tipografía)
+        // Dashboard TUTORLMS: dejar el layout nativo del plugin (mínimo del tema)
+
+        // Fuentes para tipografía consistente
         wp_enqueue_style(
             'academia-pro-fonts',
             'https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Merriweather:wght@400;700;900&display=swap',
@@ -133,7 +133,7 @@ function academia_pro_enqueue_public(): void {
             null
         );
 
-        // CRÍTICO: CSS base con variables
+        // Base + header/footer únicamente
         wp_enqueue_style(
             'academia-pro-style',
             get_stylesheet_uri(),
@@ -141,16 +141,6 @@ function academia_pro_enqueue_public(): void {
             academia_pro_asset_ver('style.css')
         );
 
-        // Utilidades atómicas
-        $rel_utils = 'assets/css/utilities.css';
-        wp_enqueue_style(
-            'academia-pro-utilities',
-            academia_pro_asset_path($rel_utils),
-            ['academia-pro-style'],
-            academia_pro_asset_ver($rel_utils)
-        );
-
-        // Cargar estilos críticos para header y footer
         $rel_hf = 'assets/css/header-footer.css';
         wp_enqueue_style(
             'academia-pro-header-footer',
@@ -158,17 +148,8 @@ function academia_pro_enqueue_public(): void {
             ['academia-pro-style'],
             academia_pro_asset_ver($rel_hf)
         );
-        
-        // Cargar estilos específicos del dashboard
-        $rel = 'assets/css/tutor-dashboard.css';
-        wp_enqueue_style(
-            'academia-pro-tutor-dashboard',
-            academia_pro_asset_path($rel),
-            ['academia-pro-header-footer'],
-            academia_pro_asset_ver($rel)
-        );
-        
-        // JavaScript crítico para header (menú móvil, dropdown usuario)
+
+        // JS de header (menú móvil / cuenta)
         $rel_header_js = 'assets/js/header.js';
         wp_enqueue_script(
             'academia-pro-header',
@@ -177,38 +158,8 @@ function academia_pro_enqueue_public(): void {
             academia_pro_asset_ver($rel_header_js),
             array('in_footer' => true, 'strategy' => 'defer')
         );
-        
-    // Estilos editoriales de matemáticas
-        $rel_math = 'assets/css/math.css';
-        wp_enqueue_style(
-            'academia-pro-math',
-            academia_pro_asset_path($rel_math),
-            ['academia-pro-style'],
-            academia_pro_asset_ver($rel_math)
-        );
 
-    // Nota: evitamos cargar estilos editoriales pesados en el dashboard (revista-editorial.css)
-
-        // Estilos de impresión (solo print)
-        $rel_print = 'assets/css/print.css';
-        wp_enqueue_style(
-            'academia-pro-print',
-            academia_pro_asset_path($rel_print),
-            [],
-            academia_pro_asset_ver($rel_print),
-            'print'
-        );
-
-        // MathJax GLOBAL - También en dashboard para matemáticas en contenido dinámico
-        wp_enqueue_script(
-            'mathjax',
-            'https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js',
-            array(),
-            null,
-            array('in_footer' => false, 'strategy' => 'defer')
-        );
-        
-        // No cargar nada más del tema
+        // No cargar nada más del tema para no alterar el dashboard
         return;
     }
 
