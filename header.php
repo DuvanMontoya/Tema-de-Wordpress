@@ -30,6 +30,11 @@ if ( ! defined('ABSPATH') ) { exit; }
 
 <a class="skip-link" href="#contenido"><?php esc_html_e('Saltar al contenido','academia-pro'); ?></a>
 
+<?php if ( function_exists('academia_pro_is_tutor_dashboard') && academia_pro_is_tutor_dashboard() ) : ?>
+  <!-- Dashboard TutorLMS: sin header del tema -->
+  <main class="site-main" id="contenido" tabindex="-1">
+<?php else : ?>
+
 <header class="site-header" role="banner">
   <div class="contenedor site-header__inner">
 
@@ -143,3 +148,4 @@ if ( ! defined('ABSPATH') ) { exit; }
 </header>
 
 <main class="site-main" id="contenido" tabindex="-1">
+<?php endif; ?>

@@ -1,3 +1,7 @@
+/* Dashboard TutorLMS 100% nativo: neutralizar si este CSS se carga por terceros */
+body.tutor-dashboard .site-header,
+body.tutor-dashboard .site-footer { display: none !important; }
+body.tutor-dashboard .site-main { padding-top: 0 !important; }
 /* =====================================
    HEADER & FOOTER BUDDYBOSS PREMIUM
    Diseño ultra-moderno con glassmorphism y microinteracciones
