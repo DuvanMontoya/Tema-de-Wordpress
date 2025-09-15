@@ -123,43 +123,7 @@ function academia_pro_enqueue_public(): void {
     $IS_TUTOR_DASHBOARD = function_exists('academia_pro_is_tutor_dashboard') && academia_pro_is_tutor_dashboard();
 
     if ( $IS_TUTOR_DASHBOARD ) {
-        // Dashboard TUTORLMS: dejar el layout nativo del plugin (mínimo del tema)
-
-        // Fuentes para tipografía consistente
-        wp_enqueue_style(
-            'academia-pro-fonts',
-            'https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Merriweather:wght@400;700;900&display=swap',
-            [],
-            null
-        );
-
-        // Base + header/footer únicamente
-        wp_enqueue_style(
-            'academia-pro-style',
-            get_stylesheet_uri(),
-            [],
-            academia_pro_asset_ver('style.css')
-        );
-
-        $rel_hf = 'assets/css/header-footer.css';
-        wp_enqueue_style(
-            'academia-pro-header-footer',
-            academia_pro_asset_path($rel_hf),
-            ['academia-pro-style'],
-            academia_pro_asset_ver($rel_hf)
-        );
-
-        // JS de header (menú móvil / cuenta)
-        $rel_header_js = 'assets/js/header.js';
-        wp_enqueue_script(
-            'academia-pro-header',
-            academia_pro_asset_path($rel_header_js),
-            [],
-            academia_pro_asset_ver($rel_header_js),
-            array('in_footer' => true, 'strategy' => 'defer')
-        );
-
-        // No cargar nada más del tema para no alterar el dashboard
+        // Dashboard TUTORLMS: 100% nativo (no cargar assets del tema)
         return;
     }
 
