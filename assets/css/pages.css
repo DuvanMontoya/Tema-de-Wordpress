@@ -1,3 +1,19 @@
+/* ===== TutorLMS single course: preservar layout del plugin ===== */
+.single-courses .pagina-wrapper,
+.single-courses .page-container,
+.single-courses .site-main {
+  background: transparent !important;
+  padding: 0 !important;
+}
+
+.single-courses .page-content,
+.single-courses .page-content-wrapper,
+.single-courses .page-main-content {
+  background: transparent !important;
+  border: 0 !important;
+  box-shadow: none !important;
+  padding: 0 !important;
+}
 /* =====================================
    PÁGINAS GENERALES BUDDYBOSS PREMIUM
    Layouts modernos y elegantes para todas las páginas

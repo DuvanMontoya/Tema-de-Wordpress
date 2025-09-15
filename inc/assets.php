@@ -393,6 +393,44 @@ function academia_pro_tutor_dashboard_purify(): void {
 add_action('wp_enqueue_scripts', 'academia_pro_tutor_dashboard_purify', 1000);
 
 /* =========================================================
+ * Purga para SINGLE de curso (TutorLMS)
+ * Deja el layout por defecto del plugin, retirando CSS del tema que interfiere
+ * ======================================================= */
+
+function academia_pro_tutor_single_reset(): void {
+    if ( function_exists('tutor') && is_singular('courses') ) {
+        // Estilos del tema a retirar en single de curso
+        $styles = array(
+            'academia-pro-utilities',
+            'academia-pro-forms',
+            'academia-pro-pages',
+            'academia-pro-bloques',
+            'academia-pro-math',
+            'academia-pro-blog',
+            'academia-pro-comments',
+            'academia-pro-tutor-ui',
+            'academia-pro-tutor-cards',
+            'academia-pro-lms',
+            'academia-pro-learndash-ui',
+        );
+        foreach ( $styles as $handle ) {
+            if ( wp_style_is( $handle, 'enqueued' ) ) {
+                wp_dequeue_style( $handle );
+            }
+        }
+
+        // JS opcional del tema para curso (retirarlo por seguridad)
+        $scripts = array('academia-pro-course-single');
+        foreach ( $scripts as $handle ) {
+            if ( wp_script_is( $handle, 'enqueued' ) ) {
+                wp_dequeue_script( $handle );
+            }
+        }
+    }
+}
+add_action('wp_enqueue_scripts', 'academia_pro_tutor_single_reset', 1001);
+
+/* =========================================================
  * Resource Hints (preconnect/dns-prefetch) sin echo en <head>
  * ======================================================= */
 
