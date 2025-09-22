@@ -459,42 +459,34 @@ pre code {
 }
 
 /* =======================================
-   NUMERACIÓN DE LÍNEAS LIMPIA
+   GUTTER DE LÍNEAS (plugin oficial hljs-line-numbers)
    ======================================= */
 
-.line-numbers-mode {
-  display: flex !important;
-  align-items: stretch !important;
-  font-family: 'Fira Code', 'Cascadia Code', 'Source Code Pro', monospace !important;
+table.hljs-ln {
+  border-collapse: collapse !important;
+  width: 100% !important;
 }
 
-.line-numbers {
-  background: #49483e !important; /* Más sutil que el código */
-  color: #75715e !important;
-  padding: 1rem 0.75rem !important;
-  font-size: 0.9em !important;
-  line-height: 1.5 !important;
+table.hljs-ln td {
+  padding: 0 !important;
+  vertical-align: top !important;
+}
+
+td.hljs-ln-numbers {
   user-select: none !important;
-  display: flex !important;
-  flex-direction: column !important;
-  min-width: 3rem !important;
   text-align: right !important;
-  /* Sin bordes ni decoraciones */
-}
-
-.line-number {
-  display: block !important;
-  line-height: 1.5 !important;
   color: #75715e !important;
-  font-weight: 400 !important;
-  /* Sin transitions ni efectos */
+  background: #2f3129 !important; /* gutter VSCode monokai-like */
+  padding: .5rem .75rem !important;
+  width: 1%;
 }
 
-.line-numbers-mode .hljs {
-  flex: 1 !important;
-  margin: 0 !important;
-  padding: 1rem !important;
+td.hljs-ln-code {
+  padding: .5rem 1rem !important;
 }
+
+/* Mantener Monokai puro en el área de código */
+td.hljs-ln-code .hljs { background: #272822 !important; }
 
 :where(.wp-block-post-content, .entry-content, .page-content-wrapper) pre code,
 :where(.contenido-principal, .leccion-contenido) pre code {

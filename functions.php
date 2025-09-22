@@ -177,6 +177,9 @@ add_action('wp_enqueue_scripts', function() {
     // Highlight.js - CDN confiable
     wp_enqueue_script('highlight-js', 'https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js', array(), '11.9.0', true);
     
+    // Plugin de numeración de líneas para highlight.js (estable)
+    wp_enqueue_script('highlight-js-linenumbers', 'https://cdnjs.cloudflare.com/ajax/libs/highlightjs-line-numbers.js/2.8.0/highlightjs-line-numbers.min.js', array('highlight-js'), '2.8.0', true);
+
     // Lenguajes específicos para mejor performance
     wp_enqueue_script('highlight-js-python', 'https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/python.min.js', array('highlight-js'), '11.9.0', true);
     wp_enqueue_script('highlight-js-javascript', 'https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/javascript.min.js', array('highlight-js'), '11.9.0', true);
@@ -184,6 +187,8 @@ add_action('wp_enqueue_scripts', function() {
     wp_enqueue_script('highlight-js-css', 'https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/css.min.js', array('highlight-js'), '11.9.0', true);
     wp_enqueue_script('highlight-js-sql', 'https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/sql.min.js', array('highlight-js'), '11.9.0', true);
     wp_enqueue_script('highlight-js-bash', 'https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/bash.min.js', array('highlight-js'), '11.9.0', true);
+    wp_enqueue_script('highlight-js-json', 'https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/json.min.js', array('highlight-js'), '11.9.0', true);
+    wp_enqueue_script('highlight-js-xml', 'https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/xml.min.js', array('highlight-js'), '11.9.0', true);
 }, 1001);
 
 // ELIMINADO: Función Shiki que causaba conflictos
@@ -215,24 +220,27 @@ add_action('wp_footer', function() {
         function initHighlightJs() {
             console.log('Highlight.js disponible, procesando...');
             
-            // Configurar highlight.js con numeración
+                // Configurar highlight.js
             hljs.configure({
                 cssSelector: 'pre code',
                 languages: ['python', 'javascript', 'php', 'css', 'html', 'json', 'sql', 'bash']
             });
             
-            // Highlight primero, luego numerar
-            hljs.highlightAll();
-            
-            // Esperar un momento para que el highlighting se complete
-            setTimeout(() => {
-                document.querySelectorAll('pre code').forEach(function(block) {
-                    if (!block.classList.contains('hljs-processed')) {
-                        addLineNumbers(block);
-                        block.classList.add('hljs-processed');
-                    }
-                });
-            }, 100);
+            // Highlight y numeración con el plugin oficial
+            function applyHighlightAndLines(scope=document){
+                hljs.highlightAll();
+                if (typeof hljs !== 'undefined' && typeof hljs.lineNumbersBlock === 'function') {
+                    const blocks = scope.querySelectorAll('pre code');
+                    blocks.forEach(block => {
+                        // Evitar duplicar tabla de numeración
+                        if (!block.querySelector('table.hljs-ln')) {
+                            try { hljs.lineNumbersBlock(block); } catch(e) { console.error('HLJS line numbers error', e); }
+                        }
+                    });
+                }
+            }
+
+            applyHighlightAndLines(document);
             
             // Agregar botones de copiar
             addCopyButtons();
@@ -241,43 +249,6 @@ add_action('wp_footer', function() {
             handleDarkModeToggle();
             
             console.log('Highlight.js inicializado con numeración de líneas');
-        }
-        
-        function addLineNumbers(codeBlock) {
-            const pre = codeBlock.parentElement;
-            
-            // Evitar duplicar numeración
-            if (pre.querySelector('.line-numbers')) return;
-            
-            // Contar líneas basándose en saltos de línea reales
-            const codeText = codeBlock.textContent || codeBlock.innerText;
-            const lines = codeText.replace(/\r\n/g, '\n').split('\n');
-            
-            // Remover última línea si está vacía
-            const lineCount = lines[lines.length - 1].trim() === '' ? lines.length - 1 : lines.length;
-            
-            console.log(`Detectadas ${lineCount} líneas de código`);
-            
-            // Crear contenedor de números
-            const lineNumbers = document.createElement('div');
-            lineNumbers.className = 'line-numbers';
-            lineNumbers.setAttribute('aria-hidden', 'true');
-            
-            // Generar números de línea
-            for (let i = 1; i <= lineCount; i++) {
-                const lineNumber = document.createElement('span');
-                lineNumber.className = 'line-number';
-                lineNumber.textContent = i;
-                lineNumbers.appendChild(lineNumber);
-            }
-            
-            // Agregar estilos al pre
-            pre.classList.add('line-numbers-mode');
-            
-            // Insertar números al inicio
-            pre.insertBefore(lineNumbers, codeBlock);
-            
-            console.log(`Agregadas ${lineCount} líneas de numeración`);
         }
         
         function addCopyButtons() {
