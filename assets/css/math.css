@@ -684,14 +684,8 @@
   border-radius: .35em;
 }
 
-.typeset pre,
-.leccion-contenido pre {
-  padding: var(--space-6);
-  border-radius: var(--radius-xl);
-  background: color-mix(in srgb, var(--color-primary-600) 6%, #0f172a05);
-  overflow: auto;
-  border: 1px solid var(--color-border-light);
-}
+/* ELIMINADO: Estilos de pre que conflictuaban
+   Highlight.js maneja automáticamente los estilos */
 
 .typeset table,
 .leccion-contenido table {
@@ -935,20 +929,7 @@ body.dark-mode .leccion-contenido code {
   border-color: #374151 !important;
 }
 
-:root[data-theme="dark"] .typeset pre,
-:root[data-theme="dark"] .leccion-contenido pre,
-html[data-theme="dark"] .typeset pre,
-html[data-theme="dark"] .leccion-contenido pre,
-body[data-theme="dark"] .typeset pre,
-body[data-theme="dark"] .leccion-contenido pre,
-html.dark-mode .typeset pre,
-html.dark-mode .leccion-contenido pre,
-body.dark-mode .typeset pre,
-body.dark-mode .leccion-contenido pre {
-  background: #0f172a !important;
-  color: #e5e7eb !important;
-  border-color: #374151 !important;
-}
+/* ELIMINADO: Dark mode complejo que rompía highlight.js */
 
 /* BLOQUES MATEMÁTICOS */
 :root[data-theme="dark"] .theorem,

@@ -170,179 +170,139 @@ function estimated_reading_time() {
 // (Shortcode fórmula movido a inc/lms.php)
 
 /**
- * Integración Shiki para syntax highlighting mejorado
- * Soporte para bloques de código en entradas, páginas y lecciones
+ * Integración HIGHLIGHT.JS para syntax highlighting confiable
+ * Reemplaza Shiki que estaba causando conflictos
  */
 add_action('wp_enqueue_scripts', function() {
-    // Shiki Core y WASM
-    wp_enqueue_script('shiki-core', 'https://esm.sh/shiki@3.0.0', array(), null, array('in_footer' => false));
-    wp_enqueue_script('shiki-wasm', 'https://esm.sh/shiki@3.0.0/wasm.mjs', array('shiki-core'), null, array('in_footer' => false));
-
-    // Temas populares para Shiki
-    wp_enqueue_script('shiki-theme-github-light', 'https://esm.sh/@shikijs/themes/github-light', array(), null, array('in_footer' => false));
-    wp_enqueue_script('shiki-theme-github-dark', 'https://esm.sh/@shikijs/themes/github-dark', array(), null, array('in_footer' => false));
-    wp_enqueue_script('shiki-theme-vitesse-dark', 'https://esm.sh/@shikijs/themes/vitesse-dark', array(), null, array('in_footer' => false));
-    wp_enqueue_script('shiki-theme-vitesse-light', 'https://esm.sh/@shikijs/themes/vitesse-light', array(), null, array('in_footer' => false));
-
-    // Lenguajes comunes
-    wp_enqueue_script('shiki-lang-javascript', 'https://esm.sh/@shikijs/langs/javascript', array(), null, array('in_footer' => false));
-    wp_enqueue_script('shiki-lang-typescript', 'https://esm.sh/@shikijs/langs/typescript', array(), null, array('in_footer' => false));
-    wp_enqueue_script('shiki-lang-php', 'https://esm.sh/@shikijs/langs/php', array(), null, array('in_footer' => false));
-    wp_enqueue_script('shiki-lang-python', 'https://esm.sh/@shikijs/langs/python', array(), null, array('in_footer' => false));
-    wp_enqueue_script('shiki-lang-css', 'https://esm.sh/@shikijs/langs/css', array(), null, array('in_footer' => false));
-    wp_enqueue_script('shiki-lang-html', 'https://esm.sh/@shikijs/langs/html', array(), null, array('in_footer' => false));
-    wp_enqueue_script('shiki-lang-json', 'https://esm.sh/@shikijs/langs/json', array(), null, array('in_footer' => false));
-    wp_enqueue_script('shiki-lang-markdown', 'https://esm.sh/@shikijs/langs/markdown', array(), null, array('in_footer' => false));
-    wp_enqueue_script('shiki-lang-sql', 'https://esm.sh/@shikijs/langs/sql', array(), null, array('in_footer' => false));
-    wp_enqueue_script('shiki-lang-bash', 'https://esm.sh/@shikijs/langs/bash', array(), null, array('in_footer' => false));
+    // Highlight.js - CDN confiable
+    wp_enqueue_script('highlight-js', 'https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js', array(), '11.9.0', true);
+    
+    // Lenguajes específicos para mejor performance
+    wp_enqueue_script('highlight-js-python', 'https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/python.min.js', array('highlight-js'), '11.9.0', true);
+    wp_enqueue_script('highlight-js-javascript', 'https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/javascript.min.js', array('highlight-js'), '11.9.0', true);
+    wp_enqueue_script('highlight-js-php', 'https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/php.min.js', array('highlight-js'), '11.9.0', true);
+    wp_enqueue_script('highlight-js-css', 'https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/css.min.js', array('highlight-js'), '11.9.0', true);
+    wp_enqueue_script('highlight-js-sql', 'https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/sql.min.js', array('highlight-js'), '11.9.0', true);
+    wp_enqueue_script('highlight-js-bash', 'https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/bash.min.js', array('highlight-js'), '11.9.0', true);
 }, 1001);
 
-/**
- * Función para procesar bloques de código con Shiki
- */
-function academia_pro_process_code_blocks($content) {
-    // Si estamos en el dashboard de TutorLMS, no procesar
-    if (function_exists('academia_pro_is_tutor_dashboard') && academia_pro_is_tutor_dashboard()) {
-        return $content;
-    }
-
-    // Buscar bloques de código <pre><code class="language-xxx">...</code></pre>
-    $pattern = '/<pre><code class="language-([^"]*)">([^<]*)<\/code><\/pre>/is';
-    $content = preg_replace_callback($pattern, function($matches) {
-        $language = $matches[1];
-        $code = htmlspecialchars_decode($matches[2]);
-
-        // Detectar tema basado en el modo actual
-        $is_dark = isset($_COOKIE['academia-color-scheme']) && $_COOKIE['academia-color-scheme'] === 'dark' ||
-                   (!isset($_COOKIE['academia-color-scheme']) && isset($_SERVER['HTTP_USER_AGENT']) &&
-                   preg_match('/(prefers-color-scheme: dark)/i', $_SERVER['HTTP_USER_AGENT']));
-
-        $theme = $is_dark ? 'github-dark' : 'github-light';
-
-        // Crear el HTML con Shiki (se procesará en el frontend)
-        return '<div class="shiki-code-block" data-language="' . esc_attr($language) . '" data-theme="' . esc_attr($theme) . '"><pre><code>' . esc_html($code) . '</code></pre></div>';
-    }, $content);
-
-    return $content;
-}
-add_filter('the_content', 'academia_pro_process_code_blocks', 20);
+// ELIMINADO: Función Shiki que causaba conflictos
+// Ahora usamos highlight.js que es más confiable
 
 /**
- * Agregar script de inicialización de Shiki
+ * Agregar script de inicialización de HIGHLIGHT.JS (reemplaza Shiki)
  */
 add_action('wp_footer', function() {
     ?>
     <script>
     document.addEventListener('DOMContentLoaded', function() {
-        // Inicializar Shiki si está disponible
-        if (typeof window.shiki !== 'undefined') {
-            console.log('Shiki disponible, procesando bloques de código...');
-            processCodeBlocks();
+        console.log('Inicializando Highlight.js...');
+        
+        // Esperar a que highlight.js se cargue
+        if (typeof hljs !== 'undefined') {
+            initHighlightJs();
         } else {
-            // Cargar Shiki dinámicamente si no está disponible
-            loadShikiDynamically();
+            // Reintento si no está cargado
+            setTimeout(() => {
+                if (typeof hljs !== 'undefined') {
+                    initHighlightJs();
+                } else {
+                    console.error('Highlight.js no se pudo cargar');
+                }
+            }, 1000);
         }
-
-        // Función para cargar Shiki dinámicamente
-        function loadShikiDynamically() {
-            const script = document.createElement('script');
-            script.type = 'module';
-            script.text = `
-                import { createHighlighter } from 'https://esm.sh/shiki@3.0.0';
-                import { bundledLanguages } from 'https://esm.sh/@shikijs/langs';
-                import { bundledThemes } from 'https://esm.sh/@shikijs/themes';
-
-                window.shiki = { createHighlighter, bundledLanguages, bundledThemes };
-                console.log('Shiki cargado dinámicamente');
-                processCodeBlocks();
-            `;
-            document.head.appendChild(script);
+        
+        function initHighlightJs() {
+            console.log('Highlight.js disponible, procesando...');
+            
+            // Configurar highlight.js
+            hljs.configure({
+                cssSelector: 'pre code',
+                languages: ['python', 'javascript', 'php', 'css', 'html', 'json', 'sql', 'bash']
+            });
+            
+            // Highlight automático
+            hljs.highlightAll();
+            
+            // Agregar botones de copiar
+            addCopyButtons();
+            
+            // Manejar cambio de tema oscuro
+            handleDarkModeToggle();
+            
+            console.log('Highlight.js inicializado correctamente');
         }
-
-        // Función para procesar bloques de código
-        async function processCodeBlocks() {
-            const codeBlocks = document.querySelectorAll('.shiki-code-block');
-
-            if (codeBlocks.length === 0) return;
-
-            try {
-                const highlighter = await window.shiki.createHighlighter({
-                    themes: ['github-light', 'github-dark', 'vitesse-dark', 'vitesse-light'],
-                    langs: ['javascript', 'typescript', 'php', 'python', 'css', 'html', 'json', 'markdown', 'sql', 'bash']
-                });
-
-                codeBlocks.forEach(block => {
-                    const language = block.dataset.language;
-                    const theme = block.dataset.theme;
-                    const code = block.querySelector('code').textContent;
-
-                    if (language && window.shiki.bundledLanguages[language]) {
-                        const highlighted = highlighter.codeToHtml(code, {
-                            lang: language,
-                            theme: theme
+        
+        function addCopyButtons() {
+            const codeBlocks = document.querySelectorAll('pre:has(code)');
+            
+            codeBlocks.forEach(block => {
+                // Evitar duplicar botones
+                if (block.querySelector('.copy-btn')) return;
+                
+                // Crear botón
+                const copyBtn = document.createElement('button');
+                copyBtn.className = 'copy-btn';
+                copyBtn.innerHTML = '📋';
+                copyBtn.setAttribute('aria-label', 'Copiar código');
+                copyBtn.title = 'Copiar código';
+                
+                // Estilo del botón
+                copyBtn.style.cssText = `
+                    position: absolute;
+                    top: 8px;
+                    right: 8px;
+                    background: rgba(255,255,255,0.8);
+                    border: 1px solid #ddd;
+                    border-radius: 4px;
+                    padding: 4px 8px;
+                    cursor: pointer;
+                    font-size: 12px;
+                    transition: all 0.2s;
+                    z-index: 10;
+                `;
+                
+                // Evento copiar
+                copyBtn.addEventListener('click', function() {
+                    const code = block.querySelector('code');
+                    if (code) {
+                        navigator.clipboard.writeText(code.textContent).then(() => {
+                            copyBtn.innerHTML = '✅';
+                            copyBtn.style.background = '#10b981';
+                            copyBtn.style.color = 'white';
+                            setTimeout(() => {
+                                copyBtn.innerHTML = '📋';
+                                copyBtn.style.background = 'rgba(255,255,255,0.8)';
+                                copyBtn.style.color = 'inherit';
+                            }, 2000);
+                        }).catch(err => {
+                            console.error('Error al copiar:', err);
+                            copyBtn.innerHTML = '❌';
+                            setTimeout(() => {
+                                copyBtn.innerHTML = '📋';
+                            }, 2000);
                         });
-
-                        block.innerHTML = highlighted;
-                        block.classList.add('shiki-processed');
                     }
                 });
-
-                console.log('Bloques de código procesados con Shiki');
-
-                // Agregar funcionalidad de copiar
-                addCopyButtons();
-            } catch (error) {
-                console.error('Error procesando bloques de código con Shiki:', error);
+                
+                // Agregar al bloque (posición relativa necesaria)
+                block.style.position = 'relative';
+                block.appendChild(copyBtn);
+            });
+        }
+        
+        function handleDarkModeToggle() {
+            const themeToggle = document.getElementById('modo-tema');
+            if (themeToggle) {
+                themeToggle.addEventListener('click', function() {
+                    setTimeout(() => {
+                        // Re-highlight después del cambio de tema
+                        hljs.highlightAll();
+                        // Re-agregar botones
+                        addCopyButtons();
+                    }, 100);
+                });
             }
-        }
-
-        // Función para agregar botones de copiar
-        function addCopyButtons() {
-            const codeBlocks = document.querySelectorAll('.shiki-code-block');
-
-            codeBlocks.forEach(block => {
-                const copyButton = block.querySelector('.copy-button');
-                if (!copyButton) {
-                    const button = document.createElement('button');
-                    button.className = 'copy-button';
-                    button.innerHTML = '📋';
-                    button.title = 'Copiar código';
-                    button.setAttribute('aria-label', 'Copiar código al portapapeles');
-
-                    button.addEventListener('click', function() {
-                        const code = block.querySelector('code');
-                        if (code) {
-                            navigator.clipboard.writeText(code.textContent).then(function() {
-                                button.innerHTML = '✅';
-                                button.style.background = 'var(--color-success-bg, #10b981)';
-                                setTimeout(() => {
-                                    button.innerHTML = '📋';
-                                    button.style.background = '';
-                                }, 2000);
-                            }).catch(function(err) {
-                                console.error('Error al copiar: ', err);
-                                button.innerHTML = '❌';
-                                setTimeout(() => {
-                                    button.innerHTML = '📋';
-                                }, 2000);
-                            });
-                        }
-                    });
-
-                    block.appendChild(button);
-                }
-            });
-        }
-
-        // Reprocesar bloques cuando cambie el tema
-        const themeToggle = document.getElementById('modo-tema');
-        if (themeToggle) {
-            themeToggle.addEventListener('click', function() {
-                setTimeout(() => {
-                    processCodeBlocks();
-                    addCopyButtons(); // Reagregar botones después del reprocesamiento
-                }, 100);
-            });
         }
     });
     </script>

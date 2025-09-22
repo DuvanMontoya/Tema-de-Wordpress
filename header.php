@@ -415,8 +415,8 @@ if ( ! defined('ABSPATH') ) { exit; }
       font-size: 1.1em !important;
     }
 
-    /* CÓDIGO Y PRE - SHIKI ENHANCED */
-    .leccion-contenido code {
+    /* CÓDIGO INLINE LIMPIO */
+    code:not(pre code) {
       background: var(--color-surface-elevated) !important;
       color: var(--color-primary) !important;
       padding: 0.2em 0.4em !important;
@@ -424,111 +424,9 @@ if ( ! defined('ABSPATH') ) { exit; }
       font-family: 'Fira Code', 'Monaco', 'Consolas', monospace !important;
       font-size: 0.85em !important;
       border: 1px solid var(--color-border) !important;
-      font-variant-ligatures: common-ligatures !important;
     }
 
-    .leccion-contenido pre {
-      background: var(--color-surface-elevated) !important;
-      color: var(--color-text-primary) !important;
-      padding: var(--space-4) !important;
-      border-radius: var(--radius-lg) !important;
-      overflow-x: auto !important;
-      border: 1px solid var(--color-border) !important;
-      margin: var(--space-4) 0 !important;
-      position: relative !important;
-    }
-
-    /* BLOQUES DE CÓDIGO SHIKI */
-    .shiki-code-block {
-      margin: var(--space-6) 0 !important;
-      border-radius: var(--radius-xl) !important;
-      overflow: hidden !important;
-      box-shadow: var(--shadow-lg) !important;
-      border: 1px solid var(--color-border) !important;
-      background: var(--color-surface) !important;
-    }
-
-    .shiki-code-block .code-title {
-      background: var(--color-surface-elevated) !important;
-      color: var(--color-text-secondary) !important;
-      padding: var(--space-3) var(--space-4) !important;
-      font-size: 0.9rem !important;
-      font-weight: 500 !important;
-      border-bottom: 1px solid var(--color-border) !important;
-      font-family: var(--font-family-sans) !important;
-    }
-
-    .shiki-code-block pre {
-      margin: 0 !important;
-      padding: var(--space-4) !important;
-      background: transparent !important;
-      border: none !important;
-      border-radius: 0 !important;
-      box-shadow: none !important;
-      overflow-x: auto !important;
-    }
-
-    .shiki-code-block code {
-      background: transparent !important;
-      color: inherit !important;
-      padding: 0 !important;
-      border: none !important;
-      border-radius: 0 !important;
-      font-size: 0.9em !important;
-      line-height: 1.5 !important;
-    }
-
-    /* COPY BUTTON PARA BLOQUES DE CÓDIGO */
-    .shiki-code-block {
-      position: relative !important;
-    }
-
-    .shiki-code-block .copy-button {
-      position: absolute !important;
-      top: var(--space-3) !important;
-      right: var(--space-3) !important;
-      background: var(--color-surface) !important;
-      color: var(--color-text-secondary) !important;
-      padding: var(--space-2) !important;
-      border-radius: var(--radius-md) !important;
-      border: 1px solid var(--color-border) !important;
-      cursor: pointer !important;
-      font-size: 0.8rem !important;
-      opacity: 0.7 !important;
-      transition: all 0.2s ease !important;
-      z-index: 10 !important;
-      box-shadow: var(--shadow-sm) !important;
-    }
-
-    .shiki-code-block .copy-button:hover {
-      opacity: 1 !important;
-      background: var(--color-primary-50) !important;
-      border-color: var(--color-primary) !important;
-      color: var(--color-primary) !important;
-      transform: scale(1.05) !important;
-    }
-
-    .shiki-code-block .copy-button:active {
-      transform: scale(0.95) !important;
-    }
-
-    .shiki-code-block::before {
-      content: '';
-      position: absolute !important;
-      top: var(--space-2) !important;
-      left: var(--space-4) !important;
-      width: 12px !important;
-      height: 12px !important;
-      border-radius: 50% !important;
-      background: #ff5f57 !important;
-      z-index: 10 !important;
-    }
-
-    .shiki-code-block::after {
-      left: calc(var(--space-4) + 20px) !important;
-      background: #ffbd2e !important;
-      content: '📋';
-    }
+    /* ELIMINADO: Todos los estilos Shiki que causaban conflictos */
 
     /* TÍTULOS MEJORADOS */
     .single-post-title,

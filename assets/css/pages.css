@@ -333,16 +333,158 @@
   font-size: .95em;
 }
 
-:where(.wp-block-post-content, .entry-content, .page-content-wrapper) pre,
-:where(.contenido-principal, .leccion-contenido) pre {
-  background: #0f172a;
-  color: #e5e7eb;
-  padding: var(--space-6);
-  border-radius: var(--radius-xl);
-  overflow: auto;
+/* =======================================
+   ESTILOS DE CÓDIGO LIMPIO - HIGHLIGHT.JS
+   ======================================= */
+
+/* Estilos base para bloques de código - SOLO layout, NO colores */
+pre {
   margin: var(--space-8) 0;
+  border-radius: var(--radius-xl);
+  overflow: hidden;
   box-shadow: var(--shadow-lg);
-  border: 1px solid #1f2937;
+  border: 1px solid var(--color-border);
+  position: relative;
+}
+
+pre code {
+  display: block;
+  padding: var(--space-6);
+  overflow-x: auto;
+  font-family: 'Fira Code', 'Cascadia Code', 'Source Code Pro', 'Monaco', 'Menlo', 'Consolas', monospace;
+  font-size: 0.9em;
+  line-height: 1.5;
+  /* NO forzar background ni color - highlight.js los controla */
+}
+
+/* Código inline */
+:not(pre) > code {
+  background: var(--color-surface-elevated);
+  color: var(--color-primary);
+  padding: 0.2em 0.4em;
+  border-radius: 4px;
+  font-size: 0.85em;
+  border: 1px solid var(--color-border);
+  font-family: 'Fira Code', 'Monaco', 'Consolas', monospace;
+}
+
+/* =======================================
+   HIGHLIGHT.JS TEMA PERSONALIZADO
+   ======================================= */
+
+/* Tema claro por defecto */
+.hljs {
+  background: #f8f9fa !important;
+  color: #24292f !important;
+}
+
+.hljs-keyword, .hljs-selector-tag, .hljs-built_in {
+  color: #d73a49 !important;
+}
+
+.hljs-string, .hljs-number {
+  color: #032f62 !important;
+}
+
+.hljs-comment, .hljs-quote {
+  color: #6a737d !important;
+  font-style: italic;
+}
+
+.hljs-function, .hljs-class, .hljs-title {
+  color: #6f42c1 !important;
+  font-weight: 600;
+}
+
+.hljs-variable, .hljs-attr {
+  color: #005cc5 !important;
+}
+
+/* Tema oscuro */
+:root[data-theme="dark"] .hljs,
+html[data-theme="dark"] .hljs,
+body[data-theme="dark"] .hljs,
+html.dark-mode .hljs,
+body.dark-mode .hljs {
+  background: #161b22 !important;
+  color: #e6edf3 !important;
+}
+
+:root[data-theme="dark"] .hljs-keyword,
+:root[data-theme="dark"] .hljs-selector-tag,
+:root[data-theme="dark"] .hljs-built_in,
+html[data-theme="dark"] .hljs-keyword,
+html[data-theme="dark"] .hljs-selector-tag,
+html[data-theme="dark"] .hljs-built_in,
+body[data-theme="dark"] .hljs-keyword,
+body[data-theme="dark"] .hljs-selector-tag,
+body[data-theme="dark"] .hljs-built_in,
+html.dark-mode .hljs-keyword,
+html.dark-mode .hljs-selector-tag,
+html.dark-mode .hljs-built_in,
+body.dark-mode .hljs-keyword,
+body.dark-mode .hljs-selector-tag,
+body.dark-mode .hljs-built_in {
+  color: #ff7b72 !important;
+}
+
+:root[data-theme="dark"] .hljs-string,
+:root[data-theme="dark"] .hljs-number,
+html[data-theme="dark"] .hljs-string,
+html[data-theme="dark"] .hljs-number,
+body[data-theme="dark"] .hljs-string,
+body[data-theme="dark"] .hljs-number,
+html.dark-mode .hljs-string,
+html.dark-mode .hljs-number,
+body.dark-mode .hljs-string,
+body.dark-mode .hljs-number {
+  color: #a5d6ff !important;
+}
+
+:root[data-theme="dark"] .hljs-comment,
+:root[data-theme="dark"] .hljs-quote,
+html[data-theme="dark"] .hljs-comment,
+html[data-theme="dark"] .hljs-quote,
+body[data-theme="dark"] .hljs-comment,
+body[data-theme="dark"] .hljs-quote,
+html.dark-mode .hljs-comment,
+html.dark-mode .hljs-quote,
+body.dark-mode .hljs-comment,
+body.dark-mode .hljs-quote {
+  color: #8b949e !important;
+  font-style: italic;
+}
+
+:root[data-theme="dark"] .hljs-function,
+:root[data-theme="dark"] .hljs-class,
+:root[data-theme="dark"] .hljs-title,
+html[data-theme="dark"] .hljs-function,
+html[data-theme="dark"] .hljs-class,
+html[data-theme="dark"] .hljs-title,
+body[data-theme="dark"] .hljs-function,
+body[data-theme="dark"] .hljs-class,
+body[data-theme="dark"] .hljs-title,
+html.dark-mode .hljs-function,
+html.dark-mode .hljs-class,
+html.dark-mode .hljs-title,
+body.dark-mode .hljs-function,
+body.dark-mode .hljs-class,
+body.dark-mode .hljs-title {
+  color: #d2a8ff !important;
+  font-weight: 600;
+}
+
+:root[data-theme="dark"] .hljs-variable,
+:root[data-theme="dark"] .hljs-attr,
+html[data-theme="dark"] .hljs-variable,
+html[data-theme="dark"] .hljs-attr,
+body[data-theme="dark"] .hljs-variable,
+body[data-theme="dark"] .hljs-attr,
+html.dark-mode .hljs-variable,
+html.dark-mode .hljs-attr,
+body.dark-mode .hljs-variable,
+body.dark-mode .hljs-attr {
+  color: #79c0ff !important;
 }
 
 :where(.wp-block-post-content, .entry-content, .page-content-wrapper) pre code,
@@ -1009,35 +1151,8 @@ body.dark-mode .leccion-contenido code {
   border-color: #374151 !important;
 }
 
-:root[data-theme="dark"] .wp-block-post-content pre,
-:root[data-theme="dark"] .entry-content pre,
-:root[data-theme="dark"] .page-content-wrapper pre,
-:root[data-theme="dark"] .contenido-principal pre,
-:root[data-theme="dark"] .leccion-contenido pre,
-html[data-theme="dark"] .wp-block-post-content pre,
-html[data-theme="dark"] .entry-content pre,
-html[data-theme="dark"] .page-content-wrapper pre,
-html[data-theme="dark"] .contenido-principal pre,
-html[data-theme="dark"] .leccion-contenido pre,
-body[data-theme="dark"] .wp-block-post-content pre,
-body[data-theme="dark"] .entry-content pre,
-body[data-theme="dark"] .page-content-wrapper pre,
-body[data-theme="dark"] .contenido-principal pre,
-body[data-theme="dark"] .leccion-contenido pre,
-html.dark-mode .wp-block-post-content pre,
-html.dark-mode .entry-content pre,
-html.dark-mode .page-content-wrapper pre,
-html.dark-mode .contenido-principal pre,
-html.dark-mode .leccion-contenido pre,
-body.dark-mode .wp-block-post-content pre,
-body.dark-mode .entry-content pre,
-body.dark-mode .page-content-wrapper pre,
-body.dark-mode .contenido-principal pre,
-body.dark-mode .leccion-contenido pre {
-  background: #0f172a !important;
-  color: #e5e7eb !important;
-  border-color: #374151 !important;
-}
+/* ELIMINADO: Dark mode complicado que rompía todo
+   Highlight.js maneja automáticamente light/dark con sus CSS */
 
 /* ENLACES - ULTRA ESPECÍFICO */
 :root[data-theme="dark"] .page-content-wrapper a,
