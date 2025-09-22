@@ -215,14 +215,24 @@ add_action('wp_footer', function() {
         function initHighlightJs() {
             console.log('Highlight.js disponible, procesando...');
             
-            // Configurar highlight.js
+            // Configurar highlight.js con numeración
             hljs.configure({
                 cssSelector: 'pre code',
                 languages: ['python', 'javascript', 'php', 'css', 'html', 'json', 'sql', 'bash']
             });
             
-            // Highlight automático
+            // Highlight primero, luego numerar
             hljs.highlightAll();
+            
+            // Esperar un momento para que el highlighting se complete
+            setTimeout(() => {
+                document.querySelectorAll('pre code').forEach(function(block) {
+                    if (!block.classList.contains('hljs-processed')) {
+                        addLineNumbers(block);
+                        block.classList.add('hljs-processed');
+                    }
+                });
+            }, 100);
             
             // Agregar botones de copiar
             addCopyButtons();
@@ -230,7 +240,44 @@ add_action('wp_footer', function() {
             // Manejar cambio de tema oscuro
             handleDarkModeToggle();
             
-            console.log('Highlight.js inicializado correctamente');
+            console.log('Highlight.js inicializado con numeración de líneas');
+        }
+        
+        function addLineNumbers(codeBlock) {
+            const pre = codeBlock.parentElement;
+            
+            // Evitar duplicar numeración
+            if (pre.querySelector('.line-numbers')) return;
+            
+            // Contar líneas basándose en saltos de línea reales
+            const codeText = codeBlock.textContent || codeBlock.innerText;
+            const lines = codeText.split('\\n');
+            
+            // Remover última línea si está vacía
+            const lineCount = lines[lines.length - 1].trim() === '' ? lines.length - 1 : lines.length;
+            
+            console.log(`Detectadas ${lineCount} líneas de código`);
+            
+            // Crear contenedor de números
+            const lineNumbers = document.createElement('div');
+            lineNumbers.className = 'line-numbers';
+            lineNumbers.setAttribute('aria-hidden', 'true');
+            
+            // Generar números de línea
+            for (let i = 1; i <= lineCount; i++) {
+                const lineNumber = document.createElement('span');
+                lineNumber.className = 'line-number';
+                lineNumber.textContent = i;
+                lineNumbers.appendChild(lineNumber);
+            }
+            
+            // Agregar estilos al pre
+            pre.classList.add('line-numbers-mode');
+            
+            // Insertar números al inicio
+            pre.insertBefore(lineNumbers, codeBlock);
+            
+            console.log(`Agregadas ${lineCount} líneas de numeración`);
         }
         
         function addCopyButtons() {
@@ -240,52 +287,73 @@ add_action('wp_footer', function() {
                 // Evitar duplicar botones
                 if (block.querySelector('.copy-btn')) return;
                 
-                // Crear botón
+                // Crear botón minimalista
                 const copyBtn = document.createElement('button');
                 copyBtn.className = 'copy-btn';
-                copyBtn.innerHTML = '📋';
+                copyBtn.textContent = 'copy';
                 copyBtn.setAttribute('aria-label', 'Copiar código');
                 copyBtn.title = 'Copiar código';
                 
-                // Estilo del botón
+                // Estilo minimalista y discreto
                 copyBtn.style.cssText = `
                     position: absolute;
-                    top: 8px;
-                    right: 8px;
-                    background: rgba(255,255,255,0.8);
-                    border: 1px solid #ddd;
-                    border-radius: 4px;
-                    padding: 4px 8px;
+                    top: 0.5rem;
+                    right: 0.5rem;
+                    background: transparent;
+                    color: #75715e;
+                    border: none;
+                    padding: 0.25rem 0.5rem;
                     cursor: pointer;
-                    font-size: 12px;
-                    transition: all 0.2s;
+                    font-size: 0.75rem;
+                    font-family: 'Fira Code', monospace;
+                    opacity: 0.6;
+                    transition: opacity 0.2s ease;
                     z-index: 10;
                 `;
                 
-                // Evento copiar
+                // Eventos minimalistas
+                copyBtn.addEventListener('mouseenter', function() {
+                    copyBtn.style.opacity = '1';
+                    copyBtn.style.color = '#f8f8f2';
+                });
+                
+                copyBtn.addEventListener('mouseleave', function() {
+                    if (copyBtn.textContent === 'copy') {
+                        copyBtn.style.opacity = '0.6';
+                        copyBtn.style.color = '#75715e';
+                    }
+                });
+                
                 copyBtn.addEventListener('click', function() {
                     const code = block.querySelector('code');
                     if (code) {
-                        navigator.clipboard.writeText(code.textContent).then(() => {
-                            copyBtn.innerHTML = '✅';
-                            copyBtn.style.background = '#10b981';
-                            copyBtn.style.color = 'white';
+                        // Obtener solo el texto del código, sin números de línea
+                        let textToCopy = code.textContent;
+                        
+                        navigator.clipboard.writeText(textToCopy).then(() => {
+                            copyBtn.textContent = 'copied';
+                            copyBtn.style.color = '#a6e22e';
+                            copyBtn.style.opacity = '1';
+                            
                             setTimeout(() => {
-                                copyBtn.innerHTML = '📋';
-                                copyBtn.style.background = 'rgba(255,255,255,0.8)';
-                                copyBtn.style.color = 'inherit';
-                            }, 2000);
+                                copyBtn.textContent = 'copy';
+                                copyBtn.style.color = '#75715e';
+                                copyBtn.style.opacity = '0.6';
+                            }, 1500);
                         }).catch(err => {
                             console.error('Error al copiar:', err);
-                            copyBtn.innerHTML = '❌';
+                            copyBtn.textContent = 'error';
+                            copyBtn.style.color = '#f92672';
                             setTimeout(() => {
-                                copyBtn.innerHTML = '📋';
-                            }, 2000);
+                                copyBtn.textContent = 'copy';
+                                copyBtn.style.color = '#75715e';
+                                copyBtn.style.opacity = '0.6';
+                            }, 1500);
                         });
                     }
                 });
                 
-                // Agregar al bloque (posición relativa necesaria)
+                // Agregar al bloque
                 block.style.position = 'relative';
                 block.appendChild(copyBtn);
             });

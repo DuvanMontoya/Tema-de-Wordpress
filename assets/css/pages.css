@@ -337,14 +337,13 @@
    ESTILOS DE CÓDIGO LIMPIO - HIGHLIGHT.JS
    ======================================= */
 
-/* Estilos base para bloques de código - SOLO layout, NO colores */
+/* Estilos base para bloques de código - MINIMALISTA */
 pre {
   margin: var(--space-8) 0;
-  border-radius: var(--radius-xl);
+  border-radius: 4px;
   overflow: hidden;
-  box-shadow: var(--shadow-lg);
-  border: 1px solid var(--color-border);
   position: relative;
+  /* SIN bordes, sombras ni decoraciones innecesarias */
 }
 
 pre code {
@@ -369,122 +368,130 @@ pre code {
 }
 
 /* =======================================
-   HIGHLIGHT.JS TEMA PERSONALIZADO
+   HIGHLIGHT.JS TEMA MONOKAI PROFESIONAL
    ======================================= */
 
-/* Tema claro por defecto */
+/* MONOKAI TEMA PURO - SIN DECORACIONES */
 .hljs {
-  background: #f8f9fa !important;
-  color: #24292f !important;
+  background: #272822 !important;
+  color: #f8f8f2 !important;
+  /* Sin bordes redondeados ni sombras - Monokai original */
 }
 
-.hljs-keyword, .hljs-selector-tag, .hljs-built_in {
-  color: #d73a49 !important;
+/* Colores Monokai originales */
+.hljs-keyword,
+.hljs-selector-tag,
+.hljs-literal,
+.hljs-section,
+.hljs-link {
+  color: #f92672 !important; /* Rosa/Magenta */
+  font-weight: 500;
 }
 
-.hljs-string, .hljs-number {
-  color: #032f62 !important;
+.hljs-function .hljs-keyword {
+  color: #66d9ef !important; /* Cyan */
 }
 
-.hljs-comment, .hljs-quote {
-  color: #6a737d !important;
+.hljs-subst {
+  color: #f8f8f2 !important;
+}
+
+.hljs-string,
+.hljs-title,
+.hljs-name,
+.hljs-type,
+.hljs-attribute,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-addition,
+.hljs-variable,
+.hljs-template-tag,
+.hljs-template-variable {
+  color: #e6db74 !important; /* Amarillo */
+}
+
+.hljs-comment,
+.hljs-quote,
+.hljs-deletion,
+.hljs-meta {
+  color: #75715e !important; /* Gris */
   font-style: italic;
 }
 
-.hljs-function, .hljs-class, .hljs-title {
-  color: #6f42c1 !important;
+.hljs-number,
+.hljs-regexp,
+.hljs-literal {
+  color: #ae81ff !important; /* Violeta */
+}
+
+.hljs-built_in,
+.hljs-builtin-name,
+.hljs-class .hljs-title {
+  color: #a6e22e !important; /* Verde */
+  font-weight: 500;
+}
+
+.hljs-function,
+.hljs-function .hljs-title,
+.hljs-title.hljs-function {
+  color: #a6e22e !important; /* Verde para funciones */
   font-weight: 600;
 }
 
-.hljs-variable, .hljs-attr {
-  color: #005cc5 !important;
+.hljs-attr,
+.hljs-variable,
+.hljs-property {
+  color: #f8f8f2 !important; /* Blanco */
 }
 
-/* Tema oscuro */
-:root[data-theme="dark"] .hljs,
-html[data-theme="dark"] .hljs,
-body[data-theme="dark"] .hljs,
-html.dark-mode .hljs,
-body.dark-mode .hljs {
-  background: #161b22 !important;
-  color: #e6edf3 !important;
+.hljs-tag {
+  color: #f92672 !important; /* Rosa */
 }
 
-:root[data-theme="dark"] .hljs-keyword,
-:root[data-theme="dark"] .hljs-selector-tag,
-:root[data-theme="dark"] .hljs-built_in,
-html[data-theme="dark"] .hljs-keyword,
-html[data-theme="dark"] .hljs-selector-tag,
-html[data-theme="dark"] .hljs-built_in,
-body[data-theme="dark"] .hljs-keyword,
-body[data-theme="dark"] .hljs-selector-tag,
-body[data-theme="dark"] .hljs-built_in,
-html.dark-mode .hljs-keyword,
-html.dark-mode .hljs-selector-tag,
-html.dark-mode .hljs-built_in,
-body.dark-mode .hljs-keyword,
-body.dark-mode .hljs-selector-tag,
-body.dark-mode .hljs-built_in {
-  color: #ff7b72 !important;
-}
-
-:root[data-theme="dark"] .hljs-string,
-:root[data-theme="dark"] .hljs-number,
-html[data-theme="dark"] .hljs-string,
-html[data-theme="dark"] .hljs-number,
-body[data-theme="dark"] .hljs-string,
-body[data-theme="dark"] .hljs-number,
-html.dark-mode .hljs-string,
-html.dark-mode .hljs-number,
-body.dark-mode .hljs-string,
-body.dark-mode .hljs-number {
-  color: #a5d6ff !important;
-}
-
-:root[data-theme="dark"] .hljs-comment,
-:root[data-theme="dark"] .hljs-quote,
-html[data-theme="dark"] .hljs-comment,
-html[data-theme="dark"] .hljs-quote,
-body[data-theme="dark"] .hljs-comment,
-body[data-theme="dark"] .hljs-quote,
-html.dark-mode .hljs-comment,
-html.dark-mode .hljs-quote,
-body.dark-mode .hljs-comment,
-body.dark-mode .hljs-quote {
-  color: #8b949e !important;
+.hljs-emphasis {
   font-style: italic;
 }
 
-:root[data-theme="dark"] .hljs-function,
-:root[data-theme="dark"] .hljs-class,
-:root[data-theme="dark"] .hljs-title,
-html[data-theme="dark"] .hljs-function,
-html[data-theme="dark"] .hljs-class,
-html[data-theme="dark"] .hljs-title,
-body[data-theme="dark"] .hljs-function,
-body[data-theme="dark"] .hljs-class,
-body[data-theme="dark"] .hljs-title,
-html.dark-mode .hljs-function,
-html.dark-mode .hljs-class,
-html.dark-mode .hljs-title,
-body.dark-mode .hljs-function,
-body.dark-mode .hljs-class,
-body.dark-mode .hljs-title {
-  color: #d2a8ff !important;
-  font-weight: 600;
+.hljs-strong {
+  font-weight: bold;
 }
 
-:root[data-theme="dark"] .hljs-variable,
-:root[data-theme="dark"] .hljs-attr,
-html[data-theme="dark"] .hljs-variable,
-html[data-theme="dark"] .hljs-attr,
-body[data-theme="dark"] .hljs-variable,
-body[data-theme="dark"] .hljs-attr,
-html.dark-mode .hljs-variable,
-html.dark-mode .hljs-attr,
-body.dark-mode .hljs-variable,
-body.dark-mode .hljs-attr {
-  color: #79c0ff !important;
+/* =======================================
+   NUMERACIÓN DE LÍNEAS LIMPIA
+   ======================================= */
+
+.line-numbers-mode {
+  display: flex !important;
+  align-items: stretch !important;
+  font-family: 'Fira Code', 'Cascadia Code', 'Source Code Pro', monospace !important;
+}
+
+.line-numbers {
+  background: #49483e !important; /* Más sutil que el código */
+  color: #75715e !important;
+  padding: 1rem 0.75rem !important;
+  font-size: 0.9em !important;
+  line-height: 1.5 !important;
+  user-select: none !important;
+  display: flex !important;
+  flex-direction: column !important;
+  min-width: 3rem !important;
+  text-align: right !important;
+  /* Sin bordes ni decoraciones */
+}
+
+.line-number {
+  display: block !important;
+  line-height: 1.5 !important;
+  color: #75715e !important;
+  font-weight: 400 !important;
+  /* Sin transitions ni efectos */
+}
+
+.line-numbers-mode .hljs {
+  flex: 1 !important;
+  margin: 0 !important;
+  padding: 1rem !important;
 }
 
 :where(.wp-block-post-content, .entry-content, .page-content-wrapper) pre code,
@@ -1307,32 +1314,27 @@ body.dark-mode .leccion-contenido h3 {
   border-color: color-mix(in srgb, var(--color-error) 35%, #0b1020);
 }
 
-/* MATHJAX PARA PAGES.CSS */
-:root[data-theme="dark"] .wp-block-post-content .mjx-chtml,
-:root[data-theme="dark"] .entry-content .mjx-chtml,
-:root[data-theme="dark"] .page-content-wrapper .mjx-chtml,
-:root[data-theme="dark"] .contenido-principal .mjx-chtml,
-:root[data-theme="dark"] .leccion-contenido .mjx-chtml,
-html[data-theme="dark"] .wp-block-post-content .mjx-chtml,
-html[data-theme="dark"] .entry-content .mjx-chtml,
-html[data-theme="dark"] .page-content-wrapper .mjx-chtml,
-html[data-theme="dark"] .contenido-principal .mjx-chtml,
-html[data-theme="dark"] .leccion-contenido .mjx-chtml,
-body[data-theme="dark"] .wp-block-post-content .mjx-chtml,
-body[data-theme="dark"] .entry-content .mjx-chtml,
-body[data-theme="dark"] .page-content-wrapper .mjx-chtml,
-body[data-theme="dark"] .contenido-principal .mjx-chtml,
-body[data-theme="dark"] .leccion-contenido .mjx-chtml,
-html.dark-mode .wp-block-post-content .mjx-chtml,
-html.dark-mode .entry-content .mjx-chtml,
-html.dark-mode .page-content-wrapper .mjx-chtml,
-html.dark-mode .contenido-principal .mjx-chtml,
-html.dark-mode .leccion-contenido .mjx-chtml,
-body.dark-mode .wp-block-post-content .mjx-chtml,
-body.dark-mode .entry-content .mjx-chtml,
-body.dark-mode .page-content-wrapper .mjx-chtml,
-body.dark-mode .contenido-principal .mjx-chtml,
-body.dark-mode .leccion-contenido .mjx-chtml {
+/* =======================================
+   MATHJAX LIMPIO Y MINIMALISTA
+   ======================================= */
+
+/* MathJax sin decoraciones innecesarias */
+mjx-container {
+  font-size: 1.1em !important;
+  line-height: 1.6 !important;
+  margin: 1.5rem 0 !important;
+}
+
+mjx-container[display="true"] {
+  text-align: center !important;
+}
+
+/* Dark mode para MathJax */
+:root[data-theme="dark"] .mjx-chtml,
+html[data-theme="dark"] .mjx-chtml,
+body[data-theme="dark"] .mjx-chtml,
+html.dark-mode .mjx-chtml,
+body.dark-mode .mjx-chtml {
   color: #f1f5f9 !important;
 }
 
