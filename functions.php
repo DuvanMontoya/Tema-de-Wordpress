@@ -169,3 +169,211 @@ function estimated_reading_time() {
  */
 // (Shortcode fórmula movido a inc/lms.php)
 
+/**
+ * Integración Shiki para syntax highlighting mejorado
+ * Soporte para bloques de código en entradas, páginas y lecciones
+ */
+add_action('wp_enqueue_scripts', function() {
+    // Shiki Core y WASM
+    wp_enqueue_script('shiki-core', 'https://esm.sh/shiki@3.0.0', array(), null, array('in_footer' => false));
+    wp_enqueue_script('shiki-wasm', 'https://esm.sh/shiki@3.0.0/wasm.mjs', array('shiki-core'), null, array('in_footer' => false));
+
+    // Temas populares para Shiki
+    wp_enqueue_script('shiki-theme-github-light', 'https://esm.sh/@shikijs/themes/github-light', array(), null, array('in_footer' => false));
+    wp_enqueue_script('shiki-theme-github-dark', 'https://esm.sh/@shikijs/themes/github-dark', array(), null, array('in_footer' => false));
+    wp_enqueue_script('shiki-theme-vitesse-dark', 'https://esm.sh/@shikijs/themes/vitesse-dark', array(), null, array('in_footer' => false));
+    wp_enqueue_script('shiki-theme-vitesse-light', 'https://esm.sh/@shikijs/themes/vitesse-light', array(), null, array('in_footer' => false));
+
+    // Lenguajes comunes
+    wp_enqueue_script('shiki-lang-javascript', 'https://esm.sh/@shikijs/langs/javascript', array(), null, array('in_footer' => false));
+    wp_enqueue_script('shiki-lang-typescript', 'https://esm.sh/@shikijs/langs/typescript', array(), null, array('in_footer' => false));
+    wp_enqueue_script('shiki-lang-php', 'https://esm.sh/@shikijs/langs/php', array(), null, array('in_footer' => false));
+    wp_enqueue_script('shiki-lang-python', 'https://esm.sh/@shikijs/langs/python', array(), null, array('in_footer' => false));
+    wp_enqueue_script('shiki-lang-css', 'https://esm.sh/@shikijs/langs/css', array(), null, array('in_footer' => false));
+    wp_enqueue_script('shiki-lang-html', 'https://esm.sh/@shikijs/langs/html', array(), null, array('in_footer' => false));
+    wp_enqueue_script('shiki-lang-json', 'https://esm.sh/@shikijs/langs/json', array(), null, array('in_footer' => false));
+    wp_enqueue_script('shiki-lang-markdown', 'https://esm.sh/@shikijs/langs/markdown', array(), null, array('in_footer' => false));
+    wp_enqueue_script('shiki-lang-sql', 'https://esm.sh/@shikijs/langs/sql', array(), null, array('in_footer' => false));
+    wp_enqueue_script('shiki-lang-bash', 'https://esm.sh/@shikijs/langs/bash', array(), null, array('in_footer' => false));
+}, 1001);
+
+/**
+ * Función para procesar bloques de código con Shiki
+ */
+function academia_pro_process_code_blocks($content) {
+    // Si estamos en el dashboard de TutorLMS, no procesar
+    if (function_exists('academia_pro_is_tutor_dashboard') && academia_pro_is_tutor_dashboard()) {
+        return $content;
+    }
+
+    // Buscar bloques de código <pre><code class="language-xxx">...</code></pre>
+    $pattern = '/<pre><code class="language-([^"]*)">([^<]*)<\/code><\/pre>/is';
+    $content = preg_replace_callback($pattern, function($matches) {
+        $language = $matches[1];
+        $code = htmlspecialchars_decode($matches[2]);
+
+        // Detectar tema basado en el modo actual
+        $is_dark = isset($_COOKIE['academia-color-scheme']) && $_COOKIE['academia-color-scheme'] === 'dark' ||
+                   (!isset($_COOKIE['academia-color-scheme']) && isset($_SERVER['HTTP_USER_AGENT']) &&
+                   preg_match('/(prefers-color-scheme: dark)/i', $_SERVER['HTTP_USER_AGENT']));
+
+        $theme = $is_dark ? 'github-dark' : 'github-light';
+
+        // Crear el HTML con Shiki (se procesará en el frontend)
+        return '<div class="shiki-code-block" data-language="' . esc_attr($language) . '" data-theme="' . esc_attr($theme) . '"><pre><code>' . esc_html($code) . '</code></pre></div>';
+    }, $content);
+
+    return $content;
+}
+add_filter('the_content', 'academia_pro_process_code_blocks', 20);
+
+/**
+ * Agregar script de inicialización de Shiki
+ */
+add_action('wp_footer', function() {
+    ?>
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Inicializar Shiki si está disponible
+        if (typeof window.shiki !== 'undefined') {
+            console.log('Shiki disponible, procesando bloques de código...');
+            processCodeBlocks();
+        } else {
+            // Cargar Shiki dinámicamente si no está disponible
+            loadShikiDynamically();
+        }
+
+        // Función para cargar Shiki dinámicamente
+        function loadShikiDynamically() {
+            const script = document.createElement('script');
+            script.type = 'module';
+            script.text = `
+                import { createHighlighter } from 'https://esm.sh/shiki@3.0.0';
+                import { bundledLanguages } from 'https://esm.sh/@shikijs/langs';
+                import { bundledThemes } from 'https://esm.sh/@shikijs/themes';
+
+                window.shiki = { createHighlighter, bundledLanguages, bundledThemes };
+                console.log('Shiki cargado dinámicamente');
+                processCodeBlocks();
+            `;
+            document.head.appendChild(script);
+        }
+
+        // Función para procesar bloques de código
+        async function processCodeBlocks() {
+            const codeBlocks = document.querySelectorAll('.shiki-code-block');
+
+            if (codeBlocks.length === 0) return;
+
+            try {
+                const highlighter = await window.shiki.createHighlighter({
+                    themes: ['github-light', 'github-dark', 'vitesse-dark', 'vitesse-light'],
+                    langs: ['javascript', 'typescript', 'php', 'python', 'css', 'html', 'json', 'markdown', 'sql', 'bash']
+                });
+
+                codeBlocks.forEach(block => {
+                    const language = block.dataset.language;
+                    const theme = block.dataset.theme;
+                    const code = block.querySelector('code').textContent;
+
+                    if (language && window.shiki.bundledLanguages[language]) {
+                        const highlighted = highlighter.codeToHtml(code, {
+                            lang: language,
+                            theme: theme
+                        });
+
+                        block.innerHTML = highlighted;
+                        block.classList.add('shiki-processed');
+                    }
+                });
+
+                console.log('Bloques de código procesados con Shiki');
+
+                // Agregar funcionalidad de copiar
+                addCopyButtons();
+            } catch (error) {
+                console.error('Error procesando bloques de código con Shiki:', error);
+            }
+        }
+
+        // Función para agregar botones de copiar
+        function addCopyButtons() {
+            const codeBlocks = document.querySelectorAll('.shiki-code-block');
+
+            codeBlocks.forEach(block => {
+                const copyButton = block.querySelector('.copy-button');
+                if (!copyButton) {
+                    const button = document.createElement('button');
+                    button.className = 'copy-button';
+                    button.innerHTML = '📋';
+                    button.title = 'Copiar código';
+                    button.setAttribute('aria-label', 'Copiar código al portapapeles');
+
+                    button.addEventListener('click', function() {
+                        const code = block.querySelector('code');
+                        if (code) {
+                            navigator.clipboard.writeText(code.textContent).then(function() {
+                                button.innerHTML = '✅';
+                                button.style.background = 'var(--color-success-bg, #10b981)';
+                                setTimeout(() => {
+                                    button.innerHTML = '📋';
+                                    button.style.background = '';
+                                }, 2000);
+                            }).catch(function(err) {
+                                console.error('Error al copiar: ', err);
+                                button.innerHTML = '❌';
+                                setTimeout(() => {
+                                    button.innerHTML = '📋';
+                                }, 2000);
+                            });
+                        }
+                    });
+
+                    block.appendChild(button);
+                }
+            });
+        }
+
+        // Reprocesar bloques cuando cambie el tema
+        const themeToggle = document.getElementById('modo-tema');
+        if (themeToggle) {
+            themeToggle.addEventListener('click', function() {
+                setTimeout(() => {
+                    processCodeBlocks();
+                    addCopyButtons(); // Reagregar botones después del reprocesamiento
+                }, 100);
+            });
+        }
+    });
+    </script>
+    <?php
+});
+
+/**
+ * Shortcode para bloques de código mejorados [code lang="javascript" theme="github-dark"]
+ */
+function academia_pro_code_shortcode($atts, $content = '') {
+    $atts = shortcode_atts(array(
+        'lang' => 'javascript',
+        'theme' => 'github-light',
+        'title' => ''
+    ), $atts);
+
+    $is_dark = isset($_COOKIE['academia-color-scheme']) && $_COOKIE['academia-color-scheme'] === 'dark' ||
+               (!isset($_COOKIE['academia-color-scheme']) && isset($_SERVER['HTTP_USER_AGENT']) &&
+               preg_match('/(prefers-color-scheme: dark)/i', $_SERVER['HTTP_USER_AGENT']));
+
+    $theme = $is_dark ? 'github-dark' : 'github-light';
+
+    $output = '<div class="shiki-code-block" data-language="' . esc_attr($atts['lang']) . '" data-theme="' . esc_attr($theme) . '">';
+
+    if (!empty($atts['title'])) {
+        $output .= '<div class="code-title">' . esc_html($atts['title']) . '</div>';
+    }
+
+    $output .= '<pre><code>' . esc_html($content) . '</code></pre></div>';
+
+    return $output;
+}
+add_shortcode('code', 'academia_pro_code_shortcode');
+

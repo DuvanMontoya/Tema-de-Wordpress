@@ -415,15 +415,16 @@ if ( ! defined('ABSPATH') ) { exit; }
       font-size: 1.1em !important;
     }
 
-    /* CÓDIGO Y PRE */
+    /* CÓDIGO Y PRE - SHIKI ENHANCED */
     .leccion-contenido code {
       background: var(--color-surface-elevated) !important;
       color: var(--color-primary) !important;
       padding: 0.2em 0.4em !important;
       border-radius: 4px !important;
-      font-family: 'Courier New', monospace !important;
-      font-size: 0.9em !important;
+      font-family: 'Fira Code', 'Monaco', 'Consolas', monospace !important;
+      font-size: 0.85em !important;
       border: 1px solid var(--color-border) !important;
+      font-variant-ligatures: common-ligatures !important;
     }
 
     .leccion-contenido pre {
@@ -434,9 +435,102 @@ if ( ! defined('ABSPATH') ) { exit; }
       overflow-x: auto !important;
       border: 1px solid var(--color-border) !important;
       margin: var(--space-4) 0 !important;
+      position: relative !important;
     }
 
-    /* TÍTULOS */
+    /* BLOQUES DE CÓDIGO SHIKI */
+    .shiki-code-block {
+      margin: var(--space-6) 0 !important;
+      border-radius: var(--radius-xl) !important;
+      overflow: hidden !important;
+      box-shadow: var(--shadow-lg) !important;
+      border: 1px solid var(--color-border) !important;
+      background: var(--color-surface) !important;
+    }
+
+    .shiki-code-block .code-title {
+      background: var(--color-surface-elevated) !important;
+      color: var(--color-text-secondary) !important;
+      padding: var(--space-3) var(--space-4) !important;
+      font-size: 0.9rem !important;
+      font-weight: 500 !important;
+      border-bottom: 1px solid var(--color-border) !important;
+      font-family: var(--font-family-sans) !important;
+    }
+
+    .shiki-code-block pre {
+      margin: 0 !important;
+      padding: var(--space-4) !important;
+      background: transparent !important;
+      border: none !important;
+      border-radius: 0 !important;
+      box-shadow: none !important;
+      overflow-x: auto !important;
+    }
+
+    .shiki-code-block code {
+      background: transparent !important;
+      color: inherit !important;
+      padding: 0 !important;
+      border: none !important;
+      border-radius: 0 !important;
+      font-size: 0.9em !important;
+      line-height: 1.5 !important;
+    }
+
+    /* COPY BUTTON PARA BLOQUES DE CÓDIGO */
+    .shiki-code-block {
+      position: relative !important;
+    }
+
+    .shiki-code-block .copy-button {
+      position: absolute !important;
+      top: var(--space-3) !important;
+      right: var(--space-3) !important;
+      background: var(--color-surface) !important;
+      color: var(--color-text-secondary) !important;
+      padding: var(--space-2) !important;
+      border-radius: var(--radius-md) !important;
+      border: 1px solid var(--color-border) !important;
+      cursor: pointer !important;
+      font-size: 0.8rem !important;
+      opacity: 0.7 !important;
+      transition: all 0.2s ease !important;
+      z-index: 10 !important;
+      box-shadow: var(--shadow-sm) !important;
+    }
+
+    .shiki-code-block .copy-button:hover {
+      opacity: 1 !important;
+      background: var(--color-primary-50) !important;
+      border-color: var(--color-primary) !important;
+      color: var(--color-primary) !important;
+      transform: scale(1.05) !important;
+    }
+
+    .shiki-code-block .copy-button:active {
+      transform: scale(0.95) !important;
+    }
+
+    .shiki-code-block::before {
+      content: '';
+      position: absolute !important;
+      top: var(--space-2) !important;
+      left: var(--space-4) !important;
+      width: 12px !important;
+      height: 12px !important;
+      border-radius: 50% !important;
+      background: #ff5f57 !important;
+      z-index: 10 !important;
+    }
+
+    .shiki-code-block::after {
+      left: calc(var(--space-4) + 20px) !important;
+      background: #ffbd2e !important;
+      content: '📋';
+    }
+
+    /* TÍTULOS MEJORADOS */
     .single-post-title,
     .page-title,
     h1.entry-title {
@@ -445,6 +539,91 @@ if ( ! defined('ABSPATH') ) { exit; }
       font-weight: 700 !important;
       color: var(--color-text-primary) !important;
       margin: var(--space-8) 0 !important;
+      position: relative !important;
+      padding: var(--space-4) 0 !important;
+    }
+
+    .single-post-title::after,
+    .page-title::after,
+    h1.entry-title::after {
+      content: '';
+      position: absolute !important;
+      bottom: 0 !important;
+      left: 50% !important;
+      transform: translateX(-50%) !important;
+      width: 80px !important;
+      height: 3px !important;
+      background: linear-gradient(90deg, var(--color-primary-600), var(--color-primary-400)) !important;
+      border-radius: 2px !important;
+    }
+
+    /* NAVEGACIÓN MEJORADA */
+    .site-nav {
+      display: flex !important;
+      align-items: center !important;
+      gap: var(--space-6) !important;
+    }
+
+    .site-nav .nav-menu {
+      display: flex !important;
+      list-style: none !important;
+      margin: 0 !important;
+      padding: 0 !important;
+      gap: var(--space-4) !important;
+    }
+
+    .site-nav .nav-menu li {
+      position: relative !important;
+    }
+
+    .site-nav .nav-menu a {
+      color: var(--color-text-secondary) !important;
+      text-decoration: none !important;
+      font-weight: 500 !important;
+      padding: var(--space-2) var(--space-3) !important;
+      border-radius: var(--radius-md) !important;
+      transition: all 0.2s ease !important;
+      position: relative !important;
+    }
+
+    .site-nav .nav-menu a:hover {
+      color: var(--color-primary) !important;
+      background: var(--color-primary-50) !important;
+    }
+
+    .site-nav .nav-menu a::before {
+      content: '';
+      position: absolute !important;
+      bottom: -2px !important;
+      left: 50% !important;
+      transform: translateX(-50%) !important;
+      width: 0 !important;
+      height: 2px !important;
+      background: var(--color-primary) !important;
+      transition: width 0.2s ease !important;
+    }
+
+    .site-nav .nav-menu a:hover::before {
+      width: 100% !important;
+    }
+
+    /* BOTÓN MÓVIL MEJORADO */
+    .mobile-menu-toggle {
+      display: none !important;
+      background: var(--color-surface) !important;
+      border: 1px solid var(--color-border) !important;
+      border-radius: var(--radius-lg) !important;
+      padding: var(--space-3) !important;
+      font-size: 1.2rem !important;
+      color: var(--color-text-secondary) !important;
+      cursor: pointer !important;
+      transition: all 0.2s ease !important;
+    }
+
+    .mobile-menu-toggle:hover {
+      background: var(--color-primary-50) !important;
+      border-color: var(--color-primary) !important;
+      color: var(--color-primary) !important;
     }
 
     /* PÁRRAFOS Y CONTENIDO - RESPETANDO EL ANCHO */
@@ -476,23 +655,98 @@ if ( ! defined('ABSPATH') ) { exit; }
       box-sizing: border-box !important;
     }
 
-    /* FOOTER */
+    /* FOOTER MEJORADO */
     .site-footer {
-      background: var(--color-surface) !important;
+      background: linear-gradient(135deg, var(--color-surface) 0%, var(--color-surface-elevated) 100%) !important;
       border-top: 1px solid var(--color-border) !important;
       margin-top: var(--space-24) !important;
-      padding: var(--space-8) 0 !important;
+      padding: var(--space-12) 0 !important;
       text-align: center !important;
       color: var(--color-text-primary) !important;
+      position: relative !important;
+      overflow: hidden !important;
+    }
+
+    .site-footer::before {
+      content: '';
+      position: absolute !important;
+      top: 0 !important;
+      left: 0 !important;
+      right: 0 !important;
+      height: 1px !important;
+      background: linear-gradient(90deg, transparent, var(--color-primary), transparent) !important;
     }
 
     .footer-title {
       color: var(--color-text-primary) !important;
+      font-size: 1.4rem !important;
+      font-weight: 600 !important;
+      margin-bottom: var(--space-2) !important;
+      position: relative !important;
     }
 
     .footer-meta,
     .footer-created {
       color: var(--color-text-secondary) !important;
+      font-size: 0.95rem !important;
+      font-weight: 400 !important;
+    }
+
+    .footer-created {
+      display: flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+      gap: var(--space-1) !important;
+    }
+
+    /* EFECTOS VISUALES MODERNOS */
+    .post-card {
+      backdrop-filter: blur(10px) !important;
+      -webkit-backdrop-filter: blur(10px) !important;
+    }
+
+    .shiki-code-block {
+      backdrop-filter: blur(10px) !important;
+      -webkit-backdrop-filter: blur(10px) !important;
+    }
+
+    /* ANIMACIONES SUTILES */
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .post-card {
+      animation: fadeInUp 0.6s ease-out !important;
+    }
+
+    .shiki-code-block {
+      animation: fadeInUp 0.6s ease-out !important;
+    }
+
+    /* SCROLLBAR PERSONALIZADO */
+    ::-webkit-scrollbar {
+      width: 8px !important;
+      height: 8px !important;
+    }
+
+    ::-webkit-scrollbar-track {
+      background: var(--color-surface) !important;
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: var(--color-border) !important;
+      border-radius: 4px !important;
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+      background: var(--color-primary) !important;
     }
 
     /* MODO OSCURO PARA ELEMENTOS DE LECCIÓN */
@@ -578,6 +832,73 @@ if ( ! defined('ABSPATH') ) { exit; }
       background: var(--color-surface-elevated) !important;
       color: var(--color-text-primary) !important;
       border-color: var(--color-border) !important;
+    }
+
+    /* MODO OSCURO PARA NUEVOS ELEMENTOS */
+    :root[data-theme="dark"] .site-footer,
+    html[data-theme="dark"] .site-footer,
+    body[data-theme="dark"] .site-footer,
+    html.dark-mode .site-footer,
+    body.dark-mode .site-footer {
+      background: linear-gradient(135deg, var(--color-surface) 0%, var(--color-surface-elevated) 100%) !important;
+      border-top-color: var(--color-border) !important;
+    }
+
+    :root[data-theme="dark"] .site-nav .nav-menu a,
+    html[data-theme="dark"] .site-nav .nav-menu a,
+    body[data-theme="dark"] .site-nav .nav-menu a,
+    html.dark-mode .site-nav .nav-menu a,
+    body.dark-mode .site-nav .nav-menu a {
+      color: var(--color-text-secondary) !important;
+    }
+
+    :root[data-theme="dark"] .site-nav .nav-menu a:hover,
+    html[data-theme="dark"] .site-nav .nav-menu a:hover,
+    body[data-theme="dark"] .site-nav .nav-menu a:hover,
+    html.dark-mode .site-nav .nav-menu a:hover,
+    body.dark-mode .site-nav .nav-menu a:hover {
+      color: var(--color-primary) !important;
+      background: rgba(96, 165, 250, 0.1) !important;
+    }
+
+    :root[data-theme="dark"] .mobile-menu-toggle,
+    html[data-theme="dark"] .mobile-menu-toggle,
+    body[data-theme="dark"] .mobile-menu-toggle,
+    html.dark-mode .mobile-menu-toggle,
+    body.dark-mode .mobile-menu-toggle {
+      background: var(--color-surface) !important;
+      border-color: var(--color-border) !important;
+      color: var(--color-text-secondary) !important;
+    }
+
+    :root[data-theme="dark"] .mobile-menu-toggle:hover,
+    html[data-theme="dark"] .mobile-menu-toggle:hover,
+    body[data-theme="dark"] .mobile-menu-toggle:hover,
+    html.dark-mode .mobile-menu-toggle:hover,
+    body.dark-mode .mobile-menu-toggle:hover {
+      background: rgba(96, 165, 250, 0.1) !important;
+      border-color: var(--color-primary) !important;
+      color: var(--color-primary) !important;
+    }
+
+    :root[data-theme="dark"] .shiki-code-block .copy-button,
+    html[data-theme="dark"] .shiki-code-block .copy-button,
+    body[data-theme="dark"] .shiki-code-block .copy-button,
+    html.dark-mode .shiki-code-block .copy-button,
+    body.dark-mode .shiki-code-block .copy-button {
+      background: var(--color-surface) !important;
+      border-color: var(--color-border) !important;
+      color: var(--color-text-secondary) !important;
+    }
+
+    :root[data-theme="dark"] .shiki-code-block .copy-button:hover,
+    html[data-theme="dark"] .shiki-code-block .copy-button:hover,
+    body[data-theme="dark"] .shiki-code-block .copy-button:hover,
+    html.dark-mode .shiki-code-block .copy-button:hover,
+    body.dark-mode .shiki-code-block .copy-button:hover {
+      background: rgba(96, 165, 250, 0.1) !important;
+      border-color: var(--color-primary) !important;
+      color: var(--color-primary) !important;
     }
 
     /* MOBILE RESPONSIVO */
@@ -746,13 +1067,13 @@ if ( ! defined('ABSPATH') ) { exit; }
             <span class="account-name"><?php echo esc_html(wp_trim_words($name, 2)); ?></span>
             <svg class="account-chevron" width="12" height="12" viewBox="0 0 24 24" fill="none">
               <path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-          </button>
+          </svg>
+        </button>
           <div class="account-menu" role="menu" hidden>
             <a role="menuitem" class="account-menu-item" href="<?php echo esc_url($dashboard); ?>">🏠 Escritorio</a>
             <?php if ($courses) : ?>
               <a role="menuitem" class="account-menu-item" href="<?php echo esc_url($courses); ?>">📚 Mis Cursos</a>
-            <?php endif; ?>
+          <?php endif; ?>
             <a role="menuitem" class="account-menu-item" href="<?php echo esc_url($profile); ?>">⚙️ Perfil</a>
             <hr class="account-menu-separator">
             <a role="menuitem" class="account-menu-item account-menu-logout" href="<?php echo esc_url(wp_logout_url($dashboard)); ?>">🚪 Cerrar Sesión</a>
