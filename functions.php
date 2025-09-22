@@ -174,21 +174,16 @@ function estimated_reading_time() {
  * Reemplaza Shiki que estaba causando conflictos
  */
 add_action('wp_enqueue_scripts', function() {
-    // Highlight.js - CDN confiable
+    // Highlight.js - CDN confiable y SIMPLE
     wp_enqueue_script('highlight-js', 'https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js', array(), '11.9.0', true);
     
-    // Plugin de numeración de líneas para highlight.js (estable)
-    wp_enqueue_script('highlight-js-linenumbers', 'https://cdnjs.cloudflare.com/ajax/libs/highlightjs-line-numbers.js/2.8.0/highlightjs-line-numbers.min.js', array('highlight-js'), '2.8.0', true);
-
-    // Lenguajes específicos para mejor performance
+    // Lenguajes específicos
     wp_enqueue_script('highlight-js-python', 'https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/python.min.js', array('highlight-js'), '11.9.0', true);
     wp_enqueue_script('highlight-js-javascript', 'https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/javascript.min.js', array('highlight-js'), '11.9.0', true);
     wp_enqueue_script('highlight-js-php', 'https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/php.min.js', array('highlight-js'), '11.9.0', true);
     wp_enqueue_script('highlight-js-css', 'https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/css.min.js', array('highlight-js'), '11.9.0', true);
     wp_enqueue_script('highlight-js-sql', 'https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/sql.min.js', array('highlight-js'), '11.9.0', true);
     wp_enqueue_script('highlight-js-bash', 'https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/bash.min.js', array('highlight-js'), '11.9.0', true);
-    wp_enqueue_script('highlight-js-json', 'https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/json.min.js', array('highlight-js'), '11.9.0', true);
-    wp_enqueue_script('highlight-js-xml', 'https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/xml.min.js', array('highlight-js'), '11.9.0', true);
 }, 1001);
 
 // ELIMINADO: Función Shiki que causaba conflictos
@@ -220,27 +215,19 @@ add_action('wp_footer', function() {
         function initHighlightJs() {
             console.log('Highlight.js disponible, procesando...');
             
-                // Configurar highlight.js
+            // Configurar highlight.js SIMPLE
             hljs.configure({
                 cssSelector: 'pre code',
                 languages: ['python', 'javascript', 'php', 'css', 'html', 'json', 'sql', 'bash']
             });
             
-            // Highlight y numeración con el plugin oficial
-            function applyHighlightAndLines(scope=document){
-                hljs.highlightAll();
-                if (typeof hljs !== 'undefined' && typeof hljs.lineNumbersBlock === 'function') {
-                    const blocks = scope.querySelectorAll('pre code');
-                    blocks.forEach(block => {
-                        // Evitar duplicar tabla de numeración
-                        if (!block.querySelector('table.hljs-ln')) {
-                            try { hljs.lineNumbersBlock(block); } catch(e) { console.error('HLJS line numbers error', e); }
-                        }
-                    });
-                }
-            }
-
-            applyHighlightAndLines(document);
+            // Solo highlight, SIN numeración complicada
+            hljs.highlightAll();
+            
+            // Agregar numeración SIMPLE que funcione
+            setTimeout(() => {
+                addSimpleLineNumbers();
+            }, 50);
             
             // Agregar botones de copiar
             addCopyButtons();
@@ -248,7 +235,46 @@ add_action('wp_footer', function() {
             // Manejar cambio de tema oscuro
             handleDarkModeToggle();
             
-            console.log('Highlight.js inicializado con numeración de líneas');
+            console.log('Highlight.js inicializado SIMPLE');
+        }
+        
+        function addSimpleLineNumbers() {
+            document.querySelectorAll('pre code').forEach(codeBlock => {
+                const pre = codeBlock.parentElement;
+                
+                // Evitar duplicados
+                if (pre.querySelector('.code-lines')) return;
+                
+                // Contar líneas reales del código
+                const text = codeBlock.textContent || '';
+                const lines = text.split('\\n');
+                const lineCount = lines[lines.length - 1].trim() === '' ? lines.length - 1 : lines.length;
+                
+                if (lineCount <= 1) return; // No numerar si es una sola línea
+                
+                // Crear wrapper con flex
+                const wrapper = document.createElement('div');
+                wrapper.className = 'code-wrapper';
+                
+                // Crear columna de números
+                const lineNumbers = document.createElement('div');
+                lineNumbers.className = 'code-lines';
+                
+                for (let i = 1; i <= lineCount; i++) {
+                    const lineNum = document.createElement('div');
+                    lineNum.className = 'line-num';
+                    lineNum.textContent = i;
+                    lineNumbers.appendChild(lineNum);
+                }
+                
+                // Reestructurar DOM
+                pre.parentElement.insertBefore(wrapper, pre);
+                wrapper.appendChild(lineNumbers);
+                wrapper.appendChild(pre);
+                
+                // Marcar como procesado
+                pre.classList.add('has-line-numbers');
+            });
         }
         
         function addCopyButtons() {

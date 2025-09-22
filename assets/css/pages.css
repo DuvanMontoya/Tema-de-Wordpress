@@ -459,34 +459,42 @@ pre code {
 }
 
 /* =======================================
-   GUTTER DE LÍNEAS (plugin oficial hljs-line-numbers)
+   NUMERACIÓN SIMPLE Y FUNCIONAL
    ======================================= */
 
-table.hljs-ln {
-  border-collapse: collapse !important;
-  width: 100% !important;
+.code-wrapper {
+  display: flex !important;
+  font-family: 'Fira Code', 'Cascadia Code', 'Source Code Pro', monospace !important;
+  border-radius: 0 !important;
+  overflow: hidden !important;
 }
 
-table.hljs-ln td {
-  padding: 0 !important;
-  vertical-align: top !important;
-}
-
-td.hljs-ln-numbers {
+.code-lines {
+  background: #49483e !important; /* Gutter oscuro Monokai */
+  color: #75715e !important;
+  padding: 1rem 0.75rem !important;
   user-select: none !important;
   text-align: right !important;
+  min-width: 3rem !important;
+  border-right: 1px solid #5a5a5a !important;
+}
+
+.line-num {
+  line-height: 1.55 !important;
+  font-size: 0.95em !important;
   color: #75715e !important;
-  background: #2f3129 !important; /* gutter VSCode monokai-like */
-  padding: .5rem .75rem !important;
-  width: 1%;
 }
 
-td.hljs-ln-code {
-  padding: .5rem 1rem !important;
+.code-wrapper pre {
+  flex: 1 !important;
+  margin: 0 !important;
+  border-radius: 0 !important;
 }
 
-/* Mantener Monokai puro en el área de código */
-td.hljs-ln-code .hljs { background: #272822 !important; }
+.code-wrapper .hljs {
+  background: #272822 !important; /* Monokai puro */
+  padding: 1rem !important;
+}
 
 :where(.wp-block-post-content, .entry-content, .page-content-wrapper) pre code,
 :where(.contenido-principal, .leccion-contenido) pre code {
