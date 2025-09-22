@@ -155,6 +155,16 @@ add_filter('comments_open', function($open, $post_id){
 add_filter('nav_menu_css_class', function($classes){ return array_filter($classes); });
 
 /**
+ * Función para estimar tiempo de lectura
+ */
+function estimated_reading_time() {
+    $content = get_post_field('post_content', get_the_ID());
+    $word_count = str_word_count(strip_tags($content));
+    $reading_time = ceil($word_count / 200); // 200 palabras por minuto
+    return $reading_time . ' min';
+}
+
+/**
  * Shortcode demostración de fórmula rápida [formula]E=mc^2[/formula]
  */
 // (Shortcode fórmula movido a inc/lms.php)

@@ -1,11 +1,12 @@
 /* =====================================
-   ESTILOS SIMPLES PARA INDEX
+   POSTS GRID LIMPIO Y MODERNO
    ===================================== */
 
-.posts-list {
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-8);
+.posts-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: var(--space-6);
+  margin-bottom: var(--space-12);
 }
 
 .post-item {
@@ -895,6 +896,62 @@
 }
 
 /* =====================================
+   ACCESIBILIDAD PREMIUM
+   ===================================== */
+
+/* Mejora de focus visible */
+.post-card:focus-within,
+.post-title a:focus,
+.read-more:focus,
+.post-category:focus,
+.post-author:focus {
+  outline: 3px solid var(--color-primary);
+  outline-offset: 2px;
+  border-radius: var(--radius-md);
+}
+
+/* Contraste mejorado para modo alto contraste */
+@media (prefers-contrast: high) {
+  .post-card {
+    border: 2px solid var(--color-text-primary);
+  }
+
+  .post-title a,
+  .read-more {
+    color: var(--color-text-primary);
+  }
+
+  .post-meta {
+    color: var(--color-text-primary);
+  }
+}
+
+/* Soporte para usuarios que prefieren reducir movimiento */
+@media (prefers-reduced-motion: reduce) {
+  .post-card,
+  .post-card:hover {
+    transform: none;
+    animation: none;
+  }
+
+  .post-image img,
+  .post-image-overlay {
+    transition: none;
+  }
+}
+
+/* Soporte para lectura de pantalla */
+.post-card[aria-pressed="true"] {
+  background: var(--color-primary-50);
+}
+
+/* Mejora de navegación por teclado */
+.post-card:hover .post-image-overlay,
+.post-card:focus-within .post-image-overlay {
+  opacity: 1;
+}
+
+/* =====================================
    RESPONSIVE DESIGN
    ===================================== */
 
@@ -1066,6 +1123,70 @@
 /* Scroll suave en sidebar */
 .blog-sidebar {
   scroll-behavior: smooth;
+}
+
+/* =====================================
+   OPTIMIZACIONES UX Y PERFORMANCE
+   ===================================== */
+
+/* Preload de imágenes críticas */
+.post-image img {
+  content-visibility: auto;
+  contain-intrinsic-size: 300px 200px;
+}
+
+/* Mejora de interacciones táctiles */
+@media (hover: none) and (pointer: coarse) {
+  .post-card:active {
+    transform: scale(0.98);
+  }
+
+  .post-image-overlay {
+    display: none; /* Evitar overlays en móviles táctiles */
+  }
+}
+
+/* Loading states para mejor UX */
+.post-card.loading {
+  opacity: 0.7;
+  pointer-events: none;
+}
+
+.post-card.loading::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+  animation: shimmer 1.5s infinite;
+}
+
+@keyframes shimmer {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
+}
+
+/* Mejora de feedback visual */
+.post-card:not(.loading):hover {
+  cursor: pointer;
+  will-change: transform;
+}
+
+/* Optimización para scroll suave */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Evitar layout shift con skeleton loading */
+.post-card {
+  min-height: 400px;
+}
+
+/* Mejora de rendimiento con GPU acceleration */
+.post-card,
+.post-image img {
+  will-change: transform;
+  backface-visibility: hidden;
+  transform: translateZ(0);
 }
 
 .blog-sidebar::-webkit-scrollbar {
