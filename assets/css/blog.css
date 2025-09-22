@@ -3,11 +3,12 @@
    ===================================== */
 
 .posts-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-  gap: var(--space-8);
-  margin-bottom: var(--space-16);
-  padding: 0 var(--space-4);
+  display: grid !important;
+  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr)) !important;
+  gap: var(--space-12) !important;
+  margin-bottom: var(--space-24) !important;
+  padding: 0 var(--space-8) !important;
+  align-items: start !important;
 }
 
 .post-item {
@@ -361,16 +362,17 @@
    ===================================== */
 
 .post-card {
-  background: var(--color-surface);
-  border-radius: var(--radius-xl);
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
-  border: 1px solid var(--color-border);
-  overflow: hidden;
-  transition: all 0.3s ease;
-  display: flex;
-  flex-direction: column;
-  position: relative;
-  height: 100%;
+  background: var(--color-surface) !important;
+  border-radius: var(--radius-2xl) !important;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08) !important;
+  border: 1px solid var(--color-border) !important;
+  overflow: hidden !important;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+  display: flex !important;
+  flex-direction: column !important;
+  position: relative !important;
+  height: 100% !important;
+  cursor: pointer !important;
 }
 
 .post-card:hover {
@@ -453,11 +455,12 @@
 
 /* Contenido del post */
 .post-content {
-  padding: var(--space-6);
+  padding: var(--space-10);
   display: flex;
   flex-direction: column;
   flex: 1;
-  gap: var(--space-3);
+  gap: var(--space-5);
+  justify-content: space-between;
 }
 
 .post-meta {
@@ -1128,16 +1131,23 @@
    ===================================== */
 
 .single-post-container {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: var(--space-8) var(--space-6);
+  max-width: 1200px !important;
+  margin: 0 auto !important;
+  padding: var(--space-8) var(--space-6) !important;
 }
 
 .single-post {
-  background: var(--color-surface);
-  border-radius: var(--radius-2xl);
-  overflow: hidden;
-  box-shadow: var(--shadow-md);
+  background: var(--color-surface) !important;
+  border-radius: var(--radius-2xl) !important;
+  overflow: hidden !important;
+  box-shadow: var(--shadow-md) !important;
+  width: 100% !important;
+}
+
+.single-post-body {
+  max-width: none !important;
+  width: 100% !important;
+  box-sizing: border-box !important;
 }
 
 .single-post-header {
@@ -1294,26 +1304,59 @@
 }
 
 /* =====================================
-   MODO OSCURO PARA ENTRADAS
+   MODO OSCURO COMPLETO - FORZADO ULTRA ESPECÍFICO
    ===================================== */
 
+/* Variables de modo oscuro - FORZADO */
 :root[data-theme="dark"],
 html[data-theme="dark"],
-body[data-theme="dark"] {
-  --color-background: #0f172a;
-  --color-surface: #1e293b;
-  --color-surface-elevated: #334155;
-  --color-text-primary: #f1f5f9;
-  --color-text-secondary: #cbd5e1;
-  --color-text-muted: #94a3b8;
-  --color-border: #475569;
-  --color-border-light: #334155;
-  --color-gray-50: #1e293b;
-  --color-gray-100: #334155;
-  --color-gray-200: #475569;
-  --color-primary: #60a5fa;
-  --color-primary-50: #1e3a8a;
-  --color-primary-100: #1e40af;
+body[data-theme="dark"],
+html.dark-mode,
+body.dark-mode,
+*[data-theme="dark"],
+*[data-theme="dark"] * {
+  --color-background: #0f172a !important;
+  --color-surface: #1e293b !important;
+  --color-surface-elevated: #334155 !important;
+  --color-text-primary: #f1f5f9 !important;
+  --color-text-secondary: #cbd5e1 !important;
+  --color-text-muted: #94a3b8 !important;
+  --color-border: #475569 !important;
+  --color-border-light: #334155 !important;
+  --color-gray-50: #1e293b !important;
+  --color-gray-100: #334155 !important;
+  --color-gray-200: #475569 !important;
+  --color-primary: #60a5fa !important;
+  --color-primary-50: #1e3a8a !important;
+  --color-primary-100: #1e40af !important;
+}
+
+/* Aplicar modo oscuro al body y html FORZADAMENTE - ULTRA ESPECÍFICO */
+:root[data-theme="dark"] body,
+html[data-theme="dark"] body,
+body[data-theme="dark"],
+:root[data-theme="dark"] html,
+html[data-theme="dark"] html,
+body[data-theme="dark"] html,
+html.dark-mode body,
+body.dark-mode,
+html.dark-mode,
+*[data-theme="dark"] body,
+*[data-theme="dark"] html {
+  background: #0f172a !important;
+  color: #f1f5f9 !important;
+  background-color: #0f172a !important;
+  color: #f1f5f9 !important;
+}
+
+/* Forzar fondo y color en todos los elementos en modo oscuro */
+:root[data-theme="dark"] *,
+html[data-theme="dark"] *,
+body[data-theme="dark"] *,
+html.dark-mode *,
+body.dark-mode * {
+  background: inherit !important;
+  color: inherit !important;
 }
 
 :root[data-theme="dark"] .single-post,
@@ -1374,6 +1417,79 @@ body[data-theme="dark"] {
 :root[data-theme="dark"] .account-menu-logout:hover {
   background: var(--color-error-bg);
   color: var(--color-error);
+}
+
+/* Footer modo oscuro */
+:root[data-theme="dark"] .site-footer,
+html[data-theme="dark"] .site-footer,
+body[data-theme="dark"] .site-footer {
+  background: var(--color-surface) !important;
+  border-top: 1px solid var(--color-border) !important;
+  color: var(--color-text-primary) !important;
+}
+
+:root[data-theme="dark"] .footer-title,
+html[data-theme="dark"] .footer-title,
+body[data-theme="dark"] .footer-title {
+  color: var(--color-text-primary) !important;
+}
+
+:root[data-theme="dark"] .footer-meta,
+html[data-theme="dark"] .footer-meta,
+body[data-theme="dark"] .footer-meta {
+  color: var(--color-text-secondary) !important;
+}
+
+:root[data-theme="dark"] .footer-created,
+html[data-theme="dark"] .footer-created,
+body[data-theme="dark"] .footer-created {
+  color: var(--color-text-muted) !important;
+}
+
+/* Contenido de entradas en modo oscuro */
+:root[data-theme="dark"] .single-post-body p,
+:root[data-theme="dark"] .single-post-body h1,
+:root[data-theme="dark"] .single-post-body h2,
+:root[data-theme="dark"] .single-post-body h3,
+:root[data-theme="dark"] .single-post-body h4,
+:root[data-theme="dark"] .single-post-body h5,
+:root[data-theme="dark"] .single-post-body h6,
+html[data-theme="dark"] .single-post-body p,
+html[data-theme="dark"] .single-post-body h1,
+html[data-theme="dark"] .single-post-body h2,
+html[data-theme="dark"] .single-post-body h3,
+html[data-theme="dark"] .single-post-body h4,
+html[data-theme="dark"] .single-post-body h5,
+html[data-theme="dark"] .single-post-body h6,
+body[data-theme="dark"] .single-post-body p,
+body[data-theme="dark"] .single-post-body h1,
+body[data-theme="dark"] .single-post-body h2,
+body[data-theme="dark"] .single-post-body h3,
+body[data-theme="dark"] .single-post-body h4,
+body[data-theme="dark"] .single-post-body h5,
+body[data-theme="dark"] .single-post-body h6 {
+  color: var(--color-text-secondary) !important;
+}
+
+:root[data-theme="dark"] .single-post-body h1,
+:root[data-theme="dark"] .single-post-body h2,
+:root[data-theme="dark"] .single-post-body h3,
+:root[data-theme="dark"] .single-post-body h4,
+:root[data-theme="dark"] .single-post-body h5,
+:root[data-theme="dark"] .single-post-body h6,
+html[data-theme="dark"] .single-post-body h1,
+html[data-theme="dark"] .single-post-body h2,
+html[data-theme="dark"] .single-post-body h3,
+html[data-theme="dark"] .single-post-body h4,
+html[data-theme="dark"] .single-post-body h5,
+html[data-theme="dark"] .single-post-body h6,
+body[data-theme="dark"] .single-post-body h1,
+body[data-theme="dark"] .single-post-body h2,
+body[data-theme="dark"] .single-post-body h3,
+body[data-theme="dark"] .single-post-body h4,
+body[data-theme="dark"] .single-post-body h5,
+body[data-theme="dark"] .single-post-body h6 {
+  color: var(--color-text-primary) !important;
 }
 
 /* Scroll suave en sidebar */

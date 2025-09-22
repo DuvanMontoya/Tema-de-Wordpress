@@ -4,7 +4,7 @@ get_header(); ?>
 
 <div class="single-post-container">
   <?php if (have_posts()) : while (have_posts()) : the_post(); ?>
-    <article id="post-<?php the_ID(); ?>" <?php post_class('single-post'); ?>>
+    <article id="post-<?php the_ID(); ?>" <?php post_class('single-post'); ?> style="width: 100%; max-width: none; margin: 0 auto;">
       <header class="single-post-header">
         <div class="single-post-meta">
           <time class="single-post-date" datetime="<?php echo get_the_date('c'); ?>">

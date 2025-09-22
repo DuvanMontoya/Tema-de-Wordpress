@@ -1,26 +1,104 @@
-/* Estilos editoriales SENSACIONALES para matemáticas de nivel profesional */
+/* -------------------------------------------------------------
+   Editorial Math Styles — Pro build (accessibility-first)
+   Compatible con tu sistema de tokens (con fallbacks seguros)
+   ------------------------------------------------------------- */
 
-/* ============================================
-   CONTENEDORES AMPLIOS Y RESPIRABLES
-   ============================================ */
+/* SAFETY NET: si algún token falta, estos fallbacks evitan roturas */
+:root {
+  /* Colores y gradientes */
+  --color-surface: #ffffff;
+  --color-surface-elevated: #ffffff;
+  --color-gray-50: #f8fafc;
+  --color-border: #e5e7eb;
+  --color-border-light: #eef2f7;
+  --color-border-strong: #cbd5e1;
+  --color-text-primary: #0f172a;
+  --color-text-secondary: #334155;
+  --color-text-muted: #64748b;
+  --color-primary-50: #eef2ff;
+  --color-primary-200: #c7d2fe;
+  --color-primary-300: #a5b4fc;
+  --color-primary-400: #818cf8;
+  --color-primary-500: #6366f1;
+  --color-primary-600: #4f46e5;
+  --color-primary-700: #4338ca;
+  --color-primary-800: #3730a3;
+  --color-accent-light: #fde68a;
+  --color-accent: #f59e0b;
 
-.article-container, .contenedor-leccion {
-  max-width: 95ch; /* MÁXIMO AMPLIO - era 85ch */
-  margin: 0 auto;
-  padding: 0 clamp(var(--space-6), 5vw, var(--space-12));
+  --gradient-primary: linear-gradient(90deg, var(--color-primary-600), var(--color-primary-400));
+  --gradient-text: linear-gradient(90deg, var(--color-primary-700), var(--color-primary-400));
+
+  /* Tipografía, tamaños y ritmo */
+  --font-family-serif: ui-serif, "Ibarra Real Nova", "Source Serif Pro", "Georgia", serif;
+  --font-family-sans: ui-sans-serif, "Inter", "SF Pro Text", "Segoe UI", Roboto, sans-serif;
+
+  --font-size-xs: 0.75rem;
+  --font-size-sm: 0.875rem;
+  --font-size-lg: 1.125rem;
+  --font-size-xl: 1.25rem;
+
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+  --font-weight-black: 900;
+
+  --line-height-snug: 1.35;
+  --line-height-relaxed: 1.7;
+
+  /* Espaciado y radios */
+  --space-1: .25rem;
+  --space-2: .5rem;
+  --space-3: .75rem;
+  --space-4: 1rem;
+  --space-5: 1.25rem;
+  --space-6: 1.5rem;
+  --space-8: 2rem;
+  --space-10: 2.5rem;
+  --space-12: 3rem;
+  --space-14: 3.5rem;
+  --space-16: 4rem;
+
+  --radius-md: .5rem;
+  --radius-lg: .75rem;
+  --radius-xl: 1rem;
+  --radius-2xl: 1.25rem;
+  --radius-full: 999px;
+
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, .05);
+  --shadow-md: 0 6px 24px rgba(0, 0, 0, .08);
+  --shadow-lg: 0 16px 48px rgba(0, 0, 0, .12);
+}
+
+/* -------------------------------------------------------------
+   Contenedores
+   ------------------------------------------------------------- */
+
+.article-container,
+.contenedor-leccion {
+  /* Medida óptima con respiración, sin exceder legibilidad */
+  max-width: clamp(62ch, 75vw, 88ch);
+  margin-inline: auto;
+  padding-inline: clamp(var(--space-6), 5vw, var(--space-12));
+}
+
+/* Variante para secciones que sí requieren anchura mayor (figuras complejas, ecuaciones anchas) */
+.article-container.is-wide,
+.contenedor-leccion.is-wide {
+  max-width: clamp(72ch, 85vw, 100ch);
 }
 
 .leccion-contenido {
-  max-width: 90ch; /* MÁXIMO AMPLIO - era 80ch */
-  margin: 0 auto;
-  background: var(--color-surface-elevated);
-  border-radius: var(--radius-2xl);
-  padding: var(--space-12) var(--space-10);
-  box-shadow: 
-    0 1px 2px rgba(0,0,0,0.05),
-    0 8px 32px rgba(0,0,0,0.08),
-    0 24px 64px rgba(0,0,0,0.12);
-  border: 1px solid var(--color-border-light);
+  max-width: 100%;
+  margin-inline: auto;
+  background: var(--color-surface-elevated, #fff);
+  border-radius: var(--radius-2xl, 1.25rem);
+  padding: var(--space-12, 3rem) var(--space-10, 2.5rem);
+  box-shadow:
+    var(--shadow-sm, 0 1px 2px rgba(0, 0, 0, 0.05)),
+    0 8px 32px rgba(0, 0, 0, 0.08),
+    0 24px 64px rgba(0, 0, 0, 0.12);
+  border: 1px solid var(--color-border-light, #eef2f7);
   position: relative;
   overflow: hidden;
 }
@@ -28,20 +106,25 @@
 .leccion-contenido::before {
   content: '';
   position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 3px;
-  background: linear-gradient(90deg, 
-    var(--color-primary-600), 
-    var(--color-primary-400), 
-    var(--color-accent));
+  inset-block-start: 0;
+  inset-inline: 0;
+  block-size: 3px;
+  background: linear-gradient(90deg,
+      var(--color-primary-600),
+      var(--color-primary-400),
+      var(--color-accent));
 }
 
+/* -------------------------------------------------------------
+   Header y título
+   ------------------------------------------------------------- */
+
 .article-header {
-  background: linear-gradient(135deg, var(--color-surface) 0%, var(--color-gray-50) 100%);
-  border-bottom: 1px solid var(--color-border);
-  padding: var(--space-10) 0 var(--space-8);
+  background: linear-gradient(135deg,
+      var(--color-surface, #fff) 0%,
+      var(--color-gray-50, #f8fafc) 100%);
+  border-block-end: 1px solid var(--color-border, #e5e7eb);
+  padding-block: var(--space-10) var(--space-8);
   position: relative;
 }
 
@@ -50,18 +133,19 @@
   font-weight: var(--font-weight-black);
   letter-spacing: -0.025em;
   line-height: 1.15;
-  font-size: clamp(2.5rem, 5.5vw, 3.5rem);
+  font-size: clamp(2.25rem, 5.5vw, 3.5rem);
   margin: 0 0 var(--space-4) 0;
   background: var(--gradient-text);
   -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
   background-clip: text;
+  -webkit-text-fill-color: transparent;
+  /* Safari/WebKit */
 }
 
-.article-meta { 
-  color: var(--color-text-muted); 
-  display: flex; 
-  gap: var(--space-4); 
+.article-meta {
+  color: var(--color-text-muted);
+  display: flex;
+  gap: var(--space-4);
   align-items: baseline;
   font-family: var(--font-family-sans);
   font-size: var(--font-size-sm);
@@ -70,11 +154,11 @@
   font-weight: var(--font-weight-medium);
 }
 
-.article-abstract { 
-  margin-top: var(--space-8); 
+.article-abstract {
+  margin-block-start: var(--space-8);
   padding: var(--space-6) var(--space-8);
   background: var(--color-primary-50);
-  border-left: 4px solid var(--color-primary-400);
+  border-inline-start: 4px solid var(--color-primary-400);
   border-radius: 0 var(--radius-xl) var(--radius-xl) 0;
   position: relative;
 }
@@ -82,10 +166,10 @@
 .article-abstract::before {
   content: 'Abstract';
   position: absolute;
-  top: -12px;
-  left: var(--space-6);
+  inset-block-start: -12px;
+  inset-inline-start: var(--space-6);
   background: var(--color-primary-600);
-  color: white;
+  color: #fff;
   padding: var(--space-1) var(--space-3);
   border-radius: var(--radius-md);
   font-size: var(--font-size-xs);
@@ -94,148 +178,160 @@
   letter-spacing: 0.1em;
 }
 
-.article-abstract p { 
-  font-style: italic; 
-  color: var(--color-text-primary); 
+.article-body {
+  padding-block: var(--space-12);
+}
+
+.article-content {
+  color: var(--color-text-primary);
+}
+
+/* -------------------------------------------------------------
+   Tipografía editorial
+   ------------------------------------------------------------- */
+
+.typeset,
+.leccion-contenido {
+  font-family: var(--font-family-serif);
   font-size: var(--font-size-lg);
   line-height: var(--line-height-relaxed);
-  margin: 0;
-}
-
-.article-body { padding: var(--space-12) 0; }
-.article-content { color: var(--color-text-primary); }
-
-/* ============================================
-   TIPOGRAFÍA EDITORIAL EXQUISITA
-   ============================================ */
-
-.typeset, .leccion-contenido {
-  font-family: var(--font-family-serif);
-  font-size: var(--font-size-lg);
-  line-height: var(--line-height-relaxed);
   color: var(--color-text-primary);
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  text-wrap: pretty;
 }
 
-.typeset h1, .leccion-contenido h1 {
-  font-family: var(--font-family-serif);
-  font-size: clamp(2.25rem, 4vw, 2.75rem);
-  font-weight: var(--font-weight-black);
-  line-height: 1.2;
-  margin: var(--space-16) 0 var(--space-8) 0;
-  letter-spacing: -0.025em;
-  position: relative;
-  padding-bottom: var(--space-4);
-}
-
-.typeset h1::after, .leccion-contenido h1::after {
-  content: '';
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 60px;
-  height: 3px;
-  background: var(--gradient-primary);
-  border-radius: var(--radius-full);
-}
-
-.typeset h2, .leccion-contenido h2 {
-  font-family: var(--font-family-serif);
-  font-size: clamp(1.75rem, 3vw, 2.25rem);
-  font-weight: var(--font-weight-bold);
-  line-height: 1.25;
-  margin: var(--space-14) 0 var(--space-6) 0;
-  color: var(--color-text-primary);
-  position: relative;
-  padding-left: var(--space-6);
-}
-
-.typeset h2::before, .leccion-contenido h2::before {
-  content: '';
-  position: absolute;
-  left: 0;
-  top: 0;
-  bottom: 0;
-  width: 4px;
-  background: var(--gradient-primary);
-  border-radius: var(--radius-full);
-}
-
-.typeset h3, .leccion-contenido h3 {
-  font-family: var(--font-family-serif);
-  font-size: clamp(1.5rem, 2.5vw, 1.875rem);
-  font-weight: var(--font-weight-bold);
-  line-height: 1.3;
-  margin: var(--space-12) 0 var(--space-5) 0;
-  color: var(--color-text-primary);
-}
-
-.typeset h4, .leccion-contenido h4 {
-  font-family: var(--font-family-serif);
-  font-size: var(--font-size-xl);
-  font-weight: var(--font-weight-semibold);
-  line-height: 1.35;
-  margin: var(--space-10) 0 var(--space-4) 0;
-  color: var(--color-primary-700);
-  font-style: italic;
-}
-
-.typeset p, .leccion-contenido p {
-  margin-bottom: var(--space-6);
+.typeset p,
+.leccion-contenido p {
+  margin-block-end: var(--space-6);
   text-align: justify;
   hyphens: auto;
+  -webkit-hyphens: auto;
+  hyphenate-limit-chars: 6 3 3;
+  /* evita cortes feos */
   hanging-punctuation: first last;
 }
 
-.typeset p:first-of-type, .leccion-contenido p:first-of-type {
+.typeset p:first-of-type,
+.leccion-contenido p:first-of-type {
   font-size: var(--font-size-xl);
   font-weight: var(--font-weight-medium);
   line-height: var(--line-height-snug);
-  margin-bottom: var(--space-8);
+  margin-block-end: var(--space-8);
 }
 
-.typeset strong, .leccion-contenido strong {
+.typeset strong,
+.leccion-contenido strong {
   font-weight: var(--font-weight-bold);
-  color: var(--color-text-primary);
 }
 
-.typeset em, .leccion-contenido em {
-  font-style: italic;
+.typeset em,
+.leccion-contenido em {
   color: var(--color-primary-700);
 }
 
-.typeset hr, .leccion-contenido hr {
-  margin: var(--space-16) 0;
+/* Encabezados */
+.typeset h1,
+.leccion-contenido h1 {
+  font-family: var(--font-family-serif);
+  font-size: clamp(2rem, 4vw, 2.75rem);
+  font-weight: var(--font-weight-black);
+  line-height: 1.2;
+  margin: var(--space-16) 0 var(--space-8);
+  letter-spacing: -0.025em;
+  position: relative;
+  padding-block-end: var(--space-4);
+}
+
+.typeset h1::after,
+.leccion-contenido h1::after {
+  content: '';
+  position: absolute;
+  inset-inline-start: 0;
+  inset-block-end: 0;
+  inline-size: 60px;
+  block-size: 3px;
+  background: var(--gradient-primary);
+  border-radius: var(--radius-full);
+}
+
+.typeset h2,
+.leccion-contenido h2 {
+  font-size: clamp(1.6rem, 3vw, 2.25rem);
+  font-weight: var(--font-weight-bold);
+  line-height: 1.25;
+  margin: var(--space-14) 0 var(--space-6);
+  color: var(--color-text-primary);
+  position: relative;
+  padding-inline-start: var(--space-6);
+}
+
+.typeset h2::before,
+.leccion-contenido h2::before {
+  content: '';
+  position: absolute;
+  inset-inline-start: 0;
+  inset-block: 0;
+  inline-size: 4px;
+  background: var(--gradient-primary);
+  border-radius: var(--radius-full);
+}
+
+.typeset h3,
+.leccion-contenido h3 {
+  font-size: clamp(1.35rem, 2.5vw, 1.875rem);
+  font-weight: var(--font-weight-bold);
+  line-height: 1.3;
+  margin: var(--space-12) 0 var(--space-5);
+  color: var(--color-text-primary);
+}
+
+.typeset h4,
+.leccion-contenido h4 {
+  font-size: var(--font-size-xl);
+  font-weight: var(--font-weight-semibold);
+  line-height: 1.35;
+  margin: var(--space-10) 0 var(--space-4);
+  color: var(--color-primary-700);
+  font-style: italic;
+}
+
+/* Separadores */
+.typeset hr,
+.leccion-contenido hr {
+  margin-block: var(--space-16);
   border: none;
-  height: 1px;
-  background: linear-gradient(90deg, 
-    transparent, 
-    var(--color-border-strong), 
-    var(--color-primary-300), 
-    var(--color-border-strong), 
-    transparent);
+  block-size: 1px;
+  background: linear-gradient(90deg,
+      transparent,
+      var(--color-border-strong),
+      var(--color-primary-300),
+      var(--color-border-strong),
+      transparent);
   position: relative;
 }
 
-.typeset hr::after, .leccion-contenido hr::after {
+.typeset hr::after,
+.leccion-contenido hr::after {
   content: '§';
   position: absolute;
-  top: 50%;
-  left: 50%;
+  inset-block-start: 50%;
+  inset-inline-start: 50%;
   transform: translate(-50%, -50%);
   background: var(--color-surface-elevated);
   color: var(--color-primary-600);
-  padding: 0 var(--space-4);
+  padding-inline: var(--space-4);
   font-size: var(--font-size-lg);
   font-weight: var(--font-weight-bold);
 }
 
-/* ============================================
-   ELEMENTOS EDITORIALES ESPECTACULARES
-   ============================================ */
+/* -------------------------------------------------------------
+   Elementos editoriales
+   ------------------------------------------------------------- */
 
-/* Blockquotes épicos */
-.typeset blockquote, .leccion-contenido blockquote {
-  margin: var(--space-12) 0;
+.typeset blockquote,
+.leccion-contenido blockquote {
+  margin-block: var(--space-12);
   padding: var(--space-8) var(--space-10);
   background: linear-gradient(135deg, var(--color-gray-50), var(--color-primary-50));
   border: none;
@@ -245,16 +341,17 @@
   font-size: var(--font-size-xl);
   line-height: var(--line-height-relaxed);
   color: var(--color-text-secondary);
-  box-shadow: 
-    0 4px 16px rgba(0,0,0,0.08),
-    inset 0 1px 0 rgba(255,255,255,0.7);
+  box-shadow:
+    0 4px 16px rgba(0, 0, 0, 0.08),
+    inset 0 1px 0 rgba(255, 255, 255, 0.7);
 }
 
-.typeset blockquote::before, .leccion-contenido blockquote::before {
-  content: '"';
+.typeset blockquote::before,
+.leccion-contenido blockquote::before {
+  content: '“';
   position: absolute;
-  top: -15px;
-  left: var(--space-8);
+  inset-block-start: -15px;
+  inset-inline-start: var(--space-8);
   font-size: 4rem;
   font-family: var(--font-family-serif);
   color: var(--color-primary-400);
@@ -262,38 +359,45 @@
   font-weight: var(--font-weight-black);
 }
 
-.typeset blockquote p, .leccion-contenido blockquote p {
+.typeset blockquote p,
+.leccion-contenido blockquote p {
   margin: 0;
-  text-align: left;
+  text-align: start;
 }
 
-/* Listas elegantes */
-.typeset ul, .typeset ol, .leccion-contenido ul, .leccion-contenido ol {
-  margin: var(--space-8) 0;
-  padding-left: var(--space-8);
+/* Listas */
+.typeset ul,
+.typeset ol,
+.leccion-contenido ul,
+.leccion-contenido ol {
+  margin-block: var(--space-8);
+  padding-inline-start: var(--space-8);
 }
 
-.typeset li, .leccion-contenido li {
-  margin: var(--space-4) 0;
-  padding-left: var(--space-3);
-  position: relative;
+.typeset li,
+.leccion-contenido li {
+  margin-block: var(--space-4);
+  padding-inline-start: var(--space-3);
 }
 
-.typeset ul li::marker, .leccion-contenido ul li::marker {
+.typeset ul li::marker,
+.leccion-contenido ul li::marker {
   content: '▪';
   color: var(--color-primary-600);
   font-size: 1.2em;
 }
 
-.typeset ol li::marker, .leccion-contenido ol li::marker {
+.typeset ol li::marker,
+.leccion-contenido ol li::marker {
   color: var(--color-primary-600);
   font-weight: var(--font-weight-bold);
-  font-feature-settings: 'tnum';
+  font-variant-numeric: tabular-nums;
 }
 
-/* Figuras y captions */
-.typeset figure, .leccion-contenido figure {
-  margin: var(--space-12) 0;
+/* Figuras */
+.typeset figure,
+.leccion-contenido figure {
+  margin-block: var(--space-12);
   text-align: center;
   background: var(--color-surface-elevated);
   padding: var(--space-6);
@@ -302,8 +406,17 @@
   border: 1px solid var(--color-border-light);
 }
 
-.typeset figcaption, .leccion-contenido figcaption {
-  margin-top: var(--space-4);
+.typeset figure img,
+.leccion-contenido figure img {
+  display: block;
+  max-inline-size: 100%;
+  height: auto;
+  border-radius: calc(var(--radius-xl) - 2px);
+}
+
+.typeset figcaption,
+.leccion-contenido figcaption {
+  margin-block-start: var(--space-4);
   font-size: var(--font-size-sm);
   color: var(--color-text-muted);
   font-style: italic;
@@ -311,7 +424,8 @@
   font-family: var(--font-family-sans);
 }
 
-.typeset figcaption::before, .leccion-contenido figcaption::before {
+.typeset figcaption::before,
+.leccion-contenido figcaption::before {
   content: 'Figura: ';
   font-weight: var(--font-weight-semibold);
   color: var(--color-primary-600);
@@ -321,111 +435,89 @@
   font-size: var(--font-size-xs);
 }
 
-/* ============================================
-   BLOQUES MATEMÁTICOS ESPECTACULARES
-   ============================================ */
+/* -------------------------------------------------------------
+   Bloques matemáticos
+   ------------------------------------------------------------- */
 
-/* Teoremas y proposiciones - Estilo editorial magistral */
-.theorem, .lemma, .proposition, .corollary {
-  margin: var(--space-12) 0;
-  background: linear-gradient(135deg, 
-    rgba(99, 102, 241, 0.04), 
-    rgba(99, 102, 241, 0.08));
+.theorem,
+.lemma,
+.proposition,
+.corollary {
+  margin-block: var(--space-12);
+  background: linear-gradient(135deg,
+      color-mix(in srgb, var(--color-primary-600) 12%, transparent),
+      color-mix(in srgb, var(--color-primary-600) 6%, transparent));
   border: 1px solid var(--color-primary-200);
-  border-left: 6px solid var(--color-primary-500);
+  border-inline-start: 6px solid var(--color-primary-500);
   border-radius: var(--radius-xl);
   padding: var(--space-8) var(--space-10);
   position: relative;
-  box-shadow: 
-    0 2px 8px rgba(99, 102, 241, 0.1),
-    0 8px 32px rgba(99, 102, 241, 0.05);
+  box-shadow:
+    0 2px 8px color-mix(in srgb, var(--color-primary-600) 20%, transparent),
+    0 8px 32px color-mix(in srgb, var(--color-primary-600) 10%, transparent);
   backdrop-filter: blur(1px);
+}
+
+.theorem::before,
+.lemma::before,
+.proposition::before,
+.corollary::before {
+  position: absolute;
+  inset-block-start: -12px;
+  inset-inline-start: var(--space-8);
+  color: #fff;
+  padding: var(--space-2) var(--space-4);
+  border-radius: var(--radius-lg);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-bold);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-family: var(--font-family-sans);
 }
 
 .theorem::before {
   content: 'Teorema';
-  position: absolute;
-  top: -12px;
-  left: var(--space-8);
   background: var(--color-primary-600);
-  color: white;
-  padding: var(--space-2) var(--space-4);
-  border-radius: var(--radius-lg);
-  font-size: var(--font-size-sm);
-  font-weight: var(--font-weight-bold);
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-  font-family: var(--font-family-sans);
 }
 
 .lemma::before {
   content: 'Lema';
-  position: absolute;
-  top: -12px;
-  left: var(--space-8);
   background: var(--color-primary-500);
-  color: white;
-  padding: var(--space-2) var(--space-4);
-  border-radius: var(--radius-lg);
-  font-size: var(--font-size-sm);
-  font-weight: var(--font-weight-bold);
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-  font-family: var(--font-family-sans);
 }
 
 .proposition::before {
   content: 'Proposición';
-  position: absolute;
-  top: -12px;
-  left: var(--space-8);
   background: var(--color-primary-700);
-  color: white;
-  padding: var(--space-2) var(--space-4);
-  border-radius: var(--radius-lg);
-  font-size: var(--font-size-sm);
-  font-weight: var(--font-weight-bold);
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-  font-family: var(--font-family-sans);
 }
 
 .corollary::before {
   content: 'Corolario';
-  position: absolute;
-  top: -12px;
-  left: var(--space-8);
   background: var(--color-accent);
-  color: white;
-  padding: var(--space-2) var(--space-4);
-  border-radius: var(--radius-lg);
-  font-size: var(--font-size-sm);
-  font-weight: var(--font-weight-bold);
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-  font-family: var(--font-family-sans);
 }
 
-.theorem .title, .lemma .title, .proposition .title, .corollary .title {
+.theorem .title,
+.lemma .title,
+.proposition .title,
+.corollary .title {
   font-weight: var(--font-weight-bold);
   color: var(--color-primary-800);
   font-size: var(--font-size-lg);
-  margin-bottom: var(--space-4);
+  margin-block-end: var(--space-4);
   font-family: var(--font-family-serif);
 }
 
-/* Definiciones - Estilo académico refinado */
+/* Definiciones */
 .definition {
-  margin: var(--space-12) 0;
-  background: linear-gradient(135deg, 
-    rgba(71, 85, 105, 0.04), 
-    rgba(71, 85, 105, 0.08));
-  border: 1px solid var(--color-gray-300);
-  border-left: 6px solid var(--color-gray-600);
+  margin-block: var(--space-12);
+  background: linear-gradient(135deg,
+      color-mix(in srgb, #475569 12%, transparent),
+      color-mix(in srgb, #475569 6%, transparent));
+  border: 1px solid var(--color-gray-300, #cbd5e1);
+  border-inline-start: 6px solid var(--color-gray-600, #475569);
   border-radius: var(--radius-xl);
   padding: var(--space-8) var(--space-10);
   position: relative;
-  box-shadow: 
+  box-shadow:
     0 2px 8px rgba(71, 85, 105, 0.1),
     0 8px 32px rgba(71, 85, 105, 0.05);
 }
@@ -433,10 +525,10 @@
 .definition::before {
   content: 'Definición';
   position: absolute;
-  top: -12px;
-  left: var(--space-8);
-  background: var(--color-gray-700);
-  color: white;
+  inset-block-start: -12px;
+  inset-inline-start: var(--space-8);
+  background: var(--color-gray-700, #374151);
+  color: #fff;
   padding: var(--space-2) var(--space-4);
   border-radius: var(--radius-lg);
   font-size: var(--font-size-sm);
@@ -446,29 +538,29 @@
   font-family: var(--font-family-sans);
 }
 
-/* Ejemplos - Estilo distintivo */
+/* Ejemplos */
 .example {
-  margin: var(--space-12) 0;
-  background: linear-gradient(135deg, 
-    rgba(245, 158, 11, 0.04), 
-    rgba(245, 158, 11, 0.08));
+  margin-block: var(--space-12);
+  background: linear-gradient(135deg,
+      color-mix(in srgb, var(--color-accent) 12%, transparent),
+      color-mix(in srgb, var(--color-accent) 6%, transparent));
   border: 1px solid var(--color-accent-light);
-  border-left: 6px solid var(--color-accent);
+  border-inline-start: 6px solid var(--color-accent);
   border-radius: var(--radius-xl);
   padding: var(--space-8) var(--space-10);
   position: relative;
-  box-shadow: 
-    0 2px 8px rgba(245, 158, 11, 0.1),
-    0 8px 32px rgba(245, 158, 11, 0.05);
+  box-shadow:
+    0 2px 8px color-mix(in srgb, var(--color-accent) 20%, transparent),
+    0 8px 32px color-mix(in srgb, var(--color-accent) 10%, transparent);
 }
 
 .example::before {
   content: 'Ejemplo';
   position: absolute;
-  top: -12px;
-  left: var(--space-8);
+  inset-block-start: -12px;
+  inset-inline-start: var(--space-8);
   background: var(--color-accent);
-  color: white;
+  color: #fff;
   padding: var(--space-2) var(--space-4);
   border-radius: var(--radius-lg);
   font-size: var(--font-size-sm);
@@ -478,9 +570,9 @@
   font-family: var(--font-family-sans);
 }
 
-/* Demostraciones - Elegante y distinguido */
+/* Demostraciones */
 .proof {
-  margin: var(--space-10) 0;
+  margin-block: var(--space-10);
   padding: var(--space-8) var(--space-10);
   background: rgba(255, 255, 255, 0.6);
   border: 1px dashed var(--color-border-strong);
@@ -496,48 +588,588 @@
   font-style: italic;
   font-weight: var(--font-weight-semibold);
   color: var(--color-text-secondary);
-  margin-bottom: var(--space-4);
+  margin-block-end: var(--space-4);
   font-size: var(--font-size-lg);
 }
 
 .proof::after {
   content: '∎';
   position: absolute;
-  bottom: var(--space-6);
-  right: var(--space-8);
+  inset-block-end: var(--space-6);
+  inset-inline-end: var(--space-8);
   font-weight: bold;
   font-size: var(--font-size-xl);
   color: var(--color-primary-600);
 }
 
-/* Fórmulas MathJax (mejor espaciado y contraste) */
-.mathjax-block, .mjx-chtml.MathJax_CHTML_Display { margin: 1.25em 0 1.25em; }
-.mjx-chtml { color: var(--color-text-primary); }
-.mjx-container[jax="CHTML"] { line-height: 1.22; }
-/* Numeración AMS a la derecha con separación adecuada */
-.MJXc-display, .MathJax_Display, .mjx-chtml.MathJax_CHTML_Display { text-align: center; }
-.mjx-mtd[tabindex="0"] { outline: none; }
-.mjx-tag { color: var(--color-text-muted); padding-left: .75rem; }
+/* -------------------------------------------------------------
+   MathJax v3 (CHTML) — ajustes finos
+   ------------------------------------------------------------- */
 
-/* Ecuaciones numeradas al estilo académico (si se usan counters custom) */
-.eq { display: flex; align-items: center; justify-content: space-between; gap: 1rem; margin: 1em 0; }
-.eq .eq-label { color: var(--color-text-muted); margin-left: 1rem; }
+/* Color y line-height general */
+.mjx-chtml,
+.MathJax {
+  color: var(--color-text-primary);
+}
 
-/* Referencias y notas al pie */
-.references { margin-top: 3rem; border-top: 1px solid var(--color-border); padding-top: 1.5rem; }
-.references h2 { font-size: 1.25rem; }
-.footnotes { margin-top: 2rem; border-top: 1px dashed var(--color-border); padding-top: 1rem; font-size: .95rem; color: var(--color-text-secondary); }
+.mjx-container[jax="CHTML"] {
+  line-height: 1.22;
+}
 
-/* Dark mode tuning */
+/* Bloques display: separación y overflow seguro (evita desbordes laterales) */
+.mjx-chtml.MathJax_CHTML_Display,
+.MathJax_Display,
+.mjx-chtml.MathJax_Display {
+  margin-block: 1.25em;
+  text-align: center;
+  overflow-x: auto;
+  overflow-y: visible;
+  padding-inline: .25rem;
+  /* pequeño respiro para scroll sombras */
+}
+
+/* Numeración (etiquetas) */
+.mjx-tag {
+  color: var(--color-text-muted);
+  padding-inline-start: .75rem;
+  min-inline-size: 3ch;
+  text-align: end;
+}
+
+/* Quita outlines fantasmas en navegación por teclado dentro de celdas MathJax */
+.mjx-mtd[tabindex="0"] {
+  outline: none;
+}
+
+/* Contenedor “.eq” opcional para ecuaciones numeradas personalizadas */
+.eq {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-block: 1em;
+}
+
+.eq .eq-label {
+  color: var(--color-text-muted);
+  margin-inline-start: 1rem;
+}
+
+/* -------------------------------------------------------------
+   Código, tablas y enlaces
+   ------------------------------------------------------------- */
+
+.typeset a {
+  color: var(--color-primary-600);
+  text-decoration: underline;
+  text-underline-offset: .15em;
+}
+
+.typeset a:hover {
+  text-decoration-thickness: .15em;
+}
+
+.typeset code,
+.leccion-contenido code {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
+  background: color-mix(in srgb, var(--color-primary-600) 8%, #fff);
+  padding: .15em .35em;
+  border-radius: .35em;
+}
+
+.typeset pre,
+.leccion-contenido pre {
+  padding: var(--space-6);
+  border-radius: var(--radius-xl);
+  background: color-mix(in srgb, var(--color-primary-600) 6%, #0f172a05);
+  overflow: auto;
+  border: 1px solid var(--color-border-light);
+}
+
+.typeset table,
+.leccion-contenido table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  margin-block: var(--space-8);
+  font-family: var(--font-family-sans);
+}
+
+.typeset th,
+.typeset td,
+.leccion-contenido th,
+.leccion-contenido td {
+  text-align: start;
+  padding: .75rem 1rem;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.typeset thead th,
+.leccion-contenido thead th {
+  position: sticky;
+  top: 0;
+  background: var(--color-surface);
+  font-weight: var(--font-weight-semibold);
+  border-bottom: 2px solid var(--color-border-strong);
+}
+
+/* -------------------------------------------------------------
+   Notas, referencias y pies
+   ------------------------------------------------------------- */
+
+.references {
+  margin-block-start: 3rem;
+  border-top: 1px solid var(--color-border);
+  padding-block-start: 1.5rem;
+}
+
+.references h2 {
+  font-size: 1.25rem;
+  font-family: var(--font-family-sans);
+}
+
+.footnotes {
+  margin-block-start: 2rem;
+  border-top: 1px dashed var(--color-border);
+  padding-block-start: 1rem;
+  font-size: .95rem;
+  color: var(--color-text-secondary);
+}
+
+/* -------------------------------------------------------------
+   MODO OSCURO COMPLETO - ULTRA ESPECÍFICO Y FORZADO
+   ------------------------------------------------------------- */
+
+/* Variables de modo oscuro - FORZADO PARA MATH.CSS */
+:root[data-theme="dark"],
+html[data-theme="dark"],
+body[data-theme="dark"],
+html.dark-mode,
+body.dark-mode,
+*[data-theme="dark"],
+*[data-theme="dark"] * {
+  --color-background: #0f172a !important;
+  --color-surface: #1e293b !important;
+  --color-surface-elevated: #334155 !important;
+  --color-text-primary: #f1f5f9 !important;
+  --color-text-secondary: #cbd5e1 !important;
+  --color-text-muted: #94a3b8 !important;
+  --color-border: #475569 !important;
+  --color-border-light: #334155 !important;
+  --color-gray-50: #1e293b !important;
+  --color-gray-100: #334155 !important;
+  --color-gray-200: #475569 !important;
+  --color-primary: #60a5fa !important;
+  --color-primary-50: #1e3a8a !important;
+  --color-primary-100: #1e40af !important;
+  --color-primary-200: #3b82f6 !important;
+  --color-primary-300: #60a5fa !important;
+  --color-primary-400: #93c5fd !important;
+  --color-primary-500: #60a5fa !important;
+  --color-primary-600: #3b82f6 !important;
+  --color-primary-700: #2563eb !important;
+  --color-primary-800: #1d4ed8 !important;
+}
+
+/* CONTENEDORES Y FONDO */
+:root[data-theme="dark"] body,
+html[data-theme="dark"] body,
+body[data-theme="dark"],
+:root[data-theme="dark"] html,
+html[data-theme="dark"] html,
+body[data-theme="dark"] html,
+html.dark-mode body,
+body.dark-mode,
+html.dark-mode,
+*[data-theme="dark"] body,
+*[data-theme="dark"] html {
+  background: #0f172a !important;
+  color: #f1f5f9 !important;
+  background-color: #0f172a !important;
+}
+
+/* ARTÍCULOS Y LECCIONES */
+:root[data-theme="dark"] .article-container,
+:root[data-theme="dark"] .contenedor-leccion,
+:root[data-theme="dark"] .leccion-contenido,
+:root[data-theme="dark"] .typeset,
+html[data-theme="dark"] .article-container,
+html[data-theme="dark"] .contenedor-leccion,
+html[data-theme="dark"] .leccion-contenido,
+html[data-theme="dark"] .typeset,
+body[data-theme="dark"] .article-container,
+body[data-theme="dark"] .contenedor-leccion,
+body[data-theme="dark"] .leccion-contenido,
+body[data-theme="dark"] .typeset,
+html.dark-mode .article-container,
+html.dark-mode .contenedor-leccion,
+html.dark-mode .leccion-contenido,
+html.dark-mode .typeset,
+body.dark-mode .article-container,
+body.dark-mode .contenedor-leccion,
+body.dark-mode .leccion-contenido,
+body.dark-mode .typeset {
+  background: #1e293b !important;
+  color: #f1f5f9 !important;
+  border-color: #475569 !important;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, .4), 0 12px 40px rgba(0, 0, 0, .5) !important;
+}
+
+/* TÍTULOS Y ENCABEZADOS */
+:root[data-theme="dark"] .article-title,
+:root[data-theme="dark"] .typeset h1,
+:root[data-theme="dark"] .leccion-contenido h1,
+:root[data-theme="dark"] .typeset h2,
+:root[data-theme="dark"] .leccion-contenido h2,
+:root[data-theme="dark"] .typeset h3,
+:root[data-theme="dark"] .leccion-contenido h3,
+:root[data-theme="dark"] .typeset h4,
+:root[data-theme="dark"] .leccion-contenido h4,
+html[data-theme="dark"] .article-title,
+html[data-theme="dark"] .typeset h1,
+html[data-theme="dark"] .leccion-contenido h1,
+html[data-theme="dark"] .typeset h2,
+html[data-theme="dark"] .leccion-contenido h2,
+html[data-theme="dark"] .typeset h3,
+html[data-theme="dark"] .leccion-contenido h3,
+html[data-theme="dark"] .typeset h4,
+html[data-theme="dark"] .leccion-contenido h4,
+body[data-theme="dark"] .article-title,
+body[data-theme="dark"] .typeset h1,
+body[data-theme="dark"] .leccion-contenido h1,
+body[data-theme="dark"] .typeset h2,
+body[data-theme="dark"] .leccion-contenido h2,
+body[data-theme="dark"] .typeset h3,
+body[data-theme="dark"] .leccion-contenido h3,
+body[data-theme="dark"] .typeset h4,
+body[data-theme="dark"] .leccion-contenido h4,
+html.dark-mode .article-title,
+html.dark-mode .typeset h1,
+html.dark-mode .leccion-contenido h1,
+html.dark-mode .typeset h2,
+html.dark-mode .leccion-contenido h2,
+html.dark-mode .typeset h3,
+html.dark-mode .leccion-contenido h3,
+html.dark-mode .typeset h4,
+html.dark-mode .leccion-contenido h4,
+body.dark-mode .article-title,
+body.dark-mode .typeset h1,
+body.dark-mode .leccion-contenido h1,
+body.dark-mode .typeset h2,
+body.dark-mode .leccion-contenido h2,
+body.dark-mode .typeset h3,
+body.dark-mode .leccion-contenido h3,
+body.dark-mode .typeset h4,
+body.dark-mode .leccion-contenido h4 {
+  background: linear-gradient(90deg, #c7d2fe, #818cf8) !important;
+  -webkit-background-clip: text !important;
+  background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+  color: #f1f5f9 !important;
+}
+
+/* PÁRRAFOS Y TEXTO */
+:root[data-theme="dark"] .typeset p,
+:root[data-theme="dark"] .leccion-contenido p,
+:root[data-theme="dark"] .typeset li,
+:root[data-theme="dark"] .leccion-contenido li,
+:root[data-theme="dark"] .typeset strong,
+:root[data-theme="dark"] .leccion-contenido strong,
+:root[data-theme="dark"] .typeset em,
+:root[data-theme="dark"] .leccion-contenido em,
+html[data-theme="dark"] .typeset p,
+html[data-theme="dark"] .leccion-contenido p,
+html[data-theme="dark"] .typeset li,
+html[data-theme="dark"] .leccion-contenido li,
+html[data-theme="dark"] .typeset strong,
+html[data-theme="dark"] .leccion-contenido strong,
+html[data-theme="dark"] .typeset em,
+html[data-theme="dark"] .leccion-contenido em,
+body[data-theme="dark"] .typeset p,
+body[data-theme="dark"] .leccion-contenido p,
+body[data-theme="dark"] .typeset li,
+body[data-theme="dark"] .leccion-contenido li,
+body[data-theme="dark"] .typeset strong,
+body[data-theme="dark"] .leccion-contenido strong,
+body[data-theme="dark"] .typeset em,
+body[data-theme="dark"] .leccion-contenido em,
+html.dark-mode .typeset p,
+html.dark-mode .leccion-contenido p,
+html.dark-mode .typeset li,
+html.dark-mode .leccion-contenido li,
+html.dark-mode .typeset strong,
+html.dark-mode .leccion-contenido strong,
+html.dark-mode .typeset em,
+html.dark-mode .leccion-contenido em,
+body.dark-mode .typeset p,
+body.dark-mode .leccion-contenido p,
+body.dark-mode .typeset li,
+body.dark-mode .leccion-contenido li,
+body.dark-mode .typeset strong,
+body.dark-mode .leccion-contenido strong,
+body.dark-mode .typeset em,
+body.dark-mode .leccion-contenido em {
+  color: #cbd5e1 !important;
+}
+
+/* CÓDIGO Y PRE */
 :root[data-theme="dark"] .typeset code,
+:root[data-theme="dark"] .leccion-contenido code,
+html[data-theme="dark"] .typeset code,
+html[data-theme="dark"] .leccion-contenido code,
+body[data-theme="dark"] .typeset code,
+body[data-theme="dark"] .leccion-contenido code,
 html.dark-mode .typeset code,
-body.dark-mode .typeset code { background: #0b1220; color: #e5e7eb; }
-:root[data-theme="dark"] .typeset pre,
-html.dark-mode .typeset pre,
-body.dark-mode .typeset pre { background: #0f172a; color: #e5e7eb; }
+html.dark-mode .leccion-contenido code,
+body.dark-mode .typeset code,
+body.dark-mode .leccion-contenido code {
+  background: #0b1220 !important;
+  color: #e5e7eb !important;
+  border-color: #374151 !important;
+}
 
-/* Responsive académico */
-@media (max-width: 768px){
-  .article-container { padding: 0 var(--space-4); }
-  .article-title { font-size: clamp(2rem, 6vw, 2.5rem); }
+:root[data-theme="dark"] .typeset pre,
+:root[data-theme="dark"] .leccion-contenido pre,
+html[data-theme="dark"] .typeset pre,
+html[data-theme="dark"] .leccion-contenido pre,
+body[data-theme="dark"] .typeset pre,
+body[data-theme="dark"] .leccion-contenido pre,
+html.dark-mode .typeset pre,
+html.dark-mode .leccion-contenido pre,
+body.dark-mode .typeset pre,
+body.dark-mode .leccion-contenido pre {
+  background: #0f172a !important;
+  color: #e5e7eb !important;
+  border-color: #374151 !important;
+}
+
+/* BLOQUES MATEMÁTICOS */
+:root[data-theme="dark"] .theorem,
+:root[data-theme="dark"] .lemma,
+:root[data-theme="dark"] .proposition,
+:root[data-theme="dark"] .corollary,
+:root[data-theme="dark"] .definition,
+:root[data-theme="dark"] .example,
+:root[data-theme="dark"] .proof,
+html[data-theme="dark"] .theorem,
+html[data-theme="dark"] .lemma,
+html[data-theme="dark"] .proposition,
+html[data-theme="dark"] .corollary,
+html[data-theme="dark"] .definition,
+html[data-theme="dark"] .example,
+html[data-theme="dark"] .proof,
+body[data-theme="dark"] .theorem,
+body[data-theme="dark"] .lemma,
+body[data-theme="dark"] .proposition,
+body[data-theme="dark"] .corollary,
+body[data-theme="dark"] .definition,
+body[data-theme="dark"] .example,
+body[data-theme="dark"] .proof,
+html.dark-mode .theorem,
+html.dark-mode .lemma,
+html.dark-mode .proposition,
+html.dark-mode .corollary,
+html.dark-mode .definition,
+html.dark-mode .example,
+html.dark-mode .proof,
+body.dark-mode .theorem,
+body.dark-mode .lemma,
+body.dark-mode .proposition,
+body.dark-mode .corollary,
+body.dark-mode .definition,
+body.dark-mode .example,
+body.dark-mode .proof {
+  background: rgba(30, 41, 59, 0.8) !important;
+  color: #cbd5e1 !important;
+  border-color: #475569 !important;
+}
+
+/* BLOCKQUOTES */
+:root[data-theme="dark"] .typeset blockquote,
+:root[data-theme="dark"] .leccion-contenido blockquote,
+html[data-theme="dark"] .typeset blockquote,
+html[data-theme="dark"] .leccion-contenido blockquote,
+body[data-theme="dark"] .typeset blockquote,
+body[data-theme="dark"] .leccion-contenido blockquote,
+html.dark-mode .typeset blockquote,
+html.dark-mode .leccion-contenido blockquote,
+body.dark-mode .typeset blockquote,
+body.dark-mode .leccion-contenido blockquote {
+  background: rgba(30, 41, 59, 0.6) !important;
+  color: #cbd5e1 !important;
+  border-color: #60a5fa !important;
+}
+
+/* FIGURAS Y TABLAS */
+:root[data-theme="dark"] .typeset figure,
+:root[data-theme="dark"] .leccion-contenido figure,
+:root[data-theme="dark"] .typeset table,
+:root[data-theme="dark"] .leccion-contenido table,
+html[data-theme="dark"] .typeset figure,
+html[data-theme="dark"] .leccion-contenido figure,
+html[data-theme="dark"] .typeset table,
+html[data-theme="dark"] .leccion-contenido table,
+body[data-theme="dark"] .typeset figure,
+body[data-theme="dark"] .leccion-contenido figure,
+body[data-theme="dark"] .typeset table,
+body[data-theme="dark"] .leccion-contenido table,
+html.dark-mode .typeset figure,
+html.dark-mode .leccion-contenido figure,
+html.dark-mode .typeset table,
+html.dark-mode .leccion-contenido table,
+body.dark-mode .typeset figure,
+body.dark-mode .leccion-contenido figure,
+body.dark-mode .typeset table,
+body.dark-mode .leccion-contenido table {
+  background: #1e293b !important;
+  color: #cbd5e1 !important;
+  border-color: #475569 !important;
+}
+
+/* ENLACES */
+:root[data-theme="dark"] .typeset a,
+:root[data-theme="dark"] .leccion-contenido a,
+html[data-theme="dark"] .typeset a,
+html[data-theme="dark"] .leccion-contenido a,
+body[data-theme="dark"] .typeset a,
+body[data-theme="dark"] .leccion-contenido a,
+html.dark-mode .typeset a,
+html.dark-mode .leccion-contenido a,
+body.dark-mode .typeset a,
+body.dark-mode .leccion-contenido a {
+  color: #60a5fa !important;
+}
+
+/* MATHJAX */
+:root[data-theme="dark"] .mjx-chtml,
+:root[data-theme="dark"] .MathJax,
+html[data-theme="dark"] .mjx-chtml,
+html[data-theme="dark"] .MathJax,
+body[data-theme="dark"] .mjx-chtml,
+body[data-theme="dark"] .MathJax,
+html.dark-mode .mjx-chtml,
+html.dark-mode .MathJax,
+body.dark-mode .mjx-chtml,
+body.dark-mode .MathJax {
+  color: #f1f5f9 !important;
+}
+
+/* -------------------------------------------------------------
+   Responsivo
+   ------------------------------------------------------------- */
+
+@media (max-width: 900px) {
+  .article-container {
+    padding-inline: var(--space-6);
+  }
+
+  .article-title {
+    font-size: clamp(1.9rem, 6vw, 2.4rem);
+  }
+
+  .typeset h1,
+  .leccion-contenido h1 {
+    margin-block: var(--space-12) var(--space-6);
+  }
+
+  .typeset h2,
+  .leccion-contenido h2 {
+    margin-block: var(--space-10) var(--space-5);
+  }
+
+  .typeset blockquote,
+  .leccion-contenido blockquote {
+    padding: var(--space-6) var(--space-6);
+  }
+
+  .leccion-contenido {
+    padding: var(--space-10) var(--space-6);
+  }
+}
+
+@media (max-width: 600px) {
+  .article-container {
+    padding-inline: var(--space-4);
+  }
+
+  .typeset,
+  .leccion-contenido {
+    font-size: 1.05rem;
+  }
+
+  .typeset figure,
+  .leccion-contenido figure {
+    padding: var(--space-4);
+  }
+}
+
+/* -------------------------------------------------------------
+   Interacción y accesibilidad extra
+   ------------------------------------------------------------- */
+
+*:focus-visible {
+  outline: 2px solid color-mix(in srgb, var(--color-primary-600) 70%, transparent);
+  outline-offset: 2px;
+  border-radius: .25rem;
+}
+
+::selection {
+  background: color-mix(in srgb, var(--color-primary-400) 32%, transparent);
+}
+
+/* Reduce motion */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation: none !important;
+    transition: none !important;
+  }
+}
+
+/* -------------------------------------------------------------
+   Impresión (PDF/print-friendly)
+   ------------------------------------------------------------- */
+
+@media print {
+  :root {
+    --color-text-primary: #000;
+    --color-text-secondary: #222;
+    --color-text-muted: #444;
+  }
+
+  .article-header,
+  .leccion-contenido,
+  .typeset figure,
+  .theorem,
+  .lemma,
+  .proposition,
+  .corollary,
+  .definition,
+  .example,
+  .proof {
+    box-shadow: none !important;
+    background: #fff !important;
+  }
+
+  .article-title {
+    -webkit-text-fill-color: currentColor !important;
+    background: none !important;
+    color: #000 !important;
+  }
+
+  a {
+    text-decoration: none;
+    color: #000;
+  }
+
+  .typeset pre,
+  .leccion-contenido pre {
+    border: 1px solid #ccc;
+  }
+
+  /* Control de viudas/huérfanas (soporte depende del motor) */
+  p,
+  blockquote {
+    orphans: 3;
+    widows: 3;
+  }
 }

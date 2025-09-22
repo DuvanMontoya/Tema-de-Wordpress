@@ -38,11 +38,11 @@ add_action('wp_head', function(){
 }, 1);
 
 /**
- * Dark mode toggle inline (añade botón accesible en body)
+ * Dark mode toggle inline (añade botón accesible en body) - VERSIÓN CORREGIDA
  */
 add_action('wp_footer', function(){
-    echo '<button id="modo-tema" class="boton" style="position:fixed; right:1rem; bottom:1rem; z-index:999; font-size:.75rem; padding:.55rem .9rem;">🌙</button>';
-    echo '<script>(function(){const b=document.getElementById("modo-tema");if(!b)return;const k="academia-color-scheme";const r=document.documentElement;function apl(v){r.dataset.modo=v;localStorage.setItem(k,v);b.textContent=v==="oscuro"?"☀️":"🌙";}let guard=localStorage.getItem(k);if(!guard){guard=window.matchMedia("(prefers-color-scheme: dark)").matches?"oscuro":"claro";}apl(guard);b.addEventListener("click",()=>{apl(r.dataset.modo==="oscuro"?"claro":"oscuro")});})();</script>';
+    echo '<button id="modo-tema" class="boton" style="position:fixed; right:1rem; bottom:1rem; z-index:999; font-size:.75rem; padding:.55rem .9rem; background:#fff; border:1px solid #ccc; border-radius:8px; cursor:pointer;">🌙</button>';
+    echo '<script>(function(){const b=document.getElementById("modo-tema");if(!b)return;const k="academia-color-scheme";const r=document.documentElement;function apl(v){r.setAttribute("data-theme",v);localStorage.setItem(k,v);b.textContent=v==="dark"?"☀️":"🌙";b.style.background=v==="dark"?"#334155":"#fff";b.style.color=v==="dark"?"#f1f5f9":"#333";}let guard=localStorage.getItem(k);if(!guard){guard=window.matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light";}apl(guard);b.addEventListener("click",()=>{apl(r.getAttribute("data-theme")==="dark"?"light":"dark")});})();</script>';
 });
 
 /**
