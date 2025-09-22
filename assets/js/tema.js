@@ -50,22 +50,10 @@
 
     /* =============================
        Botón copiar en bloques de código
+       (Desactivado: gestionado por Highlight.js en functions.php)
        ============================= */
-    $$('pre').forEach(pre=>{
-      if(pre.querySelector('.btn-copiar-codigo')) return;
-      const btn = document.createElement('button');
-      btn.type='button';
-      btn.className='btn-copiar-codigo';
-      btn.textContent='Copiar';
-      btn.addEventListener('click', ()=>{
-        const code = pre.querySelector('code');
-        if(!code) return;
-        navigator.clipboard.writeText(code.textContent).then(()=>{
-          btn.classList.add('ok'); btn.textContent='Copiado'; setTimeout(()=>{ btn.classList.remove('ok'); btn.textContent='Copiar'; }, 1800);
-        }).catch(()=>{ btn.textContent='Error'; setTimeout(()=>btn.textContent='Copiar', 1500); });
-      });
-      pre.appendChild(btn);
-    });
+    // Intencionalmente deshabilitado para evitar duplicados/estilos grandes
+    // $$('pre').forEach(() => {});
 
     /* =============================
        Autodetección media (iframe/video)

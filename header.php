@@ -722,15 +722,12 @@ if ( ! defined('ABSPATH') ) { exit; }
       border-color: var(--color-border) !important;
     }
 
+    /* No imponer estilos a pre para no interferir con highlight.js */
     :root[data-theme="dark"] .leccion-contenido pre,
     html[data-theme="dark"] .leccion-contenido pre,
     body[data-theme="dark"] .leccion-contenido pre,
     html.dark-mode .leccion-contenido pre,
-    body.dark-mode .leccion-contenido pre {
-      background: var(--color-surface-elevated) !important;
-      color: var(--color-text-primary) !important;
-      border-color: var(--color-border) !important;
-    }
+    body.dark-mode .leccion-contenido pre { all: unset; }
 
     /* MODO OSCURO PARA NUEVOS ELEMENTOS */
     :root[data-theme="dark"] .site-footer,

@@ -251,7 +251,7 @@ add_action('wp_footer', function() {
             
             // Contar líneas basándose en saltos de línea reales
             const codeText = codeBlock.textContent || codeBlock.innerText;
-            const lines = codeText.split('\\n');
+            const lines = codeText.replace(/\r\n/g, '\n').split('\n');
             
             // Remover última línea si está vacía
             const lineCount = lines[lines.length - 1].trim() === '' ? lines.length - 1 : lines.length;
