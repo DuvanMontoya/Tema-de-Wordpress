@@ -343,7 +343,8 @@ pre {
   border: none !important;
   border-radius: 0 !important;
   box-shadow: none !important;
-  background: transparent !important; /* dejar que .hljs pinte */
+  background: transparent !important;
+  /* dejar que .hljs pinte */
   overflow: visible !important;
   position: relative !important;
 }
@@ -355,11 +356,12 @@ pre code {
   font-family: 'Fira Code', 'Cascadia Code', 'Source Code Pro', 'Monaco', 'Menlo', 'Consolas', monospace !important;
   font-size: 0.95em !important;
   line-height: 1.55 !important;
-  background: transparent !important; /* .hljs controla colores */
+  background: transparent !important;
+  /* .hljs controla colores */
 }
 
 /* Código inline */
-:not(pre) > code {
+:not(pre)>code {
   background: var(--color-surface-elevated);
   color: var(--color-primary);
   padding: 0.2em 0.4em;
@@ -386,12 +388,14 @@ pre code {
 .hljs-literal,
 .hljs-section,
 .hljs-link {
-  color: #f92672 !important; /* Rosa/Magenta */
+  color: #f92672 !important;
+  /* Rosa/Magenta */
   font-weight: 500;
 }
 
 .hljs-function .hljs-keyword {
-  color: #66d9ef !important; /* Cyan */
+  color: #66d9ef !important;
+  /* Cyan */
 }
 
 .hljs-subst {
@@ -409,45 +413,52 @@ pre code {
 .hljs-variable,
 .hljs-template-tag,
 .hljs-template-variable {
-  color: #e6db74 !important; /* Amarillo */
+  color: #e6db74 !important;
+  /* Amarillo */
 }
 
 .hljs-comment,
 .hljs-quote,
 .hljs-deletion,
 .hljs-meta {
-  color: #75715e !important; /* Gris */
+  color: #75715e !important;
+  /* Gris */
   font-style: italic;
 }
 
 .hljs-number,
 .hljs-regexp,
 .hljs-literal {
-  color: #ae81ff !important; /* Violeta */
+  color: #ae81ff !important;
+  /* Violeta */
 }
 
 .hljs-built_in,
 .hljs-builtin-name,
 .hljs-class .hljs-title {
-  color: #a6e22e !important; /* Verde */
+  color: #a6e22e !important;
+  /* Verde */
   font-weight: 500;
 }
 
 .hljs-function,
 .hljs-function .hljs-title,
 .hljs-title.hljs-function {
-  color: #a6e22e !important; /* Verde para funciones */
+  color: #a6e22e !important;
+  /* Verde para funciones */
   font-weight: 600;
 }
 
 .hljs-attr,
 .hljs-variable,
 .hljs-property {
-  color: #f8f8f2 !important; /* Blanco */
+  color: #f8f8f2 !important;
+  /* Blanco */
 }
 
 .hljs-tag {
-  color: #f92672 !important; /* Rosa */
+  color: #f92672 !important;
+  /* Rosa */
 }
 
 .hljs-emphasis {
@@ -470,7 +481,8 @@ pre code {
 }
 
 .code-lines {
-  background: #49483e !important; /* Gutter oscuro Monokai */
+  background: #49483e !important;
+  /* Gutter oscuro Monokai */
   color: #75715e !important;
   padding: 1rem 0.75rem !important;
   user-select: none !important;
@@ -492,7 +504,8 @@ pre code {
 }
 
 .code-wrapper .hljs {
-  background: #272822 !important; /* Monokai puro */
+  background: #272822 !important;
+  /* Monokai puro */
   padding: 1rem !important;
 }
 
