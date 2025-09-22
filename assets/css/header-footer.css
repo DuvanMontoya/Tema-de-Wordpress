@@ -73,6 +73,11 @@ body.dark-mode {
   height: 100%;
 }
 
+.site-branding {
+  flex: 1;
+  text-align: center;
+}
+
 .site-branding .site-title {
   font-size: 1.5rem;
   font-weight: 600;
@@ -128,6 +133,96 @@ body.dark-mode {
 .register-link:hover {
   color: var(--color-primary);
   background: var(--color-primary-50);
+}
+
+/* Account Dropdown */
+.account-dropdown {
+  position: relative;
+  z-index: 1000;
+}
+
+.account-toggle {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  background: none;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-2) var(--space-4);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-weight: 500;
+  color: var(--color-text-secondary);
+}
+
+.account-toggle:hover {
+  border-color: var(--color-primary);
+  background: var(--color-primary-50);
+  color: var(--color-primary);
+}
+
+.user-avatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: 2px solid var(--color-border);
+}
+
+.account-name {
+  font-size: 0.9rem;
+  max-width: 100px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.account-chevron {
+  transition: transform 0.2s ease;
+}
+
+.account-dropdown[aria-expanded="true"] .account-chevron {
+  transform: rotate(180deg);
+}
+
+.account-menu {
+  position: absolute;
+  top: calc(100% + var(--space-2));
+  right: 0;
+  min-width: 220px;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+  padding: var(--space-2);
+}
+
+.account-menu-item {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-3) var(--space-4);
+  color: var(--color-text-secondary);
+  text-decoration: none;
+  border-radius: var(--radius-md);
+  transition: all 0.2s ease;
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+.account-menu-item:hover {
+  background: var(--color-primary-50);
+  color: var(--color-primary);
+}
+
+.account-menu-separator {
+  border: none;
+  border-top: 1px solid var(--color-border);
+  margin: var(--space-1) 0;
+}
+
+.account-menu-logout:hover {
+  background: var(--color-error-bg);
+  color: var(--color-error);
 }
 
 .mobile-menu-toggle {

@@ -5,13 +5,8 @@ get_header(); ?>
 
 <?php if (have_posts()) : ?>
   <div class="posts-grid">
-    <?php
-    $post_count = 0;
-    while (have_posts()) : the_post();
-      $post_count++;
-      $is_featured = ($post_count === 1); // Primer post como destacado
-    ?>
-      <article id="post-<?php the_ID(); ?>" <?php post_class('post-card' . ($is_featured ? ' post-card--featured' : '')); ?>>
+    <?php while (have_posts()) : the_post(); ?>
+      <article id="post-<?php the_ID(); ?>" <?php post_class('post-card'); ?>>
         <?php if (has_post_thumbnail()) : ?>
           <div class="post-image">
             <a href="<?php the_permalink(); ?>">
