@@ -8,7 +8,7 @@ if ( ! defined('ABSPATH') ) { exit; }
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 
 <?php if ( ! ( function_exists('academia_pro_is_tutor_dashboard') && academia_pro_is_tutor_dashboard() ) ) : ?>
-  <!-- CSS CRÍTICO DE EMERGENCIA - TOTAL OVERRIDE -->
+  <!-- CSS CRÍTICO DE EMERGENCIA TOTAL - SOLUCIONANDO TODOS LOS PROBLEMAS -->
   <style id="academia-emergency-css">
     /* RESET Y VARIABLES CRÍTICAS */
     :root {
@@ -36,6 +36,7 @@ if ( ! defined('ABSPATH') ) { exit; }
       --radius-2xl: 1.25rem;
       --shadow-sm: 0 1px 2px rgba(0, 0, 0, .05);
       --shadow-md: 0 6px 24px rgba(0, 0, 0, .08);
+      --radius-md: .5rem;
     }
 
     /* MODO OSCURO - ULTRA FORZADO */
@@ -65,7 +66,7 @@ if ( ! defined('ABSPATH') ) { exit; }
       padding: 0 !important;
     }
 
-    /* HEADER CENTRADO */
+    /* HEADER COMPLETAMENTE CENTRADO - SOLUCIÓN TOTAL */
     .site-header {
       background: var(--color-surface) !important;
       border-bottom: 1px solid var(--color-border) !important;
@@ -75,19 +76,28 @@ if ( ! defined('ABSPATH') ) { exit; }
     }
 
     .site-header__inner {
-      display: flex !important;
-      justify-content: space-between !important;
+      display: grid !important;
+      grid-template-columns: 1fr auto 1fr !important;
       align-items: center !important;
       width: 100% !important;
       max-width: 1400px !important;
       margin: 0 auto !important;
       padding: 0 24px !important;
       height: 72px !important;
+      gap: 16px !important;
+    }
+
+    .site-nav {
+      justify-self: start !important;
     }
 
     .site-branding {
-      flex: 1 !important;
+      justify-self: center !important;
       text-align: center !important;
+    }
+
+    .site-account {
+      justify-self: end !important;
     }
 
     .site-branding .site-title,
@@ -97,6 +107,110 @@ if ( ! defined('ABSPATH') ) { exit; }
       color: var(--color-text-primary) !important;
       text-decoration: none !important;
       margin: 0 !important;
+    }
+
+    /* DROPDOWN MENU FUNCIONAL - SOLUCIÓN COMPLETA */
+    .account-dropdown {
+      position: relative !important;
+      z-index: 1000 !important;
+    }
+
+    .account-toggle {
+      display: flex !important;
+      align-items: center !important;
+      gap: var(--space-2) !important;
+      background: none !important;
+      border: 1px solid var(--color-border) !important;
+      border-radius: var(--radius-lg) !important;
+      padding: var(--space-2) var(--space-4) !important;
+      cursor: pointer !important;
+      color: var(--color-text-secondary) !important;
+      transition: all 0.2s ease !important;
+    }
+
+    .account-toggle:hover {
+      border-color: var(--color-primary) !important;
+      background: var(--color-primary-50) !important;
+      color: var(--color-primary) !important;
+    }
+
+    .user-avatar {
+      width: 32px !important;
+      height: 32px !important;
+      border-radius: 50% !important;
+      border: 2px solid var(--color-border) !important;
+    }
+
+    .account-name {
+      font-size: 0.9rem !important;
+      max-width: 100px !important;
+      overflow: hidden !important;
+      text-overflow: ellipsis !important;
+      white-space: nowrap !important;
+    }
+
+    .account-chevron {
+      transition: transform 0.2s ease !important;
+    }
+
+    .account-toggle[aria-expanded="true"] .account-chevron {
+      transform: rotate(180deg) !important;
+    }
+
+    .account-menu {
+      position: absolute !important;
+      top: calc(100% + 8px) !important;
+      right: 0 !important;
+      min-width: 220px !important;
+      background: var(--color-surface) !important;
+      border: 1px solid var(--color-border) !important;
+      border-radius: var(--radius-lg) !important;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1) !important;
+      padding: var(--space-2) !important;
+      z-index: 9999 !important;
+      opacity: 0 !important;
+      visibility: hidden !important;
+      transform: translateY(-10px) !important;
+      transition: all 0.2s ease !important;
+      pointer-events: none !important;
+    }
+
+    .account-toggle[aria-expanded="true"] + .account-menu,
+    .account-dropdown[aria-expanded="true"] .account-menu {
+      opacity: 1 !important;
+      visibility: visible !important;
+      transform: translateY(0) !important;
+      pointer-events: all !important;
+      display: block !important;
+    }
+
+    .account-menu-item {
+      display: flex !important;
+      align-items: center !important;
+      gap: var(--space-2) !important;
+      padding: var(--space-3) var(--space-4) !important;
+      color: var(--color-text-secondary) !important;
+      text-decoration: none !important;
+      border-radius: var(--radius-md) !important;
+      transition: all 0.2s ease !important;
+      font-size: 0.9rem !important;
+      font-weight: 500 !important;
+    }
+
+    .account-menu-item:hover {
+      background: var(--color-primary-50) !important;
+      color: var(--color-primary) !important;
+    }
+
+    .account-menu-separator {
+      border: none !important;
+      border-top: 1px solid var(--color-border) !important;
+      margin: var(--space-1) 0 !important;
+    }
+
+    .account-menu-logout:hover {
+      background: #fef2f2 !important;
+      color: #dc2626 !important;
     }
 
     /* POSTS GRID - EMERGENCIA */
@@ -130,7 +244,7 @@ if ( ! defined('ABSPATH') ) { exit; }
       box-shadow: 0 16px 48px rgba(0, 0, 0, 0.12) !important;
     }
 
-    /* SINGLE POST - EMERGENCIA */
+    /* SINGLE POST - CONTENIDO ANCHO COMPLETO */
     .single-post-container {
       max-width: 1200px !important;
       margin: 0 auto !important;
@@ -143,18 +257,183 @@ if ( ! defined('ABSPATH') ) { exit; }
       overflow: hidden !important;
       box-shadow: var(--shadow-md) !important;
       width: 100% !important;
+      max-width: none !important;
     }
 
-    .single-post-body,
-    .single-post-content,
-    .wp-block-post-content,
-    .entry-content,
-    .page-content-wrapper {
+    .single-post-content {
+      width: 100% !important;
+      max-width: none !important;
+    }
+
+    .single-post-body {
       max-width: none !important;
       width: 100% !important;
       box-sizing: border-box !important;
       padding: var(--space-8) !important;
+    }
+
+    /* CONTENEDORES DE LECCIÓN - ESTRUCTURA PERFECTA */
+    .contenedor-leccion {
+      width: 100% !important;
+      max-width: none !important;
+      margin: 0 !important;
+      padding: var(--space-8) !important;
+      box-sizing: border-box !important;
+      background: var(--color-surface) !important;
+      border-radius: var(--radius-2xl) !important;
+      box-shadow: var(--shadow-md) !important;
+      border: 1px solid var(--color-border) !important;
+    }
+
+    .leccion-contenido {
+      width: 100% !important;
+      max-width: none !important;
+      margin: 0 !important;
+      padding: var(--space-6) !important;
+      box-sizing: border-box !important;
+      background: transparent !important;
+    }
+
+    /* ELEMENTOS DENTRO DE LECCION-CONTENIDO */
+    .leccion-contenido h1,
+    .leccion-contenido h2,
+    .leccion-contenido h3,
+    .leccion-contenido h4,
+    .leccion-contenido h5,
+    .leccion-contenido h6 {
       color: var(--color-text-primary) !important;
+      margin: var(--space-6) 0 var(--space-4) 0 !important;
+      line-height: 1.3 !important;
+      font-weight: 700 !important;
+    }
+
+    .leccion-contenido h2 {
+      font-size: clamp(1.5rem, 3vw, 2rem) !important;
+      border-bottom: 2px solid var(--color-primary) !important;
+      padding-bottom: var(--space-2) !important;
+    }
+
+    .leccion-contenido h3 {
+      font-size: clamp(1.25rem, 2.5vw, 1.75rem) !important;
+      color: var(--color-primary) !important;
+    }
+
+    .leccion-contenido p {
+      color: var(--color-text-secondary) !important;
+      line-height: 1.7 !important;
+      margin-bottom: var(--space-6) !important;
+      text-align: justify !important;
+      hyphens: auto !important;
+    }
+
+    .leccion-contenido strong {
+      color: var(--color-text-primary) !important;
+      font-weight: 600 !important;
+    }
+
+    .leccion-contenido em {
+      color: var(--color-primary) !important;
+      font-style: italic !important;
+    }
+
+    /* LISTAS */
+    .leccion-contenido ul,
+    .leccion-contenido ol {
+      margin: var(--space-4) 0 var(--space-6) 0 !important;
+      padding-left: var(--space-6) !important;
+    }
+
+    .leccion-contenido li {
+      color: var(--color-text-secondary) !important;
+      line-height: 1.6 !important;
+      margin-bottom: var(--space-2) !important;
+    }
+
+    .leccion-contenido li strong {
+      color: var(--color-text-primary) !important;
+    }
+
+    /* BLOCKQUOTES */
+    .leccion-contenido blockquote {
+      background: var(--color-primary-50) !important;
+      border-left: 4px solid var(--color-primary) !important;
+      margin: var(--space-6) 0 !important;
+      padding: var(--space-4) var(--space-6) !important;
+      border-radius: 0 var(--radius-lg) var(--radius-lg) 0 !important;
+      font-style: italic !important;
+      color: var(--color-text-primary) !important;
+    }
+
+    /* HR - SEPARADORES */
+    .leccion-contenido hr {
+      border: none !important;
+      height: 2px !important;
+      background: linear-gradient(to right, transparent, var(--color-border), transparent) !important;
+      margin: var(--space-8) 0 !important;
+    }
+
+    /* CAJAS ESPECIALES - DEFINITION, EXAMPLE, ETC */
+    .leccion-contenido .definition,
+    .leccion-contenido .example,
+    .leccion-contenido .theorem,
+    .leccion-contenido .proposition,
+    .leccion-contenido .corollary,
+    .leccion-contenido .lemma,
+    .leccion-contenido .proof {
+      background: var(--color-surface-elevated) !important;
+      border: 1px solid var(--color-border) !important;
+      border-radius: var(--radius-lg) !important;
+      padding: var(--space-6) !important;
+      margin: var(--space-6) 0 !important;
+      box-shadow: var(--shadow-sm) !important;
+      position: relative !important;
+    }
+
+    .leccion-contenido .definition {
+      border-left: 4px solid #10b981 !important;
+      background: #f0fdf4 !important;
+    }
+
+    .leccion-contenido .example {
+      border-left: 4px solid #f59e0b !important;
+      background: #fffbeb !important;
+    }
+
+    .leccion-contenido .theorem,
+    .leccion-contenido .proposition,
+    .leccion-contenido .corollary,
+    .leccion-contenido .lemma {
+      border-left: 4px solid var(--color-primary) !important;
+      background: var(--color-primary-50) !important;
+    }
+
+    /* MATEMÁTICAS - MATHJAX */
+    .leccion-contenido .MathJax,
+    .leccion-contenido .mjx-chtml,
+    .leccion-contenido mjx-container {
+      color: var(--color-text-primary) !important;
+      font-size: 1.1em !important;
+    }
+
+    /* CÓDIGO Y PRE */
+    .leccion-contenido code {
+      background: var(--color-surface-elevated) !important;
+      color: var(--color-primary) !important;
+      padding: 0.2em 0.4em !important;
+      border-radius: 4px !important;
+      font-family: 'Courier New', monospace !important;
+      font-size: 0.9em !important;
+      border: 1px solid var(--color-border) !important;
+    }
+
+    .leccion-contenido pre {
+      background: var(--color-surface-elevated) !important;
+      color: var(--color-text-primary) !important;
+      padding: var(--space-4) !important;
+      border-radius: var(--radius-lg) !important;
+      overflow-x: auto !important;
+      border: 1px solid var(--color-border) !important;
+      margin: var(--space-4) 0 !important;
     }
 
     /* TÍTULOS */
@@ -168,14 +447,33 @@ if ( ! defined('ABSPATH') ) { exit; }
       margin: var(--space-8) 0 !important;
     }
 
-    /* PÁRRAFOS Y CONTENIDO */
+    /* PÁRRAFOS Y CONTENIDO - RESPETANDO EL ANCHO */
     .single-post-body p,
+    .leccion-contenido p,
+    .contenedor-leccion p,
     .wp-block-post-content p,
     .entry-content p,
     .page-content-wrapper p {
       color: var(--color-text-secondary) !important;
       line-height: 1.7 !important;
       margin-bottom: var(--space-6) !important;
+      max-width: none !important;
+      width: 100% !important;
+    }
+
+    /* ELEMENTOS MATEMÁTICOS Y ESPECIALES */
+    .single-post-body .theorem,
+    .single-post-body .definition,
+    .single-post-body .example,
+    .leccion-contenido .theorem,
+    .leccion-contenido .definition,
+    .leccion-contenido .example,
+    .contenedor-leccion .theorem,
+    .contenedor-leccion .definition,
+    .contenedor-leccion .example {
+      width: 100% !important;
+      max-width: none !important;
+      box-sizing: border-box !important;
     }
 
     /* FOOTER */
@@ -188,56 +486,114 @@ if ( ! defined('ABSPATH') ) { exit; }
       color: var(--color-text-primary) !important;
     }
 
-    /* DROPDOWN MENU */
-    .account-dropdown {
-      position: relative !important;
-      z-index: 1000 !important;
+    .footer-title {
+      color: var(--color-text-primary) !important;
     }
 
-    .account-toggle {
-      display: flex !important;
-      align-items: center !important;
-      gap: var(--space-2) !important;
-      background: none !important;
-      border: 1px solid var(--color-border) !important;
-      border-radius: var(--radius-lg) !important;
-      padding: var(--space-2) var(--space-4) !important;
-      cursor: pointer !important;
+    .footer-meta,
+    .footer-created {
       color: var(--color-text-secondary) !important;
     }
 
-    .account-menu {
-      position: absolute !important;
-      top: calc(100% + 8px) !important;
-      right: 0 !important;
-      min-width: 220px !important;
+    /* MODO OSCURO PARA ELEMENTOS DE LECCIÓN */
+    :root[data-theme="dark"] .contenedor-leccion,
+    html[data-theme="dark"] .contenedor-leccion,
+    body[data-theme="dark"] .contenedor-leccion,
+    html.dark-mode .contenedor-leccion,
+    body.dark-mode .contenedor-leccion {
       background: var(--color-surface) !important;
-      border: 1px solid var(--color-border) !important;
-      border-radius: var(--radius-lg) !important;
-      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1) !important;
-      padding: var(--space-2) !important;
-      z-index: 9999 !important;
-      display: none !important;
+      border-color: var(--color-border) !important;
     }
 
-    .account-dropdown[aria-expanded="true"] .account-menu {
-      display: block !important;
+    :root[data-theme="dark"] .leccion-contenido blockquote,
+    html[data-theme="dark"] .leccion-contenido blockquote,
+    body[data-theme="dark"] .leccion-contenido blockquote,
+    html.dark-mode .leccion-contenido blockquote,
+    body.dark-mode .leccion-contenido blockquote {
+      background: rgba(79, 70, 229, 0.1) !important;
+      border-left-color: var(--color-primary) !important;
+      color: var(--color-text-primary) !important;
     }
 
-    .account-menu-item {
-      display: flex !important;
-      align-items: center !important;
-      gap: var(--space-2) !important;
-      padding: var(--space-3) var(--space-4) !important;
-      color: var(--color-text-secondary) !important;
-      text-decoration: none !important;
-      border-radius: var(--radius-md) !important;
-      transition: all 0.2s ease !important;
+    :root[data-theme="dark"] .leccion-contenido .definition,
+    html[data-theme="dark"] .leccion-contenido .definition,
+    body[data-theme="dark"] .leccion-contenido .definition,
+    html.dark-mode .leccion-contenido .definition,
+    body.dark-mode .leccion-contenido .definition {
+      background: rgba(16, 185, 129, 0.1) !important;
+      border-left-color: #10b981 !important;
+      border-color: var(--color-border) !important;
     }
 
-    .account-menu-item:hover {
-      background: var(--color-primary-50) !important;
+    :root[data-theme="dark"] .leccion-contenido .example,
+    html[data-theme="dark"] .leccion-contenido .example,
+    body[data-theme="dark"] .leccion-contenido .example,
+    html.dark-mode .leccion-contenido .example,
+    body.dark-mode .leccion-contenido .example {
+      background: rgba(245, 158, 11, 0.1) !important;
+      border-left-color: #f59e0b !important;
+      border-color: var(--color-border) !important;
+    }
+
+    :root[data-theme="dark"] .leccion-contenido .theorem,
+    :root[data-theme="dark"] .leccion-contenido .proposition,
+    :root[data-theme="dark"] .leccion-contenido .corollary,
+    :root[data-theme="dark"] .leccion-contenido .lemma,
+    html[data-theme="dark"] .leccion-contenido .theorem,
+    html[data-theme="dark"] .leccion-contenido .proposition,
+    html[data-theme="dark"] .leccion-contenido .corollary,
+    html[data-theme="dark"] .leccion-contenido .lemma,
+    body[data-theme="dark"] .leccion-contenido .theorem,
+    body[data-theme="dark"] .leccion-contenido .proposition,
+    body[data-theme="dark"] .leccion-contenido .corollary,
+    body[data-theme="dark"] .leccion-contenido .lemma,
+    html.dark-mode .leccion-contenido .theorem,
+    html.dark-mode .leccion-contenido .proposition,
+    html.dark-mode .leccion-contenido .corollary,
+    html.dark-mode .leccion-contenido .lemma,
+    body.dark-mode .leccion-contenido .theorem,
+    body.dark-mode .leccion-contenido .proposition,
+    body.dark-mode .leccion-contenido .corollary,
+    body.dark-mode .leccion-contenido .lemma {
+      background: rgba(79, 70, 229, 0.1) !important;
+      border-left-color: var(--color-primary) !important;
+      border-color: var(--color-border) !important;
+    }
+
+    :root[data-theme="dark"] .leccion-contenido code,
+    html[data-theme="dark"] .leccion-contenido code,
+    body[data-theme="dark"] .leccion-contenido code,
+    html.dark-mode .leccion-contenido code,
+    body.dark-mode .leccion-contenido code {
+      background: var(--color-surface-elevated) !important;
       color: var(--color-primary) !important;
+      border-color: var(--color-border) !important;
+    }
+
+    :root[data-theme="dark"] .leccion-contenido pre,
+    html[data-theme="dark"] .leccion-contenido pre,
+    body[data-theme="dark"] .leccion-contenido pre,
+    html.dark-mode .leccion-contenido pre,
+    body.dark-mode .leccion-contenido pre {
+      background: var(--color-surface-elevated) !important;
+      color: var(--color-text-primary) !important;
+      border-color: var(--color-border) !important;
+    }
+
+    /* MOBILE RESPONSIVO */
+    @media (max-width: 768px) {
+      .site-header__inner {
+        grid-template-columns: auto 1fr auto !important;
+        gap: 8px !important;
+      }
+      
+      .site-nav {
+        display: none !important;
+      }
+      
+      .mobile-menu-toggle {
+        display: block !important;
+      }
     }
   </style>
 <?php endif; ?>
@@ -267,39 +623,75 @@ if ( ! defined('ABSPATH') ) { exit; }
 
   // Simple dropdown toggle
   document.addEventListener('DOMContentLoaded', function() {
+    console.log('DOM loaded - setting up dropdown');
+    
     const dropdown = document.querySelector('.account-dropdown');
     if (dropdown) {
       const toggle = dropdown.querySelector('.account-toggle');
       const menu = dropdown.querySelector('.account-menu');
 
+      console.log('Dropdown elements found:', { dropdown, toggle, menu });
+
       if (toggle && menu) {
+        // Function to close dropdown
+        function closeDropdown() {
+          toggle.setAttribute('aria-expanded', 'false');
+          dropdown.setAttribute('aria-expanded', 'false');
+          menu.hidden = true;
+          menu.style.display = 'none';
+          menu.style.opacity = '0';
+          menu.style.visibility = 'hidden';
+          menu.style.transform = 'translateY(-10px)';
+          menu.style.pointerEvents = 'none';
+          console.log('Dropdown closed');
+        }
+
+        // Function to open dropdown
+        function openDropdown() {
+          toggle.setAttribute('aria-expanded', 'true');
+          dropdown.setAttribute('aria-expanded', 'true');
+          menu.hidden = false;
+          menu.style.display = 'block';
+          menu.style.opacity = '1';
+          menu.style.visibility = 'visible';
+          menu.style.transform = 'translateY(0)';
+          menu.style.pointerEvents = 'all';
+          console.log('Dropdown opened');
+        }
+
+        // Toggle dropdown on click
         toggle.addEventListener('click', function(e) {
           e.preventDefault();
           e.stopPropagation();
+          console.log('Toggle clicked');
+          
           const isExpanded = toggle.getAttribute('aria-expanded') === 'true';
-          toggle.setAttribute('aria-expanded', isExpanded ? 'false' : 'true');
-          menu.hidden = isExpanded;
-          menu.style.display = isExpanded ? 'none' : 'block';
+          if (isExpanded) {
+            closeDropdown();
+          } else {
+            openDropdown();
+          }
         });
 
         // Close on outside click
         document.addEventListener('click', function(e) {
           if (!dropdown.contains(e.target)) {
-            toggle.setAttribute('aria-expanded', 'false');
-            menu.hidden = true;
-            menu.style.display = 'none';
+            closeDropdown();
           }
         });
 
         // Close on escape key
         document.addEventListener('keydown', function(e) {
           if (e.key === 'Escape') {
-            toggle.setAttribute('aria-expanded', 'false');
-            menu.hidden = true;
-            menu.style.display = 'none';
+            closeDropdown();
           }
         });
+
+        // Ensure dropdown starts closed
+        closeDropdown();
       }
+    } else {
+      console.log('No dropdown found');
     }
   });
 </script>

@@ -76,16 +76,23 @@
 
 .article-container,
 .contenedor-leccion {
-  /* Medida óptima con respiración, sin exceder legibilidad */
-  max-width: clamp(62ch, 75vw, 88ch);
+  /* Medida óptima por defecto */
+  max-width: 100%;
   margin-inline: auto;
   padding-inline: clamp(var(--space-6), 5vw, var(--space-12));
+}
+
+/* OVERRIDE para WordPress entradas/lecciones: ocupar todo el ancho del contenedor padre */
+.contenedor-leccion {
+  max-width: 100%;
+  margin-inline: 0;
+  padding-inline: clamp(var(--space-6), 3vw, var(--space-10));
 }
 
 /* Variante para secciones que sí requieren anchura mayor (figuras complejas, ecuaciones anchas) */
 .article-container.is-wide,
 .contenedor-leccion.is-wide {
-  max-width: clamp(72ch, 85vw, 100ch);
+  max-width: 100%;
 }
 
 .leccion-contenido {
