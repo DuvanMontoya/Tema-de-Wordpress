@@ -1,13 +1,29 @@
 /* =====================================
-   POSTS GRID LIMPIO Y MODERNO
+   BLOG LIMPIO Y ELEGANTE
+   Diseño académico, moderno y proporcionado
    ===================================== */
 
+/* Variables específicas del blog */
+:root {
+  --blog-container-width: 1200px;
+  --blog-card-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+  --blog-card-shadow-hover: 0 4px 16px rgba(0, 0, 0, 0.1);
+  --blog-card-radius: 12px;
+}
+
+/* Contenedor principal del blog */
+.posts-grid {
+  max-width: var(--blog-container-width);
+  margin: 0 auto;
+  padding: var(--space-8) var(--space-6);
+}
+
+/* Grid de posts limpio y proporcionado */
 .posts-grid {
   display: grid !important;
-  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr)) !important;
-  gap: var(--space-12) !important;
-  margin-bottom: var(--space-24) !important;
-  padding: 0 var(--space-8) !important;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)) !important;
+  gap: var(--space-8) !important;
+  margin-bottom: var(--space-16) !important;
   align-items: start !important;
 }
 
@@ -102,11 +118,9 @@
 
   /* Colores específicos */
   --blog-card-bg: var(--color-surface-elevated);
-  --blog-featured-overlay: linear-gradient(
-    135deg,
-    rgba(0, 0, 0, 0.3) 0%,
-    rgba(0, 0, 0, 0.7) 100%
-  );
+  --blog-featured-overlay: linear-gradient(135deg,
+      rgba(0, 0, 0, 0.3) 0%,
+      rgba(0, 0, 0, 0.7) 100%);
   --blog-meta-bg: var(--color-gray-100);
   --blog-tag-bg: var(--color-primary-50);
 
@@ -133,11 +147,9 @@
    ===================================== */
 
 .blog-header {
-  background: linear-gradient(
-    135deg,
-    var(--color-primary-50) 0%,
-    var(--color-gray-50) 100%
-  );
+  background: linear-gradient(135deg,
+      var(--color-primary-50) 0%,
+      var(--color-gray-50) 100%);
   border-radius: var(--blog-card-radius);
   padding: var(--space-16) var(--space-8);
   margin-bottom: var(--space-16);
@@ -361,68 +373,55 @@
    TARJETAS DE POSTS PREMIUM
    ===================================== */
 
-.post-card {
+/* Tarjetas elegantes y limpias */
+.post-card,
+body .post-card,
+html .post-card {
   background: var(--color-surface) !important;
-  border-radius: var(--radius-2xl) !important;
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08) !important;
+  border-radius: var(--blog-card-radius) !important;
+  box-shadow: var(--blog-card-shadow) !important;
   border: 1px solid var(--color-border) !important;
   overflow: hidden !important;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+  transition: all 0.3s ease !important;
   display: flex !important;
   flex-direction: column !important;
   position: relative !important;
   height: 100% !important;
-  cursor: pointer !important;
 }
 
-.post-card:hover {
-  box-shadow: var(--blog-card-shadow-hover);
-  transform: translateY(-4px);
-  border-color: var(--color-border-hover);
+.post-card:hover,
+body .post-card:hover,
+html .post-card:hover {
+  box-shadow: var(--blog-card-shadow-hover) !important;
+  transform: translateY(-2px) !important;
+  border-color: var(--color-border-hover) !important;
 }
 
-/* Post destacado grande */
-.post-card--featured {
-  grid-column: 1 / -1;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  min-height: var(--blog-featured-height);
+/* Eliminar post destacado - todas las tarjetas iguales */
+
+/* Imagen del post elegante */
+.post-image,
+body .post-image,
+html .post-image {
+  position: relative !important;
+  aspect-ratio: 16/9 !important;
+  overflow: hidden !important;
+  background: var(--color-gray-100) !important;
 }
 
-.post-card--featured .post-image {
-  order: 2;
-}
+/* Eliminar estilos de post destacado */
 
-.post-card--featured .post-content {
-  order: 1;
-  padding: var(--space-12);
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-}
-
-/* Imagen del post */
-.post-image {
-  position: relative;
-  aspect-ratio: 16/9;
-  overflow: hidden;
-  background: var(--color-gray-200);
-}
-
-.post-card--featured .post-image {
-  aspect-ratio: unset;
-  height: 100%;
-}
-
-.post-image img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  transition: var(--transition-slow);
+.post-image img,
+body .post-image img,
+html .post-image img {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important;
+  transition: transform 0.3s ease !important;
 }
 
 .post-card:hover .post-image img {
-  transform: scale(1.05);
+  transform: scale(1.02) !important;
 }
 
 .post-image-overlay {
@@ -453,50 +452,93 @@
   backdrop-filter: blur(10px);
 }
 
-/* Contenido del post */
-.post-content {
-  padding: var(--space-10);
-  display: flex;
-  flex-direction: column;
-  flex: 1;
-  gap: var(--space-5);
-  justify-content: space-between;
+/* Contenido del post limpio */
+.post-content,
+body .post-content,
+html .post-content {
+  padding: var(--space-6) !important;
+  display: flex !important;
+  flex-direction: column !important;
+  flex: 1 !important;
+  gap: var(--space-4) !important;
+  justify-content: space-between !important;
 }
 
-.post-meta {
-  display: flex;
-  align-items: center;
-  gap: var(--space-4);
-  margin-bottom: var(--space-4);
-  flex-wrap: wrap;
+/* Meta información limpia */
+.post-meta,
+body .post-meta,
+html .post-meta {
+  display: flex !important;
+  align-items: center !important;
+  gap: var(--space-3) !important;
+  margin-bottom: var(--space-3) !important;
+  flex-wrap: wrap !important;
+  font-size: 0.875rem !important;
+  color: var(--color-text-muted) !important;
+  font-weight: 500 !important;
 }
 
-.post-category {
-  background: var(--blog-tag-bg);
-  color: var(--color-primary);
-  padding: var(--space-1) var(--space-3);
-  border-radius: var(--radius-full);
-  font-size: var(--font-size-xs);
-  font-weight: var(--font-weight-bold);
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  text-decoration: none;
-  transition: var(--transition-fast);
+.post-category,
+body .post-category,
+html .post-category {
+  background: var(--color-primary-50) !important;
+  color: var(--color-primary) !important;
+  padding: var(--space-1) var(--space-3) !important;
+  border-radius: var(--radius-full) !important;
+  font-size: 0.75rem !important;
+  font-weight: 600 !important;
+  text-decoration: none !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.05em !important;
+  transition: all 0.2s ease !important;
 }
 
-.post-category:hover {
-  background: var(--color-primary);
-  color: white;
-  text-decoration: none;
+.post-category:hover,
+body .post-category:hover,
+html .post-category:hover {
+  background: var(--color-primary) !important;
+  color: white !important;
+  text-decoration: none !important;
 }
 
-.post-date {
+/* Elementos de meta ultra-elegantes */
+.post-date,
+.post-reading-time,
+body .post-date,
+body .post-reading-time,
+html .post-date,
+html .post-reading-time {
+  color: var(--color-text-muted) !important;
+  font-size: 0.8rem !important;
+  font-weight: 500 !important;
+  display: flex !important;
+  align-items: center !important;
+  gap: var(--space-1) !important;
+  letter-spacing: 0.025em !important;
+}
+
+.post-date svg,
+.post-reading-time svg {
+  opacity: 0.7;
+  transition: opacity 0.2s ease;
+}
+
+.post-card:hover .post-date svg,
+.post-card:hover .post-reading-time svg {
+  opacity: 1;
+}
+
+/* Placeholder para posts sin imagen */
+.post-image--placeholder {
+  background: linear-gradient(135deg, #f8fafc 0%, #e5e7eb 100%) !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+
+.post-placeholder-content {
   color: var(--color-text-muted);
-  font-size: var(--font-size-sm);
-  font-weight: var(--font-weight-medium);
-  display: flex;
-  align-items: center;
-  gap: var(--space-1);
+  opacity: 0.5;
 }
 
 .post-reading-time {
@@ -508,25 +550,37 @@
   gap: var(--space-1);
 }
 
-.post-title {
-  font-family: var(--font-family-display);
-  font-size: var(--font-size-xl);
-  font-weight: var(--font-weight-bold);
-  color: var(--color-text-primary);
-  line-height: 1.3;
-  margin-bottom: var(--space-4);
-  text-decoration: none;
-  transition: var(--transition-fast);
-  letter-spacing: -0.015em;
+/* Título del post elegante */
+.post-title,
+body .post-title,
+html .post-title {
+  font-size: 1.25rem !important;
+  font-weight: 600 !important;
+  color: var(--color-text-primary) !important;
+  line-height: 1.4 !important;
+  margin-bottom: var(--space-3) !important;
+  text-decoration: none !important;
+  transition: color 0.2s ease !important;
 }
 
-.post-card--featured .post-title {
-  font-size: var(--font-size-3xl);
+.post-title a,
+body .post-title a,
+html .post-title a {
+  color: var(--color-text-primary) !important;
+  text-decoration: none !important;
+  transition: inherit !important;
 }
 
-.post-title:hover {
-  color: var(--color-primary);
-  text-decoration: none;
+/* Eliminar estilos de post destacado */
+
+.post-title:hover,
+.post-title a:hover,
+body .post-title:hover,
+body .post-title a:hover,
+html .post-title:hover,
+html .post-title a:hover {
+  color: var(--color-primary) !important;
+  text-decoration: none !important;
 }
 
 .post-excerpt {
@@ -548,12 +602,16 @@
   line-clamp: 4;
 }
 
-.post-footer {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding-top: var(--space-4);
-  border-top: 1px solid var(--color-border);
+/* Footer del post ultra-elegante */
+.post-footer,
+body .post-footer,
+html .post-footer {
+  display: flex !important;
+  justify-content: space-between !important;
+  align-items: center !important;
+  margin-top: auto !important;
+  padding-top: var(--space-6) !important;
+  border-top: 1px solid rgba(226, 232, 240, 0.5) !important;
 }
 
 .post-author {
@@ -572,29 +630,32 @@
   text-decoration: none;
 }
 
-.author-avatar {
-  width: 32px;
-  height: 32px;
-  border-radius: var(--radius-full);
-  object-fit: cover;
-  border: 2px solid var(--color-border);
+/* Avatar y botón read-more limpios */
+.author-avatar,
+body .author-avatar,
+html .author-avatar {
+  width: 32px !important;
+  height: 32px !important;
+  border-radius: 50% !important;
+  object-fit: cover !important;
+  border: 2px solid var(--color-border) !important;
 }
 
-.read-more {
-  color: var(--color-primary);
-  text-decoration: none;
-  font-size: var(--font-size-sm);
-  font-weight: var(--font-weight-semibold);
-  display: flex;
-  align-items: center;
-  gap: var(--space-1);
-  transition: var(--transition-fast);
+.read-more,
+body .read-more,
+html .read-more {
+  color: var(--color-primary) !important;
+  text-decoration: none !important;
+  font-size: 0.875rem !important;
+  font-weight: 600 !important;
+  transition: color 0.2s ease !important;
 }
 
-.read-more:hover {
-  color: var(--color-primary-hover);
-  text-decoration: none;
-  transform: translateX(4px);
+.read-more:hover,
+body .read-more:hover,
+html .read-more:hover {
+  color: var(--color-primary-hover) !important;
+  text-decoration: none !important;
 }
 
 /* =====================================
@@ -934,6 +995,7 @@
 
 /* Soporte para usuarios que prefieren reducir movimiento */
 @media (prefers-reduced-motion: reduce) {
+
   .post-card,
   .post-card:hover {
     transform: none;
@@ -1097,6 +1159,7 @@
     opacity: 0;
     transform: translateY(30px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);
@@ -1110,18 +1173,23 @@
 .post-card:nth-child(1) {
   animation-delay: 0.1s;
 }
+
 .post-card:nth-child(2) {
   animation-delay: 0.2s;
 }
+
 .post-card:nth-child(3) {
   animation-delay: 0.3s;
 }
+
 .post-card:nth-child(4) {
   animation-delay: 0.4s;
 }
+
 .post-card:nth-child(5) {
   animation-delay: 0.5s;
 }
+
 .post-card:nth-child(6) {
   animation-delay: 0.6s;
 }
@@ -1514,7 +1582,8 @@ body[data-theme="dark"] .single-post-body h6 {
   }
 
   .post-image-overlay {
-    display: none; /* Evitar overlays en móviles táctiles */
+    display: none;
+    /* Evitar overlays en móviles táctiles */
   }
 }
 
@@ -1528,13 +1597,18 @@ body[data-theme="dark"] .single-post-body h6 {
   content: '';
   position: absolute;
   inset: 0;
-  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
   animation: shimmer 1.5s infinite;
 }
 
 @keyframes shimmer {
-  0% { transform: translateX(-100%); }
-  100% { transform: translateX(100%); }
+  0% {
+    transform: translateX(-100%);
+  }
+
+  100% {
+    transform: translateX(100%);
+  }
 }
 
 /* Mejora de feedback visual */
@@ -1559,6 +1633,122 @@ html {
   will-change: transform;
   backface-visibility: hidden;
   transform: translateZ(0);
+}
+
+/* =====================================
+   PAGINACIÓN ULTRA-ELEGANTE 
+   ===================================== */
+
+.blog-pagination,
+body .blog-pagination,
+html .blog-pagination {
+  margin-top: var(--space-20) !important;
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+  gap: var(--space-3) !important;
+  padding: var(--space-8) 0 !important;
+}
+
+.blog-pagination .navigation {
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+  gap: var(--space-3) !important;
+  flex-wrap: wrap !important;
+}
+
+.blog-pagination .page-numbers {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  min-width: 44px !important;
+  height: 44px !important;
+  padding: var(--space-2) var(--space-3) !important;
+  border-radius: 12px !important;
+  font-size: 0.875rem !important;
+  font-weight: 600 !important;
+  text-decoration: none !important;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+  background: rgba(99, 102, 241, 0.05) !important;
+  border: 1px solid rgba(99, 102, 241, 0.1) !important;
+  color: var(--color-primary) !important;
+  backdrop-filter: blur(8px) !important;
+}
+
+.blog-pagination .page-numbers:hover,
+.blog-pagination .page-numbers.current {
+  background: var(--color-primary) !important;
+  color: white !important;
+  border-color: var(--color-primary) !important;
+  transform: translateY(-1px) !important;
+  box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3) !important;
+}
+
+.blog-pagination .page-numbers.dots {
+  background: transparent !important;
+  border: none !important;
+  color: var(--color-text-muted) !important;
+  cursor: default !important;
+}
+
+.blog-pagination .page-numbers.dots:hover {
+  transform: none !important;
+  box-shadow: none !important;
+}
+
+/* =====================================
+   MODO OSCURO PARA BLOG EDITORIAL
+   ===================================== */
+
+:root[data-theme="dark"] .blog-editorial-header,
+html.dark-mode .blog-editorial-header,
+body.dark-mode .blog-editorial-header {
+  background: linear-gradient(135deg,
+      rgba(30, 41, 59, 0.8) 0%,
+      rgba(15, 23, 42, 0.9) 50%,
+      rgba(15, 23, 42, 1) 100%) !important;
+  border-bottom-color: rgba(71, 85, 105, 0.6) !important;
+}
+
+:root[data-theme="dark"] .blog-stat,
+html.dark-mode .blog-stat,
+body.dark-mode .blog-stat {
+  background: rgba(30, 41, 59, 0.8) !important;
+  border-color: rgba(71, 85, 105, 0.5) !important;
+}
+
+:root[data-theme="dark"] .blog-editorial-title,
+html.dark-mode .blog-editorial-title,
+body.dark-mode .blog-editorial-title {
+  background: linear-gradient(135deg, var(--color-text-primary) 0%, var(--color-primary) 100%) !important;
+  -webkit-background-clip: text !important;
+  background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+}
+
+:root[data-theme="dark"] .post-image--placeholder,
+html.dark-mode .post-image--placeholder,
+body.dark-mode .post-image--placeholder {
+  background: linear-gradient(135deg, rgba(30, 41, 59, 1) 0%, rgba(51, 65, 85, 1) 100%) !important;
+}
+
+:root[data-theme="dark"] .blog-pagination .page-numbers,
+html.dark-mode .blog-pagination .page-numbers,
+body.dark-mode .blog-pagination .page-numbers {
+  background: rgba(96, 165, 250, 0.1) !important;
+  border-color: rgba(96, 165, 250, 0.2) !important;
+  color: var(--color-primary) !important;
+}
+
+:root[data-theme="dark"] .blog-pagination .page-numbers:hover,
+:root[data-theme="dark"] .blog-pagination .page-numbers.current,
+html.dark-mode .blog-pagination .page-numbers:hover,
+html.dark-mode .blog-pagination .page-numbers.current,
+body.dark-mode .blog-pagination .page-numbers:hover,
+body.dark-mode .blog-pagination .page-numbers.current {
+  background: var(--color-primary) !important;
+  color: white !important;
 }
 
 .blog-sidebar::-webkit-scrollbar {
