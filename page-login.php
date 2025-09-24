@@ -749,7 +749,7 @@ input:focus,
       <?php endif; ?>
 
       <h1 id="login-titulo" class="auth-title">
-        <?php echo $is_register ? __('Crea tu cuenta', 'academia-pro') : __('Accede a tu cuenta', 'academia-pro'); ?>
+        <?php echo $is_register ? __('Crea tu cuenta', 'academia-pro') : __('Axios', 'academia-pro'); ?>
       </h1>
 
       <p class="auth-subtitle">
