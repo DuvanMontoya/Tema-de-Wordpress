@@ -41,6 +41,11 @@ add_action('wp_head', function(){
  * Dark mode toggle inline (añade botón accesible en body) - VERSIÓN CORREGIDA
  */
 add_action('wp_footer', function(){
+    // No mostrar botón de modo oscuro en páginas de login/register
+    if (function_exists('academia_pro_is_login_context') && academia_pro_is_login_context()) {
+        return;
+    }
+
     echo '<button id="modo-tema" class="boton" style="position:fixed; right:1rem; bottom:1rem; z-index:999; font-size:.75rem; padding:.55rem .9rem; background:#fff; border:1px solid #ccc; border-radius:8px; cursor:pointer;">🌙</button>';
     echo '<script>(function(){const b=document.getElementById("modo-tema");if(!b)return;const k="academia-color-scheme";const r=document.documentElement;function apl(v){r.setAttribute("data-theme",v);localStorage.setItem(k,v);b.textContent=v==="dark"?"☀️":"🌙";b.style.background=v==="dark"?"#334155":"#fff";b.style.color=v==="dark"?"#f1f5f9":"#333";}let guard=localStorage.getItem(k);if(!guard){guard=window.matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light";}apl(guard);b.addEventListener("click",()=>{apl(r.getAttribute("data-theme")==="dark"?"light":"dark")});})();</script>';
 });
