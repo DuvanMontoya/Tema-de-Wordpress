@@ -1,165 +1,632 @@
-/* Auth System Espectacular: Login/Register Ultra Premium y Moderno */
+/* =====================================================
+   AUTH SYSTEM EMPRESARIAL Y PROFESIONAL
+   Diseño corporativo limpio y elegante para Academia Pro
+   ===================================================== */
 
-/* =================== 
-   LAYOUT PRINCIPAL ESPECTACULAR
-   =================== */
-.auth-layout { 
+/* Variables CSS empresariales */
+:root {
+  --login-primary: #1a365d;
+  --login-secondary: #2d3748;
+  --login-accent: #3182ce;
+  --login-success: #38a169;
+  --login-error: #e53e3e;
+  --login-border: #e2e8f0;
+  --login-text: #2d3748;
+  --login-text-light: #718096;
+  --login-background: #f7fafc;
+  --login-card-bg: #ffffff;
+  --login-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  --login-shadow-hover: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+}
+
+/* Layout principal empresarial */
+.auth-layout {
   min-height: 100vh;
-  display: grid;
-  place-items: center;
-  padding: clamp(1rem, 3vw, 2rem);
-  background: var(--color-background) !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  background: var(--login-background) !important;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif !important;
+}
+
+/* Tarjeta de autenticación empresarial */
+.auth-card {
+  width: 100%;
+  max-width: 420px;
+  background: var(--login-card-bg) !important;
+  border: 1px solid var(--login-border) !important;
+  border-radius: 12px !important;
+  box-shadow: var(--login-shadow) !important;
+  padding: 3rem 2.5rem !important;
   position: relative;
-  overflow: hidden;
 }
 
-.auth-layout::before {
-  display: none !important;
-}
-
-.auth-layout::after {
-  display: none !important;
-}
-
-/* =================== 
-   TARJETA DE AUTENTICACIÓN ULTRA PREMIUM
-   =================== */
-.auth-card { 
-  width: min(480px, 100%);
-  background: var(--color-surface) !important;
-  border: 1px solid var(--color-border) !important;
-  border-radius: var(--radius-3xl);
-  box-shadow: var(--shadow-sm) !important;
-  padding: clamp(2.5rem, 5vw, 3.5rem) clamp(2rem, 4vw, 3rem);
-  position: relative;
-  z-index: 2;
-  animation: slideInUp 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
-}
-
-.auth-card::before {
-  display: none !important;
-}
-
-.auth-card::after {
-  display: none !important;
-}
-
-@keyframes slideInUp {
-  from {
-    opacity: 0;
-    transform: translateY(40px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-/* =================== 
-   HEADER ESPECTACULAR
-   =================== */
-.auth-header { 
+/* Header empresarial */
+.auth-header {
   text-align: center;
-  margin-bottom: clamp(1.5rem, 3vw, 2rem);
-  position: relative;
-  z-index: 2;
+  margin-bottom: 2.5rem;
 }
 
-.auth-title { 
-  margin: 0;
-  font: 900 clamp(1.5rem, 3vw, 2rem)/1.15 var(--font-family-sans);
-  letter-spacing: -.02em;
-  background: var(--gradient-text);
-  background-clip: text;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  margin-bottom: .5rem;
+.auth-title {
+  font-size: 1.875rem !important;
+  font-weight: 700 !important;
+  color: var(--login-primary) !important;
+  margin: 0 0 0.75rem 0 !important;
+  line-height: 1.2 !important;
+  letter-spacing: -0.025em !important;
 }
 
-.auth-subtitle { 
-  margin: 0;
-  color: var(--color-text-secondary);
-  font: 500 clamp(.95rem, 1.8vw, 1.05rem)/1.4 var(--font-family-serif);
+.auth-subtitle {
+  font-size: 1rem !important;
+  color: var(--login-text-light) !important;
+  font-weight: 400 !important;
+  margin: 0 !important;
+  line-height: 1.5 !important;
 }
 
-.auth-header .custom-logo-link, 
-.auth-header img { 
-  display: inline-block;
-  max-height: 64px;
-  margin-bottom: 1rem;
-  filter: drop-shadow(0 4px 6px rgba(0,0,0,0.1));
-  transition: all var(--transition-duration-base) var(--transition-timing-function);
+.auth-logo img {
+  max-width: 180px;
+  height: auto;
 }
 
-.auth-header .custom-logo-link:hover,
-.auth-header img:hover {
-  transform: scale(1.05);
-  filter: drop-shadow(0 8px 12px rgba(0,0,0,0.15));
+/* Alertas empresariales */
+.auth-alert {
+  background: #fef5e7 !important;
+  border: 1px solid #f6e05e !important;
+  border-radius: 8px !important;
+  padding: 1rem 1.25rem !important;
+  margin-bottom: 2rem !important;
+  color: #744210 !important;
+}
+
+.auth-alert ul {
+  margin: 0 !important;
+  padding-left: 1.5rem !important;
+}
+
+.auth-alert li {
+  margin-bottom: 0.5rem !important;
+}
+
+.auth-alert li:last-child {
+  margin-bottom: 0 !important;
+}
+
+/* Formulario empresarial */
+.auth-form {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 1.5rem !important;
+}
+
+/* Campos empresariales */
+.field {
+  position: relative !important;
+}
+
+.label {
+  display: block !important;
+  font-size: 0.875rem !important;
+  font-weight: 600 !important;
+  color: var(--login-text) !important;
+  margin-bottom: 0.5rem !important;
+}
+
+.label-row {
+  display: flex !important;
+  justify-content: space-between !important;
+  align-items: center !important;
+  margin-bottom: 0.5rem !important;
+}
+
+.link-muted {
+  color: var(--login-text-light) !important;
+  text-decoration: none !important;
+  font-size: 0.875rem !important;
+  transition: color 0.2s ease !important;
+  font-weight: 500 !important;
+}
+
+.link-muted:hover {
+  color: var(--login-accent) !important;
+  text-decoration: underline !important;
+}
+
+.input-with-action {
+  position: relative !important;
+}
+
+input[type="text"],
+input[type="password"],
+input[type="email"] {
+  width: 100% !important;
+  padding: 0.875rem 1rem !important;
+  border: 2px solid var(--login-border) !important;
+  border-radius: 8px !important;
+  font-size: 1rem !important;
+  background: white !important;
+  transition: all 0.2s ease !important;
+  outline: none !important;
+  color: var(--login-text) !important;
+  font-weight: 400 !important;
+}
+
+input[type="text"]:focus,
+input[type="password"]:focus,
+input[type="email"]:focus {
+  border-color: var(--login-accent) !important;
+  box-shadow: 0 0 0 3px rgba(49, 130, 206, 0.1) !important;
+  background: white !important;
+}
+
+input[type="text"]::placeholder,
+input[type="password"]::placeholder,
+input[type="email"]::placeholder {
+  color: var(--login-text-light) !important;
+  opacity: 1 !important;
+}
+
+.toggle-pass {
+  position: absolute !important;
+  right: 0.75rem !important;
+  top: 50% !important;
+  transform: translateY(-50%) !important;
+  background: none !important;
+  border: none !important;
+  color: var(--login-text-light) !important;
+  cursor: pointer !important;
+  font-size: 1.125rem !important;
+  padding: 0.5rem !important;
+  border-radius: 4px !important;
+  transition: color 0.2s ease !important;
+}
+
+.toggle-pass:hover {
+  color: var(--login-accent) !important;
+}
+
+/* Checkbox corporativo */
+.field--row {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+}
+
+.checkbox {
+  display: flex !important;
+  align-items: center !important;
+  gap: 0.75rem !important;
+  cursor: pointer !important;
+  font-size: 0.875rem !important;
+  color: var(--login-text) !important;
+  font-weight: 500 !important;
+}
+
+.checkbox input {
+  width: auto !important;
+  margin: 0 !important;
+  accent-color: var(--login-accent) !important;
+}
+
+/* Botones empresariales */
+.actions {
+  margin-top: 1rem !important;
+}
+
+.btn {
+  padding: 0.875rem 1.5rem !important;
+  border: 2px solid transparent !important;
+  border-radius: 8px !important;
+  font-size: 1rem !important;
+  font-weight: 600 !important;
+  cursor: pointer !important;
+  transition: all 0.2s ease !important;
+  text-decoration: none !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 0.5rem !important;
+  min-height: 48px !important;
+  text-align: center !important;
+}
+
+.btn--primary {
+  background: var(--login-accent) !important;
+  color: white !important;
+  width: 100% !important;
+  border-color: var(--login-accent) !important;
+}
+
+.btn--primary:hover {
+  background: #2c5aa0 !important;
+  border-color: #2c5aa0 !important;
+  transform: translateY(-1px) !important;
+  box-shadow: var(--login-shadow-hover) !important;
+}
+
+.btn--block {
+  width: 100% !important;
+}
+
+/* Texto adicional corporativo */
+.muted {
+  text-align: center !important;
+  margin: 2rem 0 0 0 !important;
+  color: var(--login-text-light) !important;
+  font-size: 0.875rem !important;
+  font-weight: 400 !important;
+}
+
+.muted a {
+  color: var(--login-accent) !important;
+  text-decoration: none !important;
+  font-weight: 600 !important;
+  transition: color 0.2s ease !important;
+}
+
+.muted a:hover {
+  color: #2c5aa0 !important;
+  text-decoration: underline !important;
+}
+
+/* Responsive empresarial */
+@media (max-width: 640px) {
+  .auth-layout {
+    padding: 1.5rem !important;
+  }
+
+  .auth-card {
+    padding: 2.5rem 2rem !important;
+  }
+
+  .auth-title {
+    font-size: 1.75rem !important;
+  }
+
+  .field--row {
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    gap: 1rem !important;
+  }
+
+  .checkbox {
+    font-size: 0.875rem !important;
+  }
+}
+
+/* Modo oscuro empresarial */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --login-primary: #e2e8f0;
+    --login-secondary: #cbd5e0;
+    --login-accent: #63b3ed;
+    --login-success: #68d391;
+    --login-error: #fc8181;
+    --login-border: #4a5568;
+    --login-text: #e2e8f0;
+    --login-text-light: #a0aec0;
+    --login-background: #1a202c;
+    --login-card-bg: #2d3748;
+  }
+
+  .auth-layout {
+    background: var(--login-background) !important;
+  }
+
+  .auth-title {
+    color: var(--login-primary) !important;
+  }
+
+  .auth-subtitle {
+    color: var(--login-text-light) !important;
+  }
+
+  input[type="text"],
+  input[type="password"],
+  input[type="email"] {
+    background: #1a202c !important;
+    border-color: var(--login-border) !important;
+    color: var(--login-text) !important;
+  }
+
+  input[type="text"]:focus,
+  input[type="password"]:focus,
+  input[type="email"]:focus {
+    background: #2d3748 !important;
+    border-color: var(--login-accent) !important;
+  }
+
+  .toggle-pass {
+    color: var(--login-text-light) !important;
+  }
+
+  .toggle-pass:hover {
+    color: var(--login-accent) !important;
+  }
+
+  .checkbox {
+    color: var(--login-text-light) !important;
+  }
+
+  .auth-alert {
+    background: #2d1b2d !important;
+    border-color: #9f3a9f !important;
+    color: #e6b3e6 !important;
+  }
+}
+
+.auth-alert li {
+  margin-bottom: 0.5rem !important;
+}
+
+.auth-alert li:last-child {
+  margin-bottom: 0 !important;
 }
 
 /* =================== 
-   ALERTAS ELEGANTES
-   =================== */
-.auth-alert { 
-  border: 1px solid #f87171;
-  background: linear-gradient(135deg, #fef2f2, #fee2e2);
-  color: #dc2626;
-  padding: clamp(.75rem, 1.5vw, 1rem) clamp(.9rem, 1.8vw, 1.25rem);
-  border-radius: var(--radius-xl);
-  margin: 1rem 0;
-  box-shadow: var(--shadow-sm);
-  position: relative;
-  backdrop-filter: blur(8px);
-}
-
-.auth-alert::before {
-  content: "⚠";
-  position: absolute;
-  top: .75rem;
-  right: .75rem;
-  font-size: 1.2rem;
-  opacity: 0.7;
-}
-
-.auth-alert ul { 
-  margin: .3rem 0 0 1.5rem;
-  font-weight: 500;
-}
-
-/* =================== 
-   FORMULARIO ESPECTACULAR
+   FORMULARIO EMPRESARIAL
    =================== */
 .auth-form { 
-  display: grid;
-  gap: clamp(1rem, 2vw, 1.25rem);
-  position: relative;
-  z-index: 2;
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 1.5rem !important;
 }
 
+/* Campos empresariales */
 .field { 
-  display: grid;
-  gap: .6rem;
+  position: relative !important;
+}
+
+.label {
+  display: block !important;
+  font-size: 0.875rem !important;
+  font-weight: 600 !important;
+  color: var(--login-text) !important;
+  margin-bottom: 0.5rem !important;
+}
+
+.label-row {
+  display: flex !important;
+  justify-content: space-between !important;
+  align-items: center !important;
+  margin-bottom: 0.5rem !important;
+}
+
+.link-muted {
+  color: var(--login-text-light) !important;
+  text-decoration: none !important;
+  font-size: 0.875rem !important;
+  transition: color 0.2s ease !important;
+  font-weight: 500 !important;
+}
+
+.link-muted:hover {
+  color: var(--login-accent) !important;
+  text-decoration: underline !important;
+}
+
+.input-with-action {
+  position: relative !important;
+}
+
+input[type="text"],
+input[type="password"],
+input[type="email"] {
+  width: 100% !important;
+  padding: 0.875rem 1rem !important;
+  border: 2px solid var(--login-border) !important;
+  border-radius: 8px !important;
+  font-size: 1rem !important;
+  background: white !important;
+  transition: all 0.2s ease !important;
+  outline: none !important;
+  color: var(--login-text) !important;
+  font-weight: 400 !important;
+}
+
+input[type="text"]:focus,
+input[type="password"]:focus,
+input[type="email"]:focus {
+  border-color: var(--login-accent) !important;
+  box-shadow: 0 0 0 3px rgba(49, 130, 206, 0.1) !important;
+  background: white !important;
+}
+
+input[type="text"]::placeholder,
+input[type="password"]::placeholder,
+input[type="email"]::placeholder {
+  color: var(--login-text-light) !important;
+  opacity: 1 !important;
+}
+
+.toggle-pass {
+  position: absolute !important;
+  right: 0.75rem !important;
+  top: 50% !important;
+  transform: translateY(-50%) !important;
+  background: none !important;
+  border: none !important;
+  color: var(--login-text-light) !important;
+  cursor: pointer !important;
+  font-size: 1.125rem !important;
+  padding: 0.5rem !important;
+  border-radius: 4px !important;
+  transition: color 0.2s ease !important;
+}
+
+.toggle-pass:hover {
+  color: var(--login-accent) !important;
+}
+
+/* Checkbox corporativo */
+.field--row {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+}
+
+.checkbox {
+  display: flex !important;
+  align-items: center !important;
+  gap: 0.75rem !important;
+  cursor: pointer !important;
+  font-size: 0.875rem !important;
+  color: var(--login-text) !important;
+  font-weight: 500 !important;
+}
+
+.checkbox input {
+  width: auto !important;
+  margin: 0 !important;
+  accent-color: var(--login-accent) !important;
+}
+
+/* Botones empresariales */
+.actions {
+  margin-top: 1rem !important;
+}
+
+.btn {
+  padding: 0.875rem 1.5rem !important;
+  border: 2px solid transparent !important;
+  border-radius: 8px !important;
+  font-size: 1rem !important;
+  font-weight: 600 !important;
+  cursor: pointer !important;
+  transition: all 0.2s ease !important;
+  text-decoration: none !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 0.5rem !important;
+  min-height: 48px !important;
+  text-align: center !important;
+}
+
+.btn--primary {
+  background: var(--login-accent) !important;
+  color: white !important;
+  width: 100% !important;
+  border-color: var(--login-accent) !important;
+}
+
+.btn--primary:hover {
+  background: #2c5aa0 !important;
+  border-color: #2c5aa0 !important;
+  transform: translateY(-1px) !important;
+  box-shadow: var(--login-shadow-hover) !important;
+}
+
+.btn--block {
+  width: 100% !important;
+}
+
+/* Texto adicional corporativo */
+.muted {
+  text-align: center !important;
+  margin: 2rem 0 0 0 !important;
+  color: var(--login-text-light) !important;
+  font-size: 0.875rem !important;
+  font-weight: 400 !important;
+}
+
+.muted a {
+  color: var(--login-accent) !important;
+  text-decoration: none !important;
+  font-weight: 600 !important;
+  transition: color 0.2s ease !important;
+}
+
+.muted a:hover {
+  color: #2c5aa0 !important;
+  text-decoration: underline !important;
+}
+
+/* Responsive empresarial */
+@media (max-width: 640px) {
+  .auth-layout {
+    padding: 1.5rem !important;
+  }
+
+  .auth-card {
+    padding: 2.5rem 2rem !important;
+  }
+
+  .auth-title {
+    font-size: 1.75rem !important;
 }
 
 .field--row { 
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 1rem;
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    gap: 1rem !important;
+  }
+
+  .checkbox {
+    font-size: 0.875rem !important;
+  }
 }
 
-.label { 
-  font: 700 clamp(.9rem, 1.8vw, .95rem)/1.2 var(--font-family-sans);
-  color: var(--color-text-primary);
-  text-transform: uppercase;
-  letter-spacing: .02em;
-}
+/* Modo oscuro empresarial */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --login-primary: #e2e8f0;
+    --login-secondary: #cbd5e0;
+    --login-accent: #63b3ed;
+    --login-success: #68d391;
+    --login-error: #fc8181;
+    --login-border: #4a5568;
+    --login-text: #e2e8f0;
+    --login-text-light: #a0aec0;
+    --login-background: #1a202c;
+    --login-card-bg: #2d3748;
+  }
 
-.label-row { 
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 1rem;
+  .auth-layout {
+    background: var(--login-background) !important;
+  }
+
+  .auth-title {
+    color: var(--login-primary) !important;
+  }
+
+  .auth-subtitle {
+    color: var(--login-text-light) !important;
+  }
+
+  input[type="text"],
+  input[type="password"],
+  input[type="email"] {
+    background: #1a202c !important;
+    border-color: var(--login-border) !important;
+    color: var(--login-text) !important;
+  }
+
+  input[type="text"]:focus,
+  input[type="password"]:focus,
+  input[type="email"]:focus {
+    background: #2d3748 !important;
+    border-color: var(--login-accent) !important;
+  }
+
+  .toggle-pass {
+    color: var(--login-text-light) !important;
+  }
+
+  .toggle-pass:hover {
+    color: var(--login-accent) !important;
+  }
+
+  .checkbox {
+    color: var(--login-text-light) !important;
+  }
+
+  .auth-alert {
+    background: #2d1b2d !important;
+    border-color: #9f3a9f !important;
+    color: #e6b3e6 !important;
+  }
 }
 
 .link-muted { 

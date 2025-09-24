@@ -51,18 +51,66 @@ if ( ! function_exists('academia_pro_asset_ver') ) {
  * Contextos
  * ======================================================= */
 
-/** Login/registro (páginas propias o wp-login.php) */
+/** Login/registro (páginas propias o wp-login.php) - MEJORADA */
 if ( ! function_exists('academia_pro_is_login_context') ) {
     function academia_pro_is_login_context(): bool {
+        // Detección más robusta para evitar problemas con plugins
+
+        // 1. Página con plantilla de login
+        if ( function_exists('is_page_template') && is_page_template('page-login.php') ) {
+            return true;
+        }
+
+        // 2. Páginas por slug (incluyendo variaciones comunes)
         if ( function_exists('is_page') ) {
-            // slugs y plantilla de login más comunes
-            if ( is_page( array('acceso','registro','entrar','login','register','sign-in','sign-up','mi-cuenta','my-account') )
-                 || function_exists('is_page_template') && is_page_template('page-login.php') ) {
+            $login_slugs = array(
+                'acceso', 'registro', 'entrar', 'login', 'register', 'sign-in', 'sign-up',
+                'mi-cuenta', 'my-account', 'auth', 'authentication', 'signin', 'signup'
+            );
+            if ( is_page( $login_slugs ) ) {
+                return true;
+            }
+
+            // 3. Buscar página por título también
+            $page = get_post();
+            if ( $page && is_page() ) {
+                $login_titles = array(
+                    'Acceso', 'Login', 'Registro', 'Sign In', 'Sign Up', 'Mi Cuenta',
+                    'Authentication', 'Auth', 'Entrar', 'Registrar'
+                );
+                $title = strtolower( $page->post_title );
+                foreach ( $login_titles as $login_title ) {
+                    if ( str_contains( $title, strtolower( $login_title ) ) ) {
+                        return true;
+                    }
+                }
+            }
+        }
+
+        // 4. Detección por URL (último recurso)
+        $uri = $_SERVER['REQUEST_URI'] ?? '';
+        $uri_lower = strtolower( $uri );
+        $login_paths = array(
+            '/acceso', '/login', '/register', '/signin', '/signup', '/auth',
+            '/registro', '/entrar', '/mi-cuenta', '/my-account'
+        );
+        foreach ( $login_paths as $path ) {
+            if ( str_contains( $uri_lower, $path ) ) {
                 return true;
             }
         }
+
+        // 5. Detección por wp-login.php (incluyendo variaciones)
         $pagenow = $GLOBALS['pagenow'] ?? '';
-        if ( $pagenow === 'wp-login.php' ) { return true; }
+        if ( $pagenow === 'wp-login.php' ) {
+            // Excluir acciones específicas que no necesitan nuestros estilos
+            $action = $_REQUEST['action'] ?? '';
+            $excluded_actions = array('logout', 'lostpassword', 'rp', 'resetpass', 'postpass');
+            if ( ! in_array( $action, $excluded_actions, true ) ) {
+                return true;
+            }
+        }
+
         return false;
     }
 }
@@ -239,10 +287,25 @@ function academia_pro_enqueue_public(): void {
         wp_enqueue_style('academia-pro-lms',          academia_pro_asset_path($rel_lms), array('academia-pro-learndash-ui'), academia_pro_asset_ver($rel_lms));
     }
 
-    /* — 6) Auth — */
-    if ( academia_pro_is_login_context() ) {
+    /* — 6) Auth — MEJORADO */
+    $is_login_context = academia_pro_is_login_context();
+
+    // Debug: Log si estamos en contexto de login
+    if ( $is_login_context ) {
+        error_log('Academia Pro: Cargando CSS de autenticación');
+
         $rel = 'assets/css/auth.css';
-        wp_enqueue_style('academia-pro-auth', academia_pro_asset_path($rel), array('academia-pro-style'), academia_pro_asset_ver($rel));
+        $auth_style = wp_enqueue_style(
+            'academia-pro-auth',
+            academia_pro_asset_path($rel),
+            array('academia-pro-style'),
+            academia_pro_asset_ver($rel)
+        );
+
+        // Verificar si se cargó correctamente
+        if ( ! $auth_style ) {
+            error_log('Academia Pro: Error al cargar CSS de autenticación, intentando inline');
+        }
     }
 
     /* — 7) JS del tema — */
